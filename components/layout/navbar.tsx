@@ -40,12 +40,12 @@ export function Navbar() {
 
         {/* CTA desktop */}
         <div className="hidden lg:block">
-          <Button
-            render={<Link href="#contato" />}
-            className="bg-[#D4AF37] px-5 text-zinc-950 hover:bg-[#E5C45A]"
+          <Link
+            href="#contato"
+            className="inline-flex h-10 items-center justify-center rounded-full bg-[#D4AF37] px-5 text-sm font-medium text-zinc-950 transition-all hover:-translate-y-0.5 hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
           >
             Fale Conosco
-          </Button>
+          </Link>
         </div>
 
         {/* Navegação mobile */}
@@ -79,6 +79,7 @@ export function Navbar() {
                 {navigation.map((item) => (
                   <SheetClose
                     key={item.href}
+                    nativeButton={false}
                     render={
                       <Link
                         href={item.href}
@@ -91,6 +92,7 @@ export function Navbar() {
                 ))}
 
                 <SheetClose
+                  nativeButton={false}
                   render={
                     <Link
                       href="#contato"
