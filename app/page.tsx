@@ -1,32 +1,21 @@
-import { Building2, Search } from 'lucide-react'
-
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Navbar } from '@/components/layout/navbar'
 
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen items-center justify-center p-6">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <div className="mb-2 flex items-center gap-2">
-            <Building2 className="size-6" aria-hidden="true" />
-            <span className="font-semibold">ADRIZIO</span>
+    <>
+      <Navbar />
+
+      <main>
+        <section className="flex min-h-screen items-center justify-center bg-zinc-950 px-6 text-zinc-100">
+          <div className="text-center">
+            <p className="mb-4 text-sm font-medium tracking-[0.2em] text-[#D4AF37]">ADRIZIO</p>
+
+            <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">Landing Page V2</h1>
+
+            <p className="mt-4 text-zinc-400">Próxima etapa: Hero + Busca Inteligente</p>
           </div>
-
-          <CardTitle>Foundation ADRIZIO</CardTitle>
-
-          <CardDescription>
-            Next.js, TypeScript, Tailwind CSS, shadcn/ui e Lucide integrados.
-          </CardDescription>
-        </CardHeader>
-
-        <CardContent>
-          <Button className="w-full">
-            <Search aria-hidden="true" />
-            Encontrar imóvel
-          </Button>
-        </CardContent>
-      </Card>
-    </main>
+        </section>
+      </main>
+    </>
   )
 }
