@@ -1,6 +1,9 @@
 import { Navbar } from '@/components/layout/navbar'
+import { FeaturedProperties } from '@/sections/home/featured-properties'
 import { Hero } from '@/sections/home/hero'
+import { PropertyJourneys } from '@/sections/home/property-journeys'
 import { PropertySearch } from '@/sections/home/property-search'
+import { Regions } from '@/sections/home/regions'
 
 export default function HomePage() {
   return (
@@ -12,7 +15,11 @@ export default function HomePage() {
 
         <PropertySearch />
 
-        <div className="h-32" />
+        <FeaturedProperties />
+
+        <PropertyJourneys />
+
+        <Regions />
       </main>
     </>
   )
