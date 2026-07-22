@@ -7,6 +7,8 @@ import { Regions } from '@/sections/home/regions'
 import { PropertyValuation } from '@/sections/home/property-valuation'
 import { Testimonials } from '@/sections/home/testimonials'
 import { BlogPreview } from '@/sections/home/blog-preview'
+import { Footer } from '@/components/layout/footer'
+import { FinalCta } from '@/sections/home/final-cta'
 
 export default function HomePage() {
   return (
@@ -27,7 +29,10 @@ export default function HomePage() {
         <PropertyValuation />
         <Testimonials />
         <BlogPreview />
+
+        <FinalCta />
       </main>
+      <Footer />
     </>
   )
 }
