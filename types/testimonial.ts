@@ -1,7 +1,9 @@
 export interface Testimonial {
   id: string
   name: string
-  context: string
   quote: string
-  location?: string
+  rating: number
+  source: 'Google'
+  context?: string
+  sourceUrl?: string
 }

@@ -1,5 +1,5 @@
 import { TestimonialCard } from '@/components/testimonial/testimonial-card'
-import { testimonials } from '@/data/testimonials'
+import { googleBusinessReviewsUrl, testimonials } from '@/data/testimonials'
 
 export function Testimonials() {
   if (testimonials.length === 0) {
@@ -39,6 +39,16 @@ export function Testimonials() {
           {testimonials.map((testimonial) => (
             <TestimonialCard key={testimonial.id} testimonial={testimonial} />
           ))}
+        </div>
+        <div className="mt-10 text-center">
+          <a
+            href={googleBusinessReviewsUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-zinc-200 transition-colors hover:border-[#D4AF37]/50 hover:text-[#D4AF37]"
+          >
+            Ver todas as avaliações no Google
+          </a>
         </div>
       </div>
     </section>
