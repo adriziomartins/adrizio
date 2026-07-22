@@ -4,6 +4,7 @@ import { Hero } from '@/sections/home/hero'
 import { PropertyJourneys } from '@/sections/home/property-journeys'
 import { PropertySearch } from '@/sections/home/property-search'
 import { Regions } from '@/sections/home/regions'
+import { About } from '@/sections/home/about'
 import { PropertyValuation } from '@/sections/home/property-valuation'
 import { Testimonials } from '@/sections/home/testimonials'
 import { BlogPreview } from '@/sections/home/blog-preview'
@@ -26,6 +27,7 @@ export default function HomePage() {
 
         <Regions />
 
+        <About />
         <PropertyValuation />
         <Testimonials />
         <BlogPreview />
