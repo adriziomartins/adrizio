@@ -6,6 +6,7 @@ import { PropertySearch } from '@/sections/home/property-search'
 import { Regions } from '@/sections/home/regions'
 import { PropertyValuation } from '@/sections/home/property-valuation'
 import { Testimonials } from '@/sections/home/testimonials'
+import { BlogPreview } from '@/sections/home/blog-preview'
 
 export default function HomePage() {
   return (
@@ -25,6 +26,7 @@ export default function HomePage() {
 
         <PropertyValuation />
         <Testimonials />
+        <BlogPreview />
       </main>
     </>
   )
