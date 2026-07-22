@@ -4,6 +4,7 @@ import { Hero } from '@/sections/home/hero'
 import { PropertyJourneys } from '@/sections/home/property-journeys'
 import { PropertySearch } from '@/sections/home/property-search'
 import { Regions } from '@/sections/home/regions'
+import { PropertyValuation } from '@/sections/home/property-valuation'
 
 export default function HomePage() {
   return (
@@ -20,6 +21,8 @@ export default function HomePage() {
         <PropertyJourneys />
 
         <Regions />
+
+        <PropertyValuation />
       </main>
     </>
   )
