@@ -24,6 +24,11 @@ function PropertySearchContent() {
 
   const purpose = purposeOverride ?? purposeFromQuery
 
+  const neighborhoodFromQuery = searchParams.get('bairro') ?? ''
+  const typeFromQuery = searchParams.get('tipo') ?? ''
+  const priceFromQuery = searchParams.get('preco') ?? ''
+  const bedroomsFromQuery = searchParams.get('quartos') ?? ''
+
   function handlePurposeChange(event: ChangeEvent<HTMLSelectElement>) {
     setPurposeOverride(event.target.value)
   }
@@ -55,7 +60,7 @@ function PropertySearchContent() {
     <section
       id="busca"
       aria-labelledby="property-search-title"
-      className="relative z-20 -mt-10 scroll-mt-28 px-4 sm:px-6 lg:-mt-16 lg:px-8"
+      className="relative z-20 -mt-10 px-4 sm:px-6 lg:-mt-16 lg:px-8"
     >
       <div className="mx-auto max-w-7xl">
         <div className="overflow-hidden rounded-3xl border border-white/10 bg-zinc-950/95 shadow-2xl shadow-black/40 backdrop-blur-xl">
@@ -107,7 +112,11 @@ function PropertySearchContent() {
                   Região
                 </span>
 
-                <select name="bairro" defaultValue="" className={inputClassName}>
+                <select
+                  name="bairro"
+                  defaultValue={neighborhoodFromQuery}
+                  className={inputClassName}
+                >
                   <option value="">Todas as regiões</option>
 
                   <option value="beira-mar">Beira-Mar</option>
@@ -130,7 +139,7 @@ function PropertySearchContent() {
                   Tipo
                 </span>
 
-                <select name="tipo" defaultValue="" className={inputClassName}>
+                <select name="tipo" defaultValue={typeFromQuery} className={inputClassName}>
                   <option value="">Todos os tipos</option>
 
                   <option value="apartamento">Apartamento</option>
@@ -151,7 +160,7 @@ function PropertySearchContent() {
                   Faixa de preço
                 </span>
 
-                <select name="preco" defaultValue="" className={inputClassName}>
+                <select name="preco" defaultValue={priceFromQuery} className={inputClassName}>
                   <option value="">Qualquer valor</option>
 
                   <option value="ate-500000">Até R$ 500 mil</option>
@@ -172,7 +181,7 @@ function PropertySearchContent() {
                   Quartos
                 </span>
 
-                <select name="quartos" defaultValue="" className={inputClassName}>
+                <select name="quartos" defaultValue={bedroomsFromQuery} className={inputClassName}>
                   <option value="">Qualquer</option>
 
                   <option value="1">1+</option>
