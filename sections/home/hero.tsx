@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowDown, MessageCircle } from 'lucide-react'
+import { WHATSAPP_URL } from '@/lib/contact'
 
 const regions = ['Beira-Mar', 'Meireles', 'Mucuripe', 'Praia de Iracema', 'Praia do Futuro']
 
@@ -69,13 +70,15 @@ export function Hero() {
               <ArrowDown className="size-4" aria-hidden="true" />
             </Link>
 
-            <Link
-              href="#contato"
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/25 bg-black/20 px-6 text-sm font-semibold text-white backdrop-blur-md transition-all hover:-translate-y-0.5 hover:border-[#D4AF37]/70 hover:bg-black/35 hover:text-[#D4AF37] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
             >
               <MessageCircle className="size-4" aria-hidden="true" />
               Falar com um especialista
-            </Link>
+            </a>
           </div>
 
           <div className="mt-14 border-t border-white/20 pt-7">

@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { Menu } from 'lucide-react'
-
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetClose, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import { WHATSAPP_URL } from '@/lib/contact'
 
 const navigation = [
   { label: 'Comprar', href: '#comprar' },
@@ -40,12 +40,14 @@ export function Navbar() {
 
         {/* CTA desktop */}
         <div className="hidden lg:block">
-          <Link
-            href="#contato"
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noreferrer"
             className="inline-flex h-10 items-center justify-center rounded-full bg-[#D4AF37] px-5 text-sm font-medium text-zinc-950 transition-all hover:-translate-y-0.5 hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
           >
             Fale Conosco
-          </Link>
+          </a>
         </div>
 
         {/* Navegação mobile */}
@@ -94,8 +96,10 @@ export function Navbar() {
                 <SheetClose
                   nativeButton={false}
                   render={
-                    <Link
-                      href="#contato"
+                    <a
+                      href={WHATSAPP_URL}
+                      target="_blank"
+                      rel="noreferrer"
                       className="mt-5 flex h-11 items-center justify-center rounded-full bg-[#D4AF37] px-5 text-sm font-semibold text-zinc-950 transition-colors hover:bg-[#E5C45A]"
                     />
                   }

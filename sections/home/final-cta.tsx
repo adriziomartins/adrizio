@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { ArrowRight, Building2, Home } from 'lucide-react'
+import { ArrowRight, Building2, MessageCircle } from 'lucide-react'
+import { WHATSAPP_URL } from '@/lib/contact'
 
 export function FinalCta() {
   return (
@@ -31,14 +32,16 @@ export function FinalCta() {
         </p>
 
         <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-          <Link
-            href="#busca"
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noreferrer"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#D4AF37] px-7 text-sm font-semibold text-zinc-950 transition-all hover:-translate-y-0.5 hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
           >
-            <Home className="size-4" aria-hidden="true" />
-            Encontrar meu imóvel
+            <MessageCircle className="size-4" aria-hidden="true" />
+            Falar no WhatsApp
             <ArrowRight className="size-4" aria-hidden="true" />
-          </Link>
+          </a>
 
           <Link
             href="#avaliar"

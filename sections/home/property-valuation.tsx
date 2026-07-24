@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { WHATSAPP_VALUATION_URL } from '@/lib/contact'
 import { ArrowRight, BarChart3, CheckCircle2, FileSearch, Handshake, Home } from 'lucide-react'
 
 const benefits = [
@@ -85,13 +85,15 @@ export function PropertyValuation() {
               ))}
             </ul>
 
-            <Link
-              href="#contato"
+            <a
+              href={WHATSAPP_VALUATION_URL}
+              target="_blank"
+              rel="noreferrer"
               className="mt-10 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#D4AF37] px-6 text-sm font-semibold text-zinc-950 transition-all hover:-translate-y-0.5 hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
             >
               Solicitar uma avaliação
               <ArrowRight className="size-4" aria-hidden="true" />
-            </Link>
+            </a>
 
             <p className="mt-4 text-xs leading-5 text-zinc-600">
               Atendimento personalizado para proprietários que desejam vender, alugar ou compreender
