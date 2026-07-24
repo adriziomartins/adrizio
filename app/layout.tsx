@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-
 import './globals.css'
-
 import { cn } from '@/lib/utils'
 
 const inter = Inter({
@@ -43,9 +41,10 @@ export const metadata: Metadata = {
   },
 
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: siteTitle,
     description: siteDescription,
+    images: ['/opengraph-image'],
   },
 
   robots: {
