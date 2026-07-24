@@ -16,7 +16,18 @@ export default function HomePage() {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-zinc-950">
+      <a
+        href="#conteudo-principal"
+        className="sr-only fixed left-4 top-4 z-[100] rounded-md bg-[#D4AF37] px-4 py-3 font-semibold text-zinc-950 focus:not-sr-only"
+      >
+        Pular para o conteúdo principal
+      </a>
+
+      <main
+        id="conteudo-principal"
+        tabIndex={-1}
+        className="min-h-screen bg-zinc-950 focus:outline-none"
+      >
         <Hero />
 
         <PropertySearch />
