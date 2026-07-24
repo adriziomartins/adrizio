@@ -99,7 +99,7 @@ export function Hero() {
       </div>
 
       {/* Crédito obrigatório da imagem provisória */}
-      <p className="absolute bottom-24 right-4 z-10 text-[9px] text-white/40">
+      <p className="absolute bottom-24 right-4 z-10 rounded-md bg-black/70 px-2 py-1 text-[10px] text-white/80">
         Foto: Joelkaula / Wikimedia Commons · CC BY-SA 4.0
       </p>
     </section>
