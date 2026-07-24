@@ -11,9 +11,54 @@ import { BlogPreview } from '@/sections/home/blog-preview'
 import { Footer } from '@/components/layout/footer'
 import { FinalCta } from '@/sections/home/final-cta'
 
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': 'https://www.adrizio.com.br/#website',
+      url: 'https://www.adrizio.com.br/',
+      name: 'ADRIZIO',
+      description:
+        'Imóveis para comprar, alugar e investir na Orla de Fortaleza com Adrizio Martins, corretor de imóveis CRECI 25015F.',
+      inLanguage: 'pt-BR',
+      publisher: {
+        '@id': 'https://www.adrizio.com.br/#adrizio-martins',
+      },
+    },
+    {
+      '@type': 'Person',
+      '@id': 'https://www.adrizio.com.br/#adrizio-martins',
+      name: 'Adrizio Martins',
+      url: 'https://www.adrizio.com.br/',
+      jobTitle: 'Corretor de Imóveis',
+      description: 'Corretor de imóveis com atuação focada na Orla de Fortaleza.',
+      identifier: {
+        '@type': 'PropertyValue',
+        propertyID: 'CRECI-CE',
+        value: '25015F',
+      },
+      knowsAbout: [
+        'Mercado imobiliário',
+        'Imóveis na Orla de Fortaleza',
+        'Compra de imóveis',
+        'Locação de imóveis',
+        'Investimento imobiliário',
+      ],
+    },
+  ],
+}
+
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, '\\u003c'),
+        }}
+      />
+
       <Navbar />
 
       <a
