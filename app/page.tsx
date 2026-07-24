@@ -22,6 +22,66 @@ const structuredData = {
       description:
         'Imóveis para comprar, alugar e investir na Orla de Fortaleza com Adrizio Martins, corretor de imóveis CRECI 25015F.',
       inLanguage: 'pt-BR',
+      spatialCoverage: [
+        {
+          '@type': 'Place',
+          name: 'Fortaleza',
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Fortaleza',
+            addressRegion: 'CE',
+            addressCountry: 'BR',
+          },
+        },
+        {
+          '@type': 'Place',
+          name: 'Meireles',
+          containedInPlace: {
+            '@type': 'City',
+            name: 'Fortaleza',
+          },
+        },
+        {
+          '@type': 'Place',
+          name: 'Mucuripe',
+          containedInPlace: {
+            '@type': 'City',
+            name: 'Fortaleza',
+          },
+        },
+        {
+          '@type': 'Place',
+          name: 'Praia de Iracema',
+          containedInPlace: {
+            '@type': 'City',
+            name: 'Fortaleza',
+          },
+        },
+        {
+          '@type': 'Place',
+          name: 'Praia do Futuro',
+          containedInPlace: {
+            '@type': 'City',
+            name: 'Fortaleza',
+          },
+        },
+        {
+          '@type': 'Place',
+          name: 'Beira-Mar de Fortaleza',
+          containedInPlace: {
+            '@type': 'City',
+            name: 'Fortaleza',
+          },
+        },
+        {
+          '@type': 'Place',
+          name: 'Cumbuco',
+          containedInPlace: {
+            '@type': 'City',
+            name: 'Caucaia',
+          },
+        },
+      ],
       publisher: {
         '@id': 'https://www.adrizio.com.br/#adrizio-martins',
       },
