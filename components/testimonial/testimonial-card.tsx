@@ -1,5 +1,4 @@
 import { ExternalLink, Quote, Star } from 'lucide-react'
-
 import type { Testimonial } from '@/types/testimonial'
 
 interface TestimonialCardProps {
@@ -12,7 +11,7 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
       <div className="flex items-center justify-between gap-4">
         <Quote className="size-8 text-[#D4AF37]" aria-hidden="true" />
 
-        <div className="flex gap-1" aria-label={`${testimonial.rating} de 5 estrelas`}>
+        <div className="flex gap-1" role="img" aria-label={`${testimonial.rating} de 5 estrelas`}>
           {Array.from({ length: testimonial.rating }).map((_, index) => (
             <Star key={index} className="size-4 fill-[#D4AF37] text-[#D4AF37]" aria-hidden="true" />
           ))}
@@ -38,7 +37,7 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
               href={testimonial.sourceUrl}
               target="_blank"
               rel="noreferrer"
-              aria-label={`Ver avaliação de ${testimonial.name} no Google`}
+              aria-label={`Ver avaliação de ${testimonial.name} no Google — abre em nova aba`}
               className="inline-flex items-center gap-1 text-[#D4AF37] hover:text-[#E5C45A]"
             >
               Ver original

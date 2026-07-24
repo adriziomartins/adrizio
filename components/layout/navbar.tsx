@@ -44,6 +44,7 @@ export function Navbar() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noreferrer"
+            aria-label="Fale conosco pelo WhatsApp — abre em nova aba"
             className="inline-flex h-10 items-center justify-center rounded-full bg-[#D4AF37] px-5 text-sm font-medium text-zinc-950 transition-all hover:-translate-y-0.5 hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
           >
             Fale Conosco
@@ -100,6 +101,7 @@ export function Navbar() {
                       href={WHATSAPP_URL}
                       target="_blank"
                       rel="noreferrer"
+                      aria-label="Fale conosco pelo WhatsApp — abre em nova aba"
                       className="mt-5 flex h-11 items-center justify-center rounded-full bg-[#D4AF37] px-5 text-sm font-semibold text-zinc-950 transition-colors hover:bg-[#E5C45A]"
                     />
                   }

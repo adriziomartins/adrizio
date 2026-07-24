@@ -36,6 +36,7 @@ export function FinalCta() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noreferrer"
+            aria-label="Falar no WhatsApp — abre em nova aba"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#D4AF37] px-7 text-sm font-semibold text-zinc-950 transition-all hover:-translate-y-0.5 hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
           >
             <MessageCircle className="size-4" aria-hidden="true" />
