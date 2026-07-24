@@ -31,7 +31,7 @@ export function BlogCard({ post }: BlogCardProps) {
               <ArrowUpRight className="size-4" aria-hidden="true" />
             </span>
           ) : (
-            <span className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">
+            <span className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-400">
               Conteúdo em preparação
             </span>
           )}

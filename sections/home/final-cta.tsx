@@ -53,7 +53,7 @@ export function FinalCta() {
           </Link>
         </div>
 
-        <p className="mt-7 text-xs leading-5 text-zinc-600">
+        <p className="mt-7 text-xs leading-5 text-zinc-400">
           Atendimento imobiliário com foco na Orla de Fortaleza · Adrizio Martins · CRECI 25015F.
         </p>
       </div>

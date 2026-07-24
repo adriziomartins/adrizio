@@ -51,16 +51,16 @@ export function Footer() {
                 ADRIZIO
               </span>
 
-              <span className="mt-2 text-[11px] tracking-[0.17em] text-zinc-500">
+              <span className="mt-2 text-[11px] tracking-[0.17em] text-zinc-400">
                 CRECI 25015F · ESPECIALISTA NA ORLA
               </span>
             </Link>
 
-            <p className="mt-6 text-sm leading-7 text-zinc-500">
+            <p className="mt-6 text-sm leading-7 text-zinc-400">
               Imóveis, oportunidades e inteligência imobiliária com foco na Orla de Fortaleza.
             </p>
 
-            <p className="mt-5 text-xs leading-6 text-zinc-600">
+            <p className="mt-5 text-xs leading-6 text-zinc-400">
               Plataforma em evolução contínua para conectar pessoas, propriedades e melhores
               decisões imobiliárias.
             </p>
@@ -76,7 +76,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-zinc-500 transition-colors hover:text-[#D4AF37]"
+                    className="text-sm text-zinc-400 transition-colors hover:text-[#D4AF37]"
                   >
                     {link.label}
                   </Link>
@@ -95,7 +95,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-zinc-500 transition-colors hover:text-[#D4AF37]"
+                    className="text-sm text-zinc-400 transition-colors hover:text-[#D4AF37]"
                   >
                     {link.label}
                   </Link>
@@ -105,7 +105,7 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-7 text-xs text-zinc-600 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-7 text-xs text-zinc-400 sm:flex-row sm:items-center sm:justify-between">
           <p>© {currentYear} ADRIZIO. Todos os direitos reservados.</p>
 
           <p>Adrizio Martins · Corretor de Imóveis · CRECI 25015F</p>

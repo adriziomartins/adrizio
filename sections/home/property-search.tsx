@@ -7,7 +7,7 @@ import { useSearchParams } from 'next/navigation'
 import { BedDouble, Building2, MapPin, Search, SlidersHorizontal, Wallet } from 'lucide-react'
 
 const inputClassName =
-  'h-12 w-full appearance-none rounded-xl border border-zinc-700 bg-zinc-900/80 px-4 text-sm text-zinc-100 outline-none transition placeholder:text-zinc-500 focus:border-[#D4AF37]/70 focus:ring-2 focus:ring-[#D4AF37]/15'
+  'h-12 w-full appearance-none rounded-xl border border-zinc-700 bg-zinc-900/80 px-4 text-sm text-zinc-100 outline-none transition placeholder:text-zinc-400 focus:border-[#D4AF37]/70 focus:ring-2 focus:ring-[#D4AF37]/15'
 
 function PropertySearchContent() {
   const searchParams = useSearchParams()

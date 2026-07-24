@@ -96,7 +96,7 @@ export function PropertyValuation() {
               <ArrowRight className="size-4" aria-hidden="true" />
             </a>
 
-            <p className="mt-4 text-xs leading-5 text-zinc-600">
+            <p className="mt-4 text-xs leading-5 text-zinc-400">
               Atendimento personalizado para proprietários que desejam vender, alugar ou compreender
               melhor o posicionamento do imóvel no mercado.
             </p>

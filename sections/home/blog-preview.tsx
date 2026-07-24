@@ -32,7 +32,7 @@ export function BlogPreview() {
             </p>
           </div>
 
-          <p className="max-w-sm text-sm leading-6 text-zinc-500">
+          <p className="max-w-sm text-sm leading-6 text-zinc-400">
             Informação prática para compradores, proprietários e investidores que desejam tomar
             decisões imobiliárias com mais clareza.
           </p>

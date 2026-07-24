@@ -75,7 +75,7 @@ export function Navbar() {
                   ADRIZIO
                 </span>
 
-                <p className="mt-2 text-xs tracking-wider text-zinc-500">CRECI 25015F</p>
+                <p className="mt-2 text-xs tracking-wider text-zinc-400">CRECI 25015F</p>
               </div>
 
               <nav className="flex flex-col gap-1 p-6" aria-label="Navegação mobile">

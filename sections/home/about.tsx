@@ -55,7 +55,7 @@ export function About() {
             <div className="mt-8 border-l-2 border-[#D4AF37] pl-5">
               <p className="font-semibold text-white">Adrizio Martins</p>
 
-              <p className="mt-1 text-sm text-zinc-500">Corretor de Imóveis · CRECI 25015F</p>
+              <p className="mt-1 text-sm text-zinc-400">Corretor de Imóveis · CRECI 25015F</p>
             </div>
           </div>
 

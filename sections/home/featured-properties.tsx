@@ -29,7 +29,7 @@ export function FeaturedProperties() {
             </p>
           </div>
 
-          <p className="text-sm font-medium text-zinc-500">Catálogo completo em breve</p>
+          <p className="text-sm font-medium text-zinc-400">Catálogo completo em breve</p>
         </div>
 
         {/* Cards */}
@@ -40,7 +40,7 @@ export function FeaturedProperties() {
         </div>
 
         {/* Aviso de desenvolvimento */}
-        <p className="mt-8 text-xs leading-5 text-zinc-600">
+        <p className="mt-8 text-xs leading-5 text-zinc-400">
           Os imóveis exibidos nesta versão são dados demonstrativos utilizados durante o
           desenvolvimento da plataforma ADRIZIO.
         </p>

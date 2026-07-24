@@ -32,7 +32,7 @@ export function Regions() {
             </p>
           </div>
 
-          <p className="max-w-md text-sm leading-6 text-zinc-500">
+          <p className="max-w-md text-sm leading-6 text-zinc-400">
             Cada região possui características próprias de localização, infraestrutura, mercado e
             potencial imobiliário.
           </p>

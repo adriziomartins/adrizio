@@ -26,10 +26,10 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
         <p className="font-semibold text-white">{testimonial.name}</p>
 
         {testimonial.context ? (
-          <p className="mt-1 text-sm text-zinc-500">{testimonial.context}</p>
+          <p className="mt-1 text-sm text-zinc-400">{testimonial.context}</p>
         ) : null}
 
-        <div className="mt-4 flex items-center gap-2 text-xs font-medium text-zinc-500">
+        <div className="mt-4 flex items-center gap-2 text-xs font-medium text-zinc-400">
           <span>{testimonial.source}</span>
 
           {testimonial.sourceUrl ? (
