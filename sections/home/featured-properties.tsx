@@ -1,6 +1,3 @@
-import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
-
 import { PropertyCard } from '@/components/property/property-card'
 import { featuredProperties } from '@/data/featured-properties'
 
@@ -32,13 +29,7 @@ export function FeaturedProperties() {
             </p>
           </div>
 
-          <Link
-            href="/imoveis"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[#D4AF37] transition-colors hover:text-[#E5C45A]"
-          >
-            Ver todos os imóveis
-            <ArrowRight className="size-4" aria-hidden="true" />
-          </Link>
+          <p className="text-sm font-medium text-zinc-500">Catálogo completo em breve</p>
         </div>
 
         {/* Cards */}

@@ -84,13 +84,18 @@ export function PropertyCard({ property }: PropertyCardProps) {
             <dd className="text-xs text-zinc-300">{property.area} m²</dd>
           </div>
         </dl>
-
-        <Link
-          href={`/imoveis/${property.slug}`}
-          className="mt-5 inline-flex w-full items-center justify-center rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition-all hover:border-[#D4AF37]/60 hover:bg-[#D4AF37] hover:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
-        >
-          Ver imóvel
-        </Link>
+        {property.demonstrative ? (
+          <div className="mt-5 inline-flex w-full cursor-default items-center justify-center rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-zinc-500">
+            Detalhes em breve
+          </div>
+        ) : (
+          <Link
+            href={`/imoveis/${property.slug}`}
+            className="mt-5 inline-flex w-full items-center justify-center rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition-all hover:border-[#D4AF37]/60 hover:bg-[#D4AF37] hover:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
+          >
+            Ver imóvel
+          </Link>
+        )}
       </div>
     </article>
   )
