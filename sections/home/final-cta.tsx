@@ -50,8 +50,7 @@ export function FinalCta() {
         </div>
 
         <p className="mt-7 text-xs leading-5 text-zinc-600">
-          O atendimento direto e os canais comerciais serão integrados progressivamente à plataforma
-          ADRIZIO.
+          Atendimento imobiliário com foco na Orla de Fortaleza · Adrizio Martins · CRECI 25015F.
         </p>
       </div>
     </section>

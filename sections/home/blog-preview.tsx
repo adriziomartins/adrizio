@@ -33,7 +33,8 @@ export function BlogPreview() {
           </div>
 
           <p className="max-w-sm text-sm leading-6 text-zinc-500">
-            A área editorial completa será disponibilizada durante a evolução do portal ADRIZIO.
+            Informação prática para compradores, proprietários e investidores que desejam tomar
+            decisões imobiliárias com mais clareza.
           </p>
         </div>
 

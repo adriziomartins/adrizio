@@ -94,8 +94,8 @@ export function PropertyValuation() {
             </Link>
 
             <p className="mt-4 text-xs leading-5 text-zinc-600">
-              A solicitação detalhada será integrada ao módulo de captação de proprietários nas
-              próximas etapas da plataforma.
+              Atendimento personalizado para proprietários que desejam vender, alugar ou compreender
+              melhor o posicionamento do imóvel no mercado.
             </p>
           </div>
 
