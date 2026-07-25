@@ -1,7 +1,6 @@
 import Link from 'next/link'
-import { Menu } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Sheet, SheetClose, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+
+import { MobileNavigation } from '@/components/layout/mobile-navigation'
 import { WHATSAPP_URL } from '@/lib/contact'
 
 const navigation = [
@@ -10,7 +9,7 @@ const navigation = [
   { label: 'Avaliar Imóvel', href: '#avaliar' },
   { label: 'Sobre Nós', href: '#sobre' },
   { label: 'Blog', href: '#blog' },
-]
+] as const
 
 export function Navbar() {
   return (
@@ -31,7 +30,7 @@ export function Navbar() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-zinc-300 transition-colors hover:text-[#D4AF37]"
+              className="text-sm font-medium text-zinc-300 transition-colors hover:text-[#D4AF37] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
             >
               {item.label}
             </Link>
@@ -53,64 +52,7 @@ export function Navbar() {
 
         {/* Navegação mobile */}
         <div className="lg:hidden">
-          <Sheet>
-            <SheetTrigger
-              render={
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  aria-label="Abrir menu de navegação"
-                  className="text-zinc-100"
-                />
-              }
-            >
-              <Menu className="size-6" aria-hidden="true" />
-            </SheetTrigger>
-
-            <SheetContent className="border-zinc-800 bg-zinc-950 text-zinc-100">
-              <SheetTitle className="sr-only">Menu de navegação</SheetTitle>
-
-              <div className="border-b border-zinc-800 px-6 py-7">
-                <span className="text-lg font-semibold tracking-[0.22em] text-[#D4AF37]">
-                  ADRIZIO
-                </span>
-
-                <p className="mt-2 text-xs tracking-wider text-zinc-400">CRECI 25015F</p>
-              </div>
-
-              <nav className="flex flex-col gap-1 p-6" aria-label="Navegação mobile">
-                {navigation.map((item) => (
-                  <SheetClose
-                    key={item.href}
-                    nativeButton={false}
-                    render={
-                      <Link
-                        href={item.href}
-                        className="rounded-lg px-3 py-3 text-base font-medium text-zinc-200 transition-colors hover:bg-zinc-900 hover:text-[#D4AF37]"
-                      />
-                    }
-                  >
-                    {item.label}
-                  </SheetClose>
-                ))}
-
-                <SheetClose
-                  nativeButton={false}
-                  render={
-                    <a
-                      href={WHATSAPP_URL}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label="Fale conosco pelo WhatsApp — abre em nova aba"
-                      className="mt-5 flex h-11 items-center justify-center rounded-full bg-[#D4AF37] px-5 text-sm font-semibold text-zinc-950 transition-colors hover:bg-[#E5C45A]"
-                    />
-                  }
-                >
-                  Fale Conosco
-                </SheetClose>
-              </nav>
-            </SheetContent>
-          </Sheet>
+          <MobileNavigation navigation={navigation} whatsappUrl={WHATSAPP_URL} />
         </div>
       </div>
     </header>
