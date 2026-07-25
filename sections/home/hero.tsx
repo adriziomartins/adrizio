@@ -16,7 +16,8 @@ export function Hero() {
         src="/images/hero/orla-fortaleza.jpg"
         alt="Vista da Beira-Mar de Fortaleza, Ceará"
         fill
-        priority
+        loading="eager"
+        fetchPriority="high"
         sizes="100vw"
         className="object-cover object-center"
       />
