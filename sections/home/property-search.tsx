@@ -1,67 +1,19 @@
-'use client'
-
-import { Suspense, useState, type ChangeEvent, type FormEvent } from 'react'
-
-import { useSearchParams } from 'next/navigation'
-
 import { BedDouble, Building2, MapPin, Search, SlidersHorizontal, Wallet } from 'lucide-react'
+
+import { PropertySearchEnhancer } from '@/sections/home/property-search-enhancer'
 
 const inputClassName =
   'h-12 w-full appearance-none rounded-xl border border-zinc-700 bg-zinc-900/80 px-4 text-sm text-zinc-100 outline-none transition placeholder:text-zinc-400 focus:border-[#D4AF37]/70 focus:ring-2 focus:ring-[#D4AF37]/15'
 
-function PropertySearchContent() {
-  const searchParams = useSearchParams()
-
-  const [searchApplied, setSearchApplied] = useState(false)
-  const [purposeOverride, setPurposeOverride] = useState<string | null>(null)
-
-  const purposeFromUrl = searchParams.get('finalidade')
-
-  const purposeFromQuery =
-    purposeFromUrl === 'alugar' || purposeFromUrl === 'investir' || purposeFromUrl === 'comprar'
-      ? purposeFromUrl
-      : 'comprar'
-
-  const purpose = purposeOverride ?? purposeFromQuery
-
-  const neighborhoodFromQuery = searchParams.get('bairro') ?? ''
-  const typeFromQuery = searchParams.get('tipo') ?? ''
-  const priceFromQuery = searchParams.get('preco') ?? ''
-  const bedroomsFromQuery = searchParams.get('quartos') ?? ''
-
-  function handlePurposeChange(event: ChangeEvent<HTMLSelectElement>) {
-    setPurposeOverride(event.target.value)
-  }
-
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-
-    const formData = new FormData(event.currentTarget)
-    const params = new URLSearchParams()
-
-    const fields = ['finalidade', 'bairro', 'tipo', 'preco', 'quartos']
-
-    fields.forEach((field) => {
-      const value = formData.get(field)
-
-      if (typeof value === 'string' && value.length > 0) {
-        params.set(field, value)
-      }
-    })
-
-    const query = params.toString()
-
-    window.history.replaceState(null, '', `${window.location.pathname}${query ? `?${query}` : ''}`)
-
-    setSearchApplied(true)
-  }
-
+export function PropertySearch() {
   return (
     <section
       id="busca"
       aria-labelledby="property-search-title"
       className="relative z-20 -mt-10 px-4 sm:px-6 lg:-mt-16 lg:px-8"
     >
+      <PropertySearchEnhancer />
+
       <div className="mx-auto max-w-7xl">
         <div className="overflow-hidden rounded-3xl border border-white/10 bg-zinc-950/95 shadow-2xl shadow-black/40 backdrop-blur-xl">
           <div className="flex flex-col gap-3 border-b border-white/10 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-7">
@@ -84,7 +36,7 @@ function PropertySearchContent() {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="p-5 sm:p-7">
+          <form id="property-search-form" action="/#busca" method="get" className="p-5 sm:p-7">
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-6">
               <label className="space-y-2">
                 <span className="flex items-center gap-2 text-xs font-medium text-zinc-400">
@@ -92,16 +44,9 @@ function PropertySearchContent() {
                   Finalidade
                 </span>
 
-                <select
-                  name="finalidade"
-                  value={purpose}
-                  onChange={handlePurposeChange}
-                  className={inputClassName}
-                >
+                <select name="finalidade" defaultValue="comprar" className={inputClassName}>
                   <option value="comprar">Comprar</option>
-
                   <option value="alugar">Alugar</option>
-
                   <option value="investir">Investir</option>
                 </select>
               </label>
@@ -112,23 +57,13 @@ function PropertySearchContent() {
                   Região
                 </span>
 
-                <select
-                  name="bairro"
-                  defaultValue={neighborhoodFromQuery}
-                  className={inputClassName}
-                >
+                <select name="bairro" defaultValue="" className={inputClassName}>
                   <option value="">Todas as regiões</option>
-
                   <option value="beira-mar">Beira-Mar</option>
-
                   <option value="meireles">Meireles</option>
-
                   <option value="mucuripe">Mucuripe</option>
-
                   <option value="praia-de-iracema">Praia de Iracema</option>
-
                   <option value="praia-do-futuro">Praia do Futuro</option>
-
                   <option value="cumbuco">Cumbuco</option>
                 </select>
               </label>
@@ -139,17 +74,12 @@ function PropertySearchContent() {
                   Tipo
                 </span>
 
-                <select name="tipo" defaultValue={typeFromQuery} className={inputClassName}>
+                <select name="tipo" defaultValue="" className={inputClassName}>
                   <option value="">Todos os tipos</option>
-
                   <option value="apartamento">Apartamento</option>
-
                   <option value="cobertura">Cobertura</option>
-
                   <option value="flat">Flat</option>
-
                   <option value="casa">Casa</option>
-
                   <option value="terreno">Terreno</option>
                 </select>
               </label>
@@ -160,17 +90,12 @@ function PropertySearchContent() {
                   Faixa de preço
                 </span>
 
-                <select name="preco" defaultValue={priceFromQuery} className={inputClassName}>
+                <select name="preco" defaultValue="" className={inputClassName}>
                   <option value="">Qualquer valor</option>
-
                   <option value="ate-500000">Até R$ 500 mil</option>
-
                   <option value="ate-1000000">Até R$ 1 milhão</option>
-
                   <option value="ate-2000000">Até R$ 2 milhões</option>
-
                   <option value="ate-5000000">Até R$ 5 milhões</option>
-
                   <option value="acima-5000000">Acima de R$ 5 milhões</option>
                 </select>
               </label>
@@ -181,9 +106,8 @@ function PropertySearchContent() {
                   Quartos
                 </span>
 
-                <select name="quartos" defaultValue={bedroomsFromQuery} className={inputClassName}>
+                <select name="quartos" defaultValue="" className={inputClassName}>
                   <option value="">Qualquer</option>
-
                   <option value="1">1+</option>
                   <option value="2">2+</option>
                   <option value="3">3+</option>
@@ -202,31 +126,14 @@ function PropertySearchContent() {
               </div>
             </div>
 
-            <div aria-live="polite" className="min-h-6 pt-4">
-              {searchApplied && (
-                <p className="text-sm text-[#D4AF37]">Preferências registradas nesta busca.</p>
-              )}
-            </div>
+            <div
+              id="property-search-status"
+              aria-live="polite"
+              className="min-h-6 pt-4 text-sm text-[#D4AF37]"
+            />
           </form>
         </div>
       </div>
     </section>
-  )
-}
-
-export function PropertySearch() {
-  return (
-    <Suspense
-      fallback={
-        <section
-          className="relative z-20 -mt-20 px-4 sm:px-6 lg:px-8"
-          aria-label="Carregando busca de imóveis"
-        >
-          <div className="mx-auto h-56 max-w-7xl animate-pulse rounded-3xl border border-white/10 bg-zinc-950" />
-        </section>
-      }
-    >
-      <PropertySearchContent />
-    </Suspense>
   )
 }
