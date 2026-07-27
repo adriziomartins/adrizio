@@ -85,9 +85,9 @@ export function PropertyCard({ property }: PropertyCardProps) {
           </div>
         </dl>
         {property.demonstrative ? (
-          <div className="mt-5 inline-flex w-full cursor-default items-center justify-center rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-zinc-400">
-            Detalhes em breve
-          </div>
+          <p className="mt-5 text-xs leading-5 text-zinc-500">
+            Prévia demonstrativa do catálogo. Este conteúdo não representa um anúncio publicado.
+          </p>
         ) : (
           <Link
             href={`/imoveis/${property.slug}`}
