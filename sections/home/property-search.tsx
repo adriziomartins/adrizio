@@ -1,12 +1,18 @@
 import { Suspense } from 'react'
 import { BedDouble, Building2, MapPin, Search, SlidersHorizontal, Wallet } from 'lucide-react'
 
+import type { PropertySearchValues } from '@/lib/property-search'
 import { PropertySearchEnhancer } from '@/sections/home/property-search-enhancer'
 
 const inputClassName =
   'h-12 w-full appearance-none rounded-xl border border-zinc-700 bg-zinc-900/80 px-4 text-sm text-zinc-100 outline-none transition placeholder:text-zinc-400 focus:border-[#D4AF37]/70 focus:ring-2 focus:ring-[#D4AF37]/15'
 
-export function PropertySearch() {
+interface PropertySearchProps {
+  initialValues: PropertySearchValues
+  hasAppliedSearch: boolean
+}
+
+export function PropertySearch({ initialValues, hasAppliedSearch }: PropertySearchProps) {
   return (
     <section
       id="busca"
@@ -47,7 +53,11 @@ export function PropertySearch() {
                   Finalidade
                 </span>
 
-                <select name="finalidade" defaultValue="comprar" className={inputClassName}>
+                <select
+                  name="finalidade"
+                  defaultValue={initialValues.finalidade}
+                  className={inputClassName}
+                >
                   <option value="comprar">Comprar</option>
                   <option value="alugar">Alugar</option>
                   <option value="investir">Investir</option>
@@ -60,7 +70,11 @@ export function PropertySearch() {
                   Região
                 </span>
 
-                <select name="bairro" defaultValue="" className={inputClassName}>
+                <select
+                  name="bairro"
+                  defaultValue={initialValues.bairro}
+                  className={inputClassName}
+                >
                   <option value="">Todas as regiões</option>
                   <option value="beira-mar">Beira-Mar</option>
                   <option value="meireles">Meireles</option>
@@ -77,7 +91,7 @@ export function PropertySearch() {
                   Tipo
                 </span>
 
-                <select name="tipo" defaultValue="" className={inputClassName}>
+                <select name="tipo" defaultValue={initialValues.tipo} className={inputClassName}>
                   <option value="">Todos os tipos</option>
                   <option value="apartamento">Apartamento</option>
                   <option value="cobertura">Cobertura</option>
@@ -93,7 +107,7 @@ export function PropertySearch() {
                   Faixa de preço
                 </span>
 
-                <select name="preco" defaultValue="" className={inputClassName}>
+                <select name="preco" defaultValue={initialValues.preco} className={inputClassName}>
                   <option value="">Qualquer valor</option>
                   <option value="ate-500000">Até R$ 500 mil</option>
                   <option value="ate-1000000">Até R$ 1 milhão</option>
@@ -109,7 +123,11 @@ export function PropertySearch() {
                   Quartos
                 </span>
 
-                <select name="quartos" defaultValue="" className={inputClassName}>
+                <select
+                  name="quartos"
+                  defaultValue={initialValues.quartos}
+                  className={inputClassName}
+                >
                   <option value="">Qualquer</option>
                   <option value="1">1+</option>
                   <option value="2">2+</option>
@@ -133,7 +151,9 @@ export function PropertySearch() {
               id="property-search-status"
               aria-live="polite"
               className="min-h-6 pt-4 text-sm text-[#D4AF37]"
-            />
+            >
+              {hasAppliedSearch ? 'Preferências registradas nesta busca.' : ''}
+            </div>
           </form>
         </div>
       </div>

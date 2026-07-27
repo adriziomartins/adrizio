@@ -10,6 +10,9 @@ import { Testimonials } from '@/sections/home/testimonials'
 import { BlogPreview } from '@/sections/home/blog-preview'
 import { Footer } from '@/components/layout/footer'
 import { FinalCta } from '@/sections/home/final-cta'
+import { getPropertySearchValues, hasAppliedPropertySearchParams } from '@/lib/property-search'
+
+import type { PropertySearchParams } from '@/lib/property-search'
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -109,7 +112,17 @@ const structuredData = {
   ],
 }
 
-export default function HomePage() {
+interface HomePageProps {
+  searchParams: Promise<PropertySearchParams>
+}
+
+export default async function HomePage({ searchParams }: HomePageProps) {
+  const resolvedSearchParams = await searchParams
+
+  const initialSearchValues = getPropertySearchValues(resolvedSearchParams)
+
+  const hasAppliedSearch = hasAppliedPropertySearchParams(resolvedSearchParams)
+
   return (
     <>
       <script
@@ -135,7 +148,7 @@ export default function HomePage() {
       >
         <Hero />
 
-        <PropertySearch />
+        <PropertySearch initialValues={initialSearchValues} hasAppliedSearch={hasAppliedSearch} />
 
         <FeaturedProperties />
 
