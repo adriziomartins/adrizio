@@ -61,8 +61,8 @@ export function Footer() {
             </p>
 
             <p className="mt-5 text-xs leading-6 text-zinc-400">
-              Plataforma em evolução contínua para conectar pessoas, propriedades e melhores
-              decisões imobiliárias.
+              Atendimento imobiliário especializado na Orla de Fortaleza para compra, locação,
+              investimento e avaliação de imóveis.
             </p>
           </div>
 
