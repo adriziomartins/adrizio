@@ -119,14 +119,14 @@ export default function HomePage() {
         }}
       />
 
-      <Navbar />
-
       <a
         href="#conteudo-principal"
-        className="sr-only fixed left-4 top-4 z-[100] rounded-md bg-[#D4AF37] px-4 py-3 font-semibold text-zinc-950 focus:not-sr-only"
+        className="fixed -top-20 left-4 z-[100] rounded-md bg-[#D4AF37] px-4 py-3 font-semibold text-zinc-950 focus:top-4 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-zinc-950"
       >
         Pular para o conteúdo principal
       </a>
+
+      <Navbar />
 
       <main
         id="conteudo-principal"
