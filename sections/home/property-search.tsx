@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { BedDouble, Building2, MapPin, Search, SlidersHorizontal, Wallet } from 'lucide-react'
 
 import { PropertySearchEnhancer } from '@/sections/home/property-search-enhancer'
@@ -12,7 +13,9 @@ export function PropertySearch() {
       aria-labelledby="property-search-title"
       className="relative z-20 -mt-10 px-4 sm:px-6 lg:-mt-16 lg:px-8"
     >
-      <PropertySearchEnhancer />
+      <Suspense fallback={null}>
+        <PropertySearchEnhancer />
+      </Suspense>
 
       <div className="mx-auto max-w-7xl">
         <div className="overflow-hidden rounded-3xl border border-white/10 bg-zinc-950/95 shadow-2xl shadow-black/40 backdrop-blur-xl">

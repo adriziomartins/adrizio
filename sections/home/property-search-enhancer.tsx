@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 const SEARCH_FIELDS = ['finalidade', 'bairro', 'tipo', 'preco', 'quartos'] as const
 
@@ -14,14 +15,53 @@ const ALLOWED_VALUES: Record<SearchField, readonly string[]> = {
   quartos: ['1', '2', '3', '4'],
 }
 
+const DEFAULT_VALUES: Record<SearchField, string> = {
+  finalidade: 'comprar',
+  bairro: '',
+  tipo: '',
+  preco: '',
+  quartos: '',
+}
+
 function isAllowedValue(field: SearchField, value: string) {
   return ALLOWED_VALUES[field].includes(value)
 }
 
 export function PropertySearchEnhancer() {
+  const searchParams = useSearchParams()
+
   useEffect(() => {
     const form = document.querySelector<HTMLFormElement>('#property-search-form')
+    const status = document.querySelector<HTMLElement>('#property-search-status')
 
+    if (!form) {
+      return
+    }
+
+    SEARCH_FIELDS.forEach((field) => {
+      const value = searchParams.get(field)
+      const control = form.elements.namedItem(field)
+
+      if (!(control instanceof HTMLSelectElement)) {
+        return
+      }
+
+      control.value = value && isAllowedValue(field, value) ? value : DEFAULT_VALUES[field]
+    })
+
+    const hasAppliedSearch = SEARCH_FIELDS.some((field) => {
+      const value = searchParams.get(field)
+
+      return Boolean(value && isAllowedValue(field, value))
+    })
+
+    if (status) {
+      status.textContent = hasAppliedSearch ? 'Preferências registradas nesta busca.' : ''
+    }
+  }, [searchParams])
+
+  useEffect(() => {
+    const form = document.querySelector<HTMLFormElement>('#property-search-form')
     const status = document.querySelector<HTMLElement>('#property-search-status')
 
     if (!form) {
@@ -29,26 +69,6 @@ export function PropertySearchEnhancer() {
     }
 
     const formElement = form
-
-    const currentParams = new URLSearchParams(window.location.search)
-
-    SEARCH_FIELDS.forEach((field) => {
-      const value = currentParams.get(field)
-      const control = form.elements.namedItem(field)
-
-      if (value && isAllowedValue(field, value) && control instanceof HTMLSelectElement) {
-        control.value = value
-      }
-    })
-
-    const hasAppliedSearch = SEARCH_FIELDS.some((field) => {
-      const value = currentParams.get(field)
-      return typeof value === 'string' && value.length > 0
-    })
-
-    if (hasAppliedSearch && status) {
-      status.textContent = 'Preferências registradas nesta busca.'
-    }
 
     function handleSubmit(event: SubmitEvent) {
       event.preventDefault()
@@ -59,18 +79,19 @@ export function PropertySearchEnhancer() {
       SEARCH_FIELDS.forEach((field) => {
         const value = formData.get(field)
 
-        if (typeof value === 'string' && value.length > 0) {
+        if (typeof value === 'string' && value.length > 0 && isAllowedValue(field, value)) {
           params.set(field, value)
         }
       })
 
       const query = params.toString()
+      const nextUrl = `${window.location.pathname}${query ? `?${query}` : ''}#busca`
 
-      window.history.replaceState(
-        null,
-        '',
-        `${window.location.pathname}${query ? `?${query}` : ''}#busca`,
-      )
+      const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`
+
+      if (nextUrl !== currentUrl) {
+        window.history.pushState(null, '', nextUrl)
+      }
 
       if (status) {
         status.textContent = 'Preferências registradas nesta busca.'
