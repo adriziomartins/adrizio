@@ -48,6 +48,7 @@ export function RegionCard({ region, index }: RegionCardProps) {
 
         <Link
           href={`/?bairro=${region.slug}#busca`}
+          aria-label={`Ver imóveis em ${region.name}`}
           className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-[#D4AF37] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
         >
           Ver imóveis na região
