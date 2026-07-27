@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     qualities: [60, 75],
   },
 
-  allowedDevOrigins: ['192.168.1.6'],
+  allowedDevOrigins: ['192.168.1.4'],
 }
 
 export default nextConfig
