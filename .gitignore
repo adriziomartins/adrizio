@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Relatórios locais de auditoria
+/auditoria-*.json
+/backend/auditoria-*.json
