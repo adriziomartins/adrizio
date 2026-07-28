@@ -1,5 +1,7 @@
 export type PropertyPurpose = 'venda' | 'aluguel' | 'investimento'
 
+export type RentalModality = 'longa-temporada' | 'curta-temporada'
+
 export interface Property {
   id: string
   slug: string
@@ -7,6 +9,7 @@ export interface Property {
   neighborhood: string
   city: string
   purpose: PropertyPurpose
+  rentalModality?: RentalModality
   price: number
   bedrooms: number
   bathrooms: number

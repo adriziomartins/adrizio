@@ -8,7 +8,7 @@ const journeys = [
     description:
       'Encontre imóveis selecionados para morar, construir patrimônio ou realizar uma nova etapa da sua vida na Orla de Fortaleza.',
     cta: 'Encontrar imóveis para comprar',
-    href: '/?finalidade=comprar#busca',
+    href: '/imoveis?finalidade=comprar',
     icon: Home,
   },
   {
@@ -18,7 +18,7 @@ const journeys = [
     description:
       'Descubra opções para morar com localização estratégica, qualidade de vida e proximidade com tudo que a Orla oferece.',
     cta: 'Encontrar imóveis para alugar',
-    href: '/?finalidade=alugar#busca',
+    href: '/alugar',
     icon: Building,
   },
   {
@@ -28,7 +28,7 @@ const journeys = [
     description:
       'Explore imóveis com foco em valorização patrimonial, geração de renda e oportunidades imobiliárias em regiões estratégicas.',
     cta: 'Explorar oportunidades',
-    href: '/?finalidade=investir#busca',
+    href: '/imoveis?finalidade=investir',
     icon: TrendingUp,
   },
 ]

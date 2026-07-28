@@ -7,7 +7,7 @@ const propertyLinks = [
   },
   {
     label: 'Alugar',
-    href: '/imoveis?finalidade=alugar',
+    href: '/alugar',
   },
   {
     label: 'Investir',

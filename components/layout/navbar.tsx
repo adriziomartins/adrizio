@@ -5,7 +5,7 @@ import { WHATSAPP_URL } from '@/lib/contact'
 
 const navigation = [
   { label: 'Comprar', href: '/imoveis?finalidade=comprar' },
-  { label: 'Alugar', href: '/imoveis?finalidade=alugar' },
+  { label: 'Alugar', href: '/alugar' },
   { label: 'Avaliar Imóvel', href: '/#avaliar' },
   { label: 'Sobre Nós', href: '/#sobre' },
   { label: 'Blog', href: '/#blog' },
