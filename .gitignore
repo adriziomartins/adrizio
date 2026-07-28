@@ -43,3 +43,6 @@ next-env.d.ts
 # Relatórios locais de auditoria
 /auditoria-*.json
 /backend/auditoria-*.json
+
+# Backups locais de edição
+*.save
