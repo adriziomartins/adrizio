@@ -1,0 +1,23 @@
+{
+  "name": "adrizio",
+  "version": "0.1.0",
+  "description": "Plataforma imobiliária ADRIZIO / ORIONEX",
+  "private": true,
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adriziomartins/adrizio.git"
+  },
+  "author": "Adrizio Martins",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

@@ -1,0 +1,162 @@
+import { Suspense } from 'react'
+import { BedDouble, Building2, MapPin, Search, SlidersHorizontal, Wallet } from 'lucide-react'
+
+import type { PropertySearchValues } from '@/lib/property-search'
+import { PropertySearchEnhancer } from '@/sections/home/property-search-enhancer'
+
+const inputClassName =
+  'h-12 w-full appearance-none rounded-xl border border-zinc-700 bg-zinc-900/80 px-4 text-sm text-zinc-100 outline-none transition placeholder:text-zinc-400 focus:border-[#D4AF37]/70 focus:ring-2 focus:ring-[#D4AF37]/15'
+
+interface PropertySearchProps {
+  initialValues: PropertySearchValues
+  hasAppliedSearch: boolean
+}
+
+export function PropertySearch({ initialValues, hasAppliedSearch }: PropertySearchProps) {
+  return (
+    <section
+      id="busca"
+      aria-labelledby="property-search-title"
+      className="relative z-20 -mt-10 px-4 sm:px-6 lg:-mt-16 lg:px-8"
+    >
+      <Suspense fallback={null}>
+        <PropertySearchEnhancer />
+      </Suspense>
+
+      <div className="mx-auto max-w-7xl">
+        <div className="overflow-hidden rounded-3xl border border-white/10 bg-zinc-950/95 shadow-2xl shadow-black/40 backdrop-blur-xl">
+          <div className="flex flex-col gap-3 border-b border-white/10 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-7">
+            <div>
+              <div className="flex items-center gap-2 text-[#D4AF37]">
+                <SlidersHorizontal className="size-4" aria-hidden="true" />
+
+                <span className="text-xs font-semibold uppercase tracking-[0.18em]">
+                  Busca Inteligente
+                </span>
+              </div>
+
+              <h2 id="property-search-title" className="mt-2 text-xl font-semibold text-white">
+                Encontre o imóvel ideal para você
+              </h2>
+            </div>
+
+            <p className="max-w-sm text-sm leading-6 text-zinc-400">
+              Defina suas preferências e encontre oportunidades alinhadas ao seu objetivo.
+            </p>
+          </div>
+
+          <form id="property-search-form" action="/#busca" method="get" className="p-5 sm:p-7">
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-6">
+              <label className="space-y-2">
+                <span className="flex items-center gap-2 text-xs font-medium text-zinc-400">
+                  <Search className="size-3.5" aria-hidden="true" />
+                  Finalidade
+                </span>
+
+                <select
+                  name="finalidade"
+                  defaultValue={initialValues.finalidade}
+                  className={inputClassName}
+                >
+                  <option value="comprar">Comprar</option>
+                  <option value="alugar">Alugar</option>
+                  <option value="investir">Investir</option>
+                </select>
+              </label>
+
+              <label className="space-y-2">
+                <span className="flex items-center gap-2 text-xs font-medium text-zinc-400">
+                  <MapPin className="size-3.5" aria-hidden="true" />
+                  Região
+                </span>
+
+                <select
+                  name="bairro"
+                  defaultValue={initialValues.bairro}
+                  className={inputClassName}
+                >
+                  <option value="">Todas as regiões</option>
+                  <option value="beira-mar">Beira-Mar</option>
+                  <option value="meireles">Meireles</option>
+                  <option value="mucuripe">Mucuripe</option>
+                  <option value="praia-de-iracema">Praia de Iracema</option>
+                  <option value="praia-do-futuro">Praia do Futuro</option>
+                  <option value="cumbuco">Cumbuco</option>
+                </select>
+              </label>
+
+              <label className="space-y-2">
+                <span className="flex items-center gap-2 text-xs font-medium text-zinc-400">
+                  <Building2 className="size-3.5" aria-hidden="true" />
+                  Tipo
+                </span>
+
+                <select name="tipo" defaultValue={initialValues.tipo} className={inputClassName}>
+                  <option value="">Todos os tipos</option>
+                  <option value="apartamento">Apartamento</option>
+                  <option value="cobertura">Cobertura</option>
+                  <option value="flat">Flat</option>
+                  <option value="casa">Casa</option>
+                  <option value="terreno">Terreno</option>
+                </select>
+              </label>
+
+              <label className="space-y-2">
+                <span className="flex items-center gap-2 text-xs font-medium text-zinc-400">
+                  <Wallet className="size-3.5" aria-hidden="true" />
+                  Faixa de preço
+                </span>
+
+                <select name="preco" defaultValue={initialValues.preco} className={inputClassName}>
+                  <option value="">Qualquer valor</option>
+                  <option value="ate-500000">Até R$ 500 mil</option>
+                  <option value="ate-1000000">Até R$ 1 milhão</option>
+                  <option value="ate-2000000">Até R$ 2 milhões</option>
+                  <option value="ate-5000000">Até R$ 5 milhões</option>
+                  <option value="acima-5000000">Acima de R$ 5 milhões</option>
+                </select>
+              </label>
+
+              <label className="space-y-2">
+                <span className="flex items-center gap-2 text-xs font-medium text-zinc-400">
+                  <BedDouble className="size-3.5" aria-hidden="true" />
+                  Quartos
+                </span>
+
+                <select
+                  name="quartos"
+                  defaultValue={initialValues.quartos}
+                  className={inputClassName}
+                >
+                  <option value="">Qualquer</option>
+                  <option value="1">1+</option>
+                  <option value="2">2+</option>
+                  <option value="3">3+</option>
+                  <option value="4">4+</option>
+                </select>
+              </label>
+
+              <div className="flex items-end">
+                <button
+                  type="submit"
+                  className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#D4AF37] px-5 text-sm font-semibold text-zinc-950 transition-all hover:-translate-y-0.5 hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
+                >
+                  <Search className="size-4" aria-hidden="true" />
+                  Buscar imóveis
+                </button>
+              </div>
+            </div>
+
+            <div
+              id="property-search-status"
+              aria-live="polite"
+              className="min-h-6 pt-4 text-sm text-[#D4AF37]"
+            >
+              {hasAppliedSearch ? 'Preferências registradas nesta busca.' : ''}
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  )
+}

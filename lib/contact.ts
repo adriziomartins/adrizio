@@ -1,0 +1,15 @@
+export const WHATSAPP_NUMBER = '5585984425281'
+
+export const WHATSAPP_MESSAGE =
+  'Olá, Adrizio. Vim pelo site ADRIZIO e gostaria de falar sobre imóveis na Orla de Fortaleza.'
+
+export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+  WHATSAPP_MESSAGE,
+)}`
+
+export const WHATSAPP_VALUATION_MESSAGE =
+  'Olá, Adrizio. Vim pelo site ADRIZIO e gostaria de conversar sobre a avaliação e o posicionamento do meu imóvel.'
+
+export const WHATSAPP_VALUATION_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+  WHATSAPP_VALUATION_MESSAGE,
+)}`
