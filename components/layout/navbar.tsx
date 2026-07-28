@@ -4,11 +4,11 @@ import { MobileNavigation } from '@/components/layout/mobile-navigation'
 import { WHATSAPP_URL } from '@/lib/contact'
 
 const navigation = [
-  { label: 'Comprar', href: '#comprar' },
-  { label: 'Alugar', href: '#alugar' },
-  { label: 'Avaliar Imóvel', href: '#avaliar' },
-  { label: 'Sobre Nós', href: '#sobre' },
-  { label: 'Blog', href: '#blog' },
+  { label: 'Comprar', href: '/imoveis?finalidade=comprar' },
+  { label: 'Alugar', href: '/imoveis?finalidade=alugar' },
+  { label: 'Avaliar Imóvel', href: '/#avaliar' },
+  { label: 'Sobre Nós', href: '/#sobre' },
+  { label: 'Blog', href: '/#blog' },
 ] as const
 
 export function Navbar() {

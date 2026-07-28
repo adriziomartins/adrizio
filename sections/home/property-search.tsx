@@ -45,7 +45,7 @@ export function PropertySearch({ initialValues, hasAppliedSearch }: PropertySear
             </p>
           </div>
 
-          <form id="property-search-form" action="/#busca" method="get" className="p-5 sm:p-7">
+          <form id="property-search-form" action="/imoveis" method="get" className="p-5 sm:p-7">
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-6">
               <label className="space-y-2">
                 <span className="flex items-center gap-2 text-xs font-medium text-zinc-400">

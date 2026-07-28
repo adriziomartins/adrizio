@@ -3,38 +3,38 @@ import Link from 'next/link'
 const propertyLinks = [
   {
     label: 'Comprar',
-    href: '/?finalidade=comprar#busca',
+    href: '/imoveis?finalidade=comprar',
   },
   {
     label: 'Alugar',
-    href: '/?finalidade=alugar#busca',
+    href: '/imoveis?finalidade=alugar',
   },
   {
     label: 'Investir',
-    href: '/?finalidade=investir#busca',
+    href: '/imoveis?finalidade=investir',
   },
   {
     label: 'Avaliar imóvel',
-    href: '#avaliar',
+    href: '/#avaliar',
   },
 ]
 
 const exploreLinks = [
   {
     label: 'Imóveis em destaque',
-    href: '#imoveis-destaque',
+    href: '/#imoveis-destaque',
   },
   {
     label: 'Bairros e regiões',
-    href: '#bairros',
+    href: '/#bairros',
   },
   {
     label: 'Conteúdo imobiliário',
-    href: '#blog',
+    href: '/#blog',
   },
   {
     label: 'Avaliações',
-    href: '#depoimentos',
+    href: '/#depoimentos',
   },
 ]
 
