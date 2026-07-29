@@ -18,6 +18,8 @@ export interface Property {
   bathrooms: number
   parkingSpaces: number
   area: number
+  description?: string
+  features?: string[]
   image?: string
   featured?: boolean
   demonstrative?: boolean

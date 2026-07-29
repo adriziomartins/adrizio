@@ -20,3 +20,19 @@ export const WHATSAPP_BUY_MESSAGE =
 export const WHATSAPP_BUY_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
   WHATSAPP_BUY_MESSAGE,
 )}`
+
+interface PropertyContactData {
+  title: string
+  neighborhood: string
+  slug: string
+}
+
+export function getPropertyWhatsAppUrl({ title, neighborhood, slug }: PropertyContactData): string {
+  const propertyUrl = `https://www.adrizio.com.br/imoveis/${slug}`
+
+  const message =
+    `Olá, Adrizio. Vim pelo site ADRIZIO e gostaria de saber mais sobre o imóvel ` +
+    `"${title}", localizado em ${neighborhood}. ${propertyUrl}`
+
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
+}

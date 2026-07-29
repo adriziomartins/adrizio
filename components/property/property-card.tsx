@@ -88,14 +88,14 @@ export function PropertyCard({ property }: PropertyCardProps) {
           <p className="mt-5 text-xs leading-5 text-zinc-500">
             Prévia demonstrativa do catálogo. Este conteúdo não representa um anúncio publicado.
           </p>
-        ) : (
-          <Link
-            href={`/imoveis/${property.slug}`}
-            className="mt-5 inline-flex w-full items-center justify-center rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition-all hover:border-[#D4AF37]/60 hover:bg-[#D4AF37] hover:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
-          >
-            Ver imóvel
-          </Link>
-        )}
+        ) : null}
+
+        <Link
+          href={`/imoveis/${property.slug}`}
+          className="mt-5 inline-flex w-full items-center justify-center rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition-all hover:border-[#D4AF37]/60 hover:bg-[#D4AF37] hover:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
+        >
+          {property.demonstrative ? 'Ver página demonstrativa' : 'Ver imóvel'}
+        </Link>
       </div>
     </article>
   )
