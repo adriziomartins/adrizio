@@ -26,7 +26,7 @@ const exploreLinks = [
   },
   {
     label: 'Bairros e regiões',
-    href: '/#bairros',
+    href: '/bairros',
   },
   {
     label: 'Conteúdo imobiliário',

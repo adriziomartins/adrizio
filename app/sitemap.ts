@@ -1,8 +1,16 @@
 import type { MetadataRoute } from 'next'
 
+import { regions } from '@/data/regions'
+
 const siteUrl = 'https://www.adrizio.com.br'
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const neighborhoodRoutes: MetadataRoute.Sitemap = regions.map((region) => ({
+    url: `${siteUrl}/bairros/${region.slug}`,
+    changeFrequency: 'weekly',
+    priority: 0.8,
+  }))
+
   return [
     {
       url: siteUrl,
@@ -34,5 +42,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'daily',
       priority: 0.8,
     },
+    {
+      url: `${siteUrl}/bairros`,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    ...neighborhoodRoutes,
   ]
 }

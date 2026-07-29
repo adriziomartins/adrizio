@@ -47,7 +47,7 @@ export function RegionCard({ region, index }: RegionCardProps) {
         <p className="mt-4 line-clamp-3 text-sm leading-6 text-zinc-400">{region.description}</p>
 
         <Link
-          href={`/?bairro=${region.slug}#busca`}
+          href={`/bairros/${region.slug}`}
           aria-label={`Ver imóveis em ${region.name}`}
           className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-[#D4AF37] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
         >
