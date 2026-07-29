@@ -8,7 +8,7 @@ const journeys = [
     description:
       'Encontre imóveis selecionados para morar, construir patrimônio ou realizar uma nova etapa da sua vida na Orla de Fortaleza.',
     cta: 'Encontrar imóveis para comprar',
-    href: '/imoveis?finalidade=comprar',
+    href: '/comprar',
     icon: Home,
   },
   {

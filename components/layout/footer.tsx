@@ -3,7 +3,7 @@ import Link from 'next/link'
 const propertyLinks = [
   {
     label: 'Comprar',
-    href: '/imoveis?finalidade=comprar',
+    href: '/comprar',
   },
   {
     label: 'Alugar',

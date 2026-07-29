@@ -13,3 +13,10 @@ export const WHATSAPP_VALUATION_MESSAGE =
 export const WHATSAPP_VALUATION_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
   WHATSAPP_VALUATION_MESSAGE,
 )}`
+
+export const WHATSAPP_BUY_MESSAGE =
+  'Olá, Adrizio. Vim pelo site ADRIZIO e gostaria de encontrar um imóvel para comprar na Orla de Fortaleza.'
+
+export const WHATSAPP_BUY_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+  WHATSAPP_BUY_MESSAGE,
+)}`
