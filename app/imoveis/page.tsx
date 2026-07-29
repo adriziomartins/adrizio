@@ -3,12 +3,16 @@ import Link from 'next/link'
 
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
+import { PropertyFilters } from '@/components/property/property-filters'
 import { PropertyGrid } from '@/components/property/property-grid'
 import { featuredProperties } from '@/data/featured-properties'
-import { getPropertySearchValues } from '@/lib/property-search'
+import {
+  filterProperties,
+  getPropertySearchSummary,
+  getPropertySearchValues,
+} from '@/lib/property-search'
 
-import type { PropertySearchParams, PropertySearchValues } from '@/lib/property-search'
-import type { Property, PropertyPurpose } from '@/types/property'
+import type { PropertySearchParams } from '@/lib/property-search'
 
 export const metadata: Metadata = {
   title: 'Imóveis na Orla de Fortaleza',
@@ -29,111 +33,11 @@ interface PropertiesPageProps {
   searchParams: Promise<PropertySearchParams>
 }
 
-const purposeMap: Record<string, PropertyPurpose | undefined> = {
-  comprar: 'venda',
-  alugar: 'aluguel',
-  investir: 'investimento',
-}
-
-const neighborhoodSlugMap: Record<string, string> = {
-  'beira-mar': 'beira-mar',
-  meireles: 'meireles',
-  mucuripe: 'mucuripe',
-  'praia-de-iracema': 'praia de iracema',
-  'praia-do-futuro': 'praia do futuro',
-  cumbuco: 'cumbuco',
-}
-
-function normalizeText(value: string): string {
-  return value
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-}
-
-function matchesPrice(property: Property, priceFilter: string): boolean {
-  switch (priceFilter) {
-    case 'ate-500000':
-      return property.price <= 500000
-    case 'ate-1000000':
-      return property.price <= 1000000
-    case 'ate-2000000':
-      return property.price <= 2000000
-    case 'ate-5000000':
-      return property.price <= 5000000
-    case 'acima-5000000':
-      return property.price > 5000000
-    default:
-      return true
-  }
-}
-
-function filterProperties(properties: Property[], filters: PropertySearchValues): Property[] {
-  const selectedPurpose = purposeMap[filters.finalidade]
-
-  return properties.filter((property) => {
-    if (selectedPurpose && property.purpose !== selectedPurpose) {
-      return false
-    }
-
-    if (filters.bairro) {
-      const selectedNeighborhood = neighborhoodSlugMap[filters.bairro]
-
-      if (
-        selectedNeighborhood &&
-        normalizeText(property.neighborhood) !== normalizeText(selectedNeighborhood)
-      ) {
-        return false
-      }
-    }
-
-    if (filters.quartos && property.bedrooms < Number(filters.quartos)) {
-      return false
-    }
-
-    if (!matchesPrice(property, filters.preco)) {
-      return false
-    }
-
-    return true
-  })
-}
-
-function getSearchSummary(filters: PropertySearchValues): string {
-  const parts: string[] = []
-
-  if (filters.finalidade === 'comprar') {
-    parts.push('para compra')
-  }
-
-  if (filters.finalidade === 'alugar') {
-    parts.push('para locação')
-  }
-
-  if (filters.finalidade === 'investir') {
-    parts.push('para investimento')
-  }
-
-  if (filters.bairro) {
-    const neighborhood = neighborhoodSlugMap[filters.bairro]
-
-    if (neighborhood) {
-      parts.push(`em ${neighborhood}`)
-    }
-  }
-
-  if (filters.quartos) {
-    parts.push(`com ${filters.quartos} ou mais quartos`)
-  }
-
-  return parts.length > 0 ? parts.join(' ') : 'na Orla de Fortaleza'
-}
-
 export default async function PropertiesPage({ searchParams }: PropertiesPageProps) {
   const resolvedSearchParams = await searchParams
   const filters = getPropertySearchValues(resolvedSearchParams)
   const properties = filterProperties(featuredProperties, filters)
-  const searchSummary = getSearchSummary(filters)
+  const searchSummary = getPropertySearchSummary(filters)
 
   return (
     <>
@@ -176,7 +80,12 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
 
         <section className="px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
           <div className="mx-auto max-w-7xl">
-            <div className="mb-10 flex flex-col gap-5 border-b border-white/10 pb-8 sm:flex-row sm:items-end sm:justify-between">
+            <PropertyFilters
+              values={filters}
+              showRentalModality={filters.finalidade === 'alugar'}
+            />
+
+            <div className="mb-10 mt-12 flex flex-col gap-5 border-b border-white/10 pb-8 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="text-sm font-medium text-[#D4AF37]">
                   {properties.length}{' '}

@@ -85,7 +85,7 @@ export default function LongTermRentPage() {
               </p>
 
               <Link
-                href="/#busca"
+                href="/imoveis?finalidade=alugar&modalidade=longa-temporada"
                 className="mt-7 inline-flex rounded-full bg-[#D4AF37] px-6 py-3 text-sm font-semibold text-zinc-950 hover:bg-[#E5C45A]"
               >
                 Informar perfil do imóvel
