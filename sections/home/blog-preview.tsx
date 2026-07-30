@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { BlogCard } from '@/components/blog/blog-card'
 import { blogPosts } from '@/data/blog-posts'
 
@@ -32,10 +33,19 @@ export function BlogPreview() {
             </p>
           </div>
 
-          <p className="max-w-sm text-sm leading-6 text-zinc-400">
-            Informação prática para compradores, proprietários e investidores que desejam tomar
-            decisões imobiliárias com mais clareza.
-          </p>
+          <div className="max-w-sm">
+            <p className="text-sm leading-6 text-zinc-400">
+              Informação prática para compradores, proprietários e investidores que desejam tomar
+              decisões imobiliárias com mais clareza.
+            </p>
+
+            <Link
+              href="/blog"
+              className="mt-5 inline-flex text-sm font-semibold text-white transition-colors hover:text-[#D4AF37]"
+            >
+              Acessar o Blog
+            </Link>
+          </div>
         </div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">

@@ -8,7 +8,7 @@ const navigation = [
   { label: 'Investir', href: '/investir' },
   { label: 'Avaliar Imóvel', href: '/#avaliar' },
   { label: 'Sobre Nós', href: '/sobre' },
-  { label: 'Blog', href: '/#blog' },
+  { label: 'Blog', href: '/blog' },
 ] as const
 
 export function Navbar() {

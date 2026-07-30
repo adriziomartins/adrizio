@@ -1,3 +1,8 @@
+export interface BlogPostSection {
+  title: string
+  paragraphs: string[]
+}
+
 export interface BlogPost {
   id: string
   slug: string
@@ -6,4 +11,7 @@ export interface BlogPost {
   excerpt: string
   status: 'planned' | 'published'
   readingTime?: string
+  publishedAt?: string
+  updatedAt?: string
+  sections?: BlogPostSection[]
 }

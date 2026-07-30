@@ -38,7 +38,7 @@ const exploreLinks = [
   },
   {
     label: 'Conteúdo imobiliário',
-    href: '/#blog',
+    href: '/blog',
   },
   {
     label: 'Avaliações',
