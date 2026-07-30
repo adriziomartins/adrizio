@@ -48,8 +48,8 @@ export function MobileNavigation({ navigation, contactUrl }: MobileNavigationPro
   return (
     <>
       <button
-        ref={triggerRef}
         type="button"
+        ref={triggerRef}
         aria-label={isOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação'}
         aria-expanded={isOpen}
         aria-controls="mobile-navigation-panel"
