@@ -6,6 +6,7 @@ import { WHATSAPP_URL } from '@/lib/contact'
 const navigation = [
   { label: 'Comprar', href: '/comprar' },
   { label: 'Alugar', href: '/alugar' },
+  { label: 'Investir', href: '/investir' },
   { label: 'Avaliar Imóvel', href: '/#avaliar' },
   { label: 'Sobre Nós', href: '/#sobre' },
   { label: 'Blog', href: '/#blog' },

@@ -11,7 +11,7 @@ const propertyLinks = [
   },
   {
     label: 'Investir',
-    href: '/imoveis?finalidade=investir',
+    href: '/investir',
   },
   {
     label: 'Avaliar imóvel',

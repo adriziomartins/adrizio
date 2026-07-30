@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { ArrowRight, Building, Home, TrendingUp } from 'lucide-react'
 
 const journeys = [
@@ -28,7 +29,7 @@ const journeys = [
     description:
       'Explore imóveis com foco em valorização patrimonial, geração de renda e oportunidades imobiliárias em regiões estratégicas.',
     cta: 'Explorar oportunidades',
-    href: '/imoveis?finalidade=investir',
+    href: '/investir',
     icon: TrendingUp,
   },
 ]
@@ -94,7 +95,7 @@ export function PropertyJourneys() {
                     {journey.description}
                   </p>
 
-                  <a
+                  <Link
                     href={journey.href}
                     className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-[#D4AF37] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
                   >
@@ -104,7 +105,7 @@ export function PropertyJourneys() {
                       className="size-4 transition-transform group-hover:translate-x-1"
                       aria-hidden="true"
                     />
-                  </a>
+                  </Link>
                 </div>
               </article>
             )

@@ -36,3 +36,10 @@ export function getPropertyWhatsAppUrl({ title, neighborhood, slug }: PropertyCo
 
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
 }
+
+export const WHATSAPP_INVESTMENT_MESSAGE =
+  'Olá, Adrizio. Vim pelo site ADRIZIO e gostaria de analisar oportunidades de investimento imobiliário na Orla de Fortaleza.'
+
+export const WHATSAPP_INVESTMENT_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+  WHATSAPP_INVESTMENT_MESSAGE,
+)}`

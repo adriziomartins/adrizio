@@ -28,6 +28,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${siteUrl}/investir`,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
       url: `${siteUrl}/alugar`,
       changeFrequency: 'weekly',
       priority: 0.9,
