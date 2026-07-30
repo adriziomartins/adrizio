@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
 import { MobileNavigation } from '@/components/layout/mobile-navigation'
-import { WHATSAPP_URL } from '@/lib/contact'
 
 const navigation = [
   { label: 'Comprar', href: '/comprar' },
@@ -40,20 +39,17 @@ export function Navbar() {
 
         {/* CTA desktop */}
         <div className="hidden lg:block">
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Fale conosco pelo WhatsApp — abre em nova aba"
+          <Link
+            href="/contato"
             className="inline-flex h-10 items-center justify-center rounded-full bg-[#D4AF37] px-5 text-sm font-medium text-zinc-950 transition-all hover:-translate-y-0.5 hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
           >
             Fale Conosco
-          </a>
+          </Link>
         </div>
 
         {/* Navegação mobile */}
         <div className="lg:hidden">
-          <MobileNavigation navigation={navigation} whatsappUrl={WHATSAPP_URL} />
+          <MobileNavigation navigation={navigation} contactUrl="/contato" />
         </div>
       </div>
     </header>

@@ -37,7 +37,7 @@
     "tailwindcss": "^4",
     "typescript": "^5"
   },
-  "description": "Plataforma imobiliária ADRIZIO, impulsionada pelo ecossistema ORIONEX",
+  "description": "Site imobiliário Adrizio, especializado em imóveis na Orla de Fortaleza",
   "engines": {
     "node": ">=20.9.0"
   }

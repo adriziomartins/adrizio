@@ -10,10 +10,10 @@ interface NavigationItem {
 
 interface MobileNavigationProps {
   navigation: readonly NavigationItem[]
-  whatsappUrl: string
+  contactUrl: string
 }
 
-export function MobileNavigation({ navigation, whatsappUrl }: MobileNavigationProps) {
+export function MobileNavigation({ navigation, contactUrl }: MobileNavigationProps) {
   const [isOpen, setIsOpen] = useState(false)
   const triggerRef = useRef<HTMLButtonElement>(null)
 
@@ -109,16 +109,13 @@ export function MobileNavigation({ navigation, whatsappUrl }: MobileNavigationPr
               </Link>
             ))}
 
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              href={contactUrl}
               onClick={closeMenu}
-              aria-label="Fale conosco pelo WhatsApp — abre em nova aba"
               className="mt-5 flex min-h-11 items-center justify-center rounded-full bg-[#D4AF37] px-5 text-sm font-semibold text-zinc-950 transition-colors hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
             >
               Fale Conosco
-            </a>
+            </Link>
           </nav>
         </div>
       )}
