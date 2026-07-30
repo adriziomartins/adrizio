@@ -70,7 +70,7 @@ export default function BuyPage() {
                 <span className="h-px w-10 bg-[#D4AF37]" aria-hidden="true" />
 
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#D4AF37]">
-                  Comprar com a ADRIZIO
+                  Comprar com o corretor Adrizio
                 </p>
               </div>
 
@@ -174,7 +174,7 @@ export default function BuyPage() {
 
                 <p className="mt-4 text-sm leading-7 text-zinc-400">
                   Informe bairro, faixa de investimento, quantidade de quartos e características
-                  prioritárias. A ADRIZIO poderá direcionar a busca conforme seu perfil.
+                  prioritárias. O corretor Adrizio poderá direcionar a busca conforme seu perfil.
                 </p>
 
                 <a

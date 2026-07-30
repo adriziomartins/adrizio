@@ -8,14 +8,14 @@ import { Navbar } from '@/components/layout/navbar'
 import { WHATSAPP_URL } from '@/lib/contact'
 
 export const metadata: Metadata = {
-  title: 'Sobre a ADRIZIO',
+  title: 'Sobre o Site Adrizio',
   description:
-    'Conheça a ADRIZIO, marca imobiliária de Adrizio Martins, corretor de imóveis CRECI 25015F, com atuação focada na Orla de Fortaleza.',
+    'Conheça o Site Adrizio e o trabalho do corretor Adrizio Martins, CRECI 25015F, com atuação focada na Orla de Fortaleza.',
   alternates: {
     canonical: '/sobre',
   },
   openGraph: {
-    title: 'Sobre a ADRIZIO | Imóveis na Orla de Fortaleza',
+    title: 'Sobre o Site Adrizio | Imóveis na Orla de Fortaleza',
     description:
       'Atendimento imobiliário, conhecimento local e presença estratégica para apoiar decisões de compra, locação e investimento.',
     url: '/sobre',
@@ -114,7 +114,7 @@ export default function AboutPage() {
                 <span className="h-px w-10 bg-[#D4AF37]" aria-hidden="true" />
 
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#D4AF37]">
-                  Sobre a ADRIZIO
+                  Sobre o Site Adrizio
                 </p>
               </div>
 
@@ -123,9 +123,9 @@ export default function AboutPage() {
               </h1>
 
               <p className="mt-6 max-w-3xl text-base leading-8 text-zinc-400 sm:text-lg">
-                A ADRIZIO é a marca imobiliária de Adrizio Martins, construída para aproximar
-                pessoas, imóveis e oportunidades com atendimento especializado, presença local e uma
-                visão cada vez mais estratégica do mercado imobiliário.
+                O Site Adrizio é a presença digital do corretor Adrizio Martins, construído para
+                aproximar pessoas, imóveis e oportunidades com atendimento especializado, presença
+                local e uma visão cada vez mais estratégica do mercado imobiliário.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -180,7 +180,7 @@ export default function AboutPage() {
               </h2>
 
               <p className="mt-5 text-sm leading-8 text-zinc-400 sm:text-base">
-                A proposta da ADRIZIO é oferecer uma experiência imobiliária mais organizada,
+                A proposta do Site Adrizio é oferecer uma experiência imobiliária mais organizada,
                 transparente e orientada à realidade de cada cliente, sem reduzir decisões
                 patrimoniais importantes a uma simples listagem de anúncios.
               </p>
@@ -221,7 +221,7 @@ export default function AboutPage() {
               </h2>
 
               <p className="mt-5 text-sm leading-8 text-zinc-400 sm:text-base">
-                A ADRIZIO nasce com o propósito de consolidar uma presença forte no mercado
+                O Site Adrizio nasce com o propósito de consolidar uma presença forte no mercado
                 imobiliário da Orla de Fortaleza, unindo atendimento humano, conhecimento do
                 território e organização comercial.
               </p>
@@ -258,7 +258,7 @@ export default function AboutPage() {
                   rel="noreferrer"
                   className="mt-7 inline-flex h-12 items-center justify-center rounded-full bg-[#D4AF37] px-6 text-sm font-semibold text-zinc-950 transition-colors hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
                 >
-                  Falar com a ADRIZIO
+                  Falar com o corretor Adrizio
                 </a>
               </div>
             </div>

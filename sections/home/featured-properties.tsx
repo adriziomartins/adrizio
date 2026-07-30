@@ -42,7 +42,7 @@ export function FeaturedProperties() {
         {/* Aviso de desenvolvimento */}
         <p className="mt-8 text-xs leading-5 text-zinc-400">
           Os imóveis exibidos nesta versão são dados demonstrativos utilizados durante o
-          desenvolvimento da plataforma ADRIZIO.
+          desenvolvimento do Site Adrizio.
         </p>
       </div>
     </section>

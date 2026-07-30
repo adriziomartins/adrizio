@@ -123,15 +123,15 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
                 </h2>
 
                 <p className="mt-4 text-sm leading-7 text-zinc-400">
-                  Informe o perfil do imóvel que procura. A ADRIZIO poderá identificar oportunidades
-                  alinhadas à sua localização, faixa de preço e objetivo.
+                  Informe o perfil do imóvel que procura. O corretor Adrizio poderá identificar
+                  oportunidades alinhadas à sua localização, faixa de preço e objetivo.
                 </p>
 
                 <Link
                   href="/#avaliar"
                   className="mt-7 inline-flex h-12 items-center justify-center rounded-full bg-[#D4AF37] px-6 text-sm font-semibold text-zinc-950 transition-colors hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
                 >
-                  Falar com a ADRIZIO
+                  Falar com o corretor Adrizio
                 </Link>
               </div>
             </div>

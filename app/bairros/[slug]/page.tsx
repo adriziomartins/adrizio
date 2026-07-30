@@ -143,7 +143,7 @@ export default async function NeighborhoodPage({ params }: NeighborhoodPageProps
                   rel="noreferrer"
                   className="inline-flex h-12 items-center justify-center rounded-full border border-white/15 px-6 text-sm font-semibold text-white transition-colors hover:border-[#D4AF37]/60 hover:text-[#D4AF37]"
                 >
-                  Falar com a ADRIZIO
+                  Falar com o corretor Adrizio
                 </a>
               </div>
             </div>
@@ -180,8 +180,8 @@ export default async function NeighborhoodPage({ params }: NeighborhoodPageProps
               <h2 className="mt-6 text-xl font-semibold text-white">Atendimento local</h2>
 
               <p className="mt-3 text-sm leading-7 text-zinc-400">
-                A ADRIZIO acompanha oportunidades e demandas imobiliárias nas principais regiões do
-                litoral de Fortaleza.
+                O corretor Adrizio acompanha oportunidades e demandas imobiliárias nas principais
+                regiões do litoral de Fortaleza.
               </p>
             </article>
           </div>

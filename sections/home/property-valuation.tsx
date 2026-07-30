@@ -65,8 +65,8 @@ export function PropertyValuation() {
 
             <p className="mt-6 max-w-xl text-base leading-8 text-zinc-400">
               Uma boa negociação começa com uma análise criteriosa do imóvel, da região e do
-              mercado. A ADRIZIO ajuda você a tomar decisões com mais informação antes de vender ou
-              alugar.
+              mercado. O corretor Adrizio ajuda você a tomar decisões com mais informação antes de
+              vender ou alugar.
             </p>
 
             <ul className="mt-8 space-y-4">

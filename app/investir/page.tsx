@@ -91,7 +91,7 @@ export default function InvestPage() {
                 <span className="h-px w-10 bg-[#D4AF37]" aria-hidden="true" />
 
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#D4AF37]">
-                  Investir com a ADRIZIO
+                  Investir com o corretor Adrizio
                 </p>
               </div>
 

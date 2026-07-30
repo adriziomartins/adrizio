@@ -8,7 +8,7 @@ import { regions } from '@/data/regions'
 export const metadata: Metadata = {
   title: 'Bairros e regiões da Orla de Fortaleza',
   description:
-    'Conheça os bairros e regiões atendidos pela ADRIZIO na Orla de Fortaleza e encontre oportunidades para comprar, alugar ou investir.',
+    'Conheça os bairros e regiões apresentados pelo Site Adrizio e encontre oportunidades para comprar, alugar ou investir na Orla de Fortaleza.',
   alternates: {
     canonical: '/bairros',
   },
@@ -68,7 +68,7 @@ export default function NeighborhoodsPage() {
               </p>
 
               <h2 className="mt-2 text-2xl font-semibold text-white sm:text-3xl">
-                Explore o território atendido pela ADRIZIO
+                Explore as regiões apresentadas pelo Site Adrizio
               </h2>
 
               <p className="mt-4 max-w-2xl text-sm leading-7 text-zinc-400">
