@@ -13,8 +13,8 @@ export function PropertyGrid({ properties }: PropertyGridProps) {
         <h2 className="text-xl font-semibold text-white">Nenhum imóvel encontrado</h2>
 
         <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-zinc-400">
-          Não encontramos imóveis demonstrativos com os filtros selecionados. Ajuste os critérios da
-          busca para visualizar outras oportunidades.
+          Não encontramos imóveis com os filtros selecionados. Ajuste os critérios da busca para
+          visualizar outras possibilidades.
         </p>
       </div>
     )

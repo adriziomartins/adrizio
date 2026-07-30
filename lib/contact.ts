@@ -50,3 +50,10 @@ export const WHATSAPP_RENT_MESSAGE =
 export const WHATSAPP_RENT_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
   WHATSAPP_RENT_MESSAGE,
 )}`
+
+export const WHATSAPP_REAL_PROPERTIES_MESSAGE =
+  'Olá, Adrizio. Vim pelo Site Adrizio e gostaria de conversar sobre imóveis reais disponíveis na Orla de Fortaleza.'
+
+export const WHATSAPP_REAL_PROPERTIES_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+  WHATSAPP_REAL_PROPERTIES_MESSAGE,
+)}`

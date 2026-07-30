@@ -15,7 +15,7 @@ import {
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
 import { featuredProperties } from '@/data/featured-properties'
-import { getPropertyWhatsAppUrl } from '@/lib/contact'
+import { getPropertyWhatsAppUrl, WHATSAPP_REAL_PROPERTIES_URL } from '@/lib/contact'
 import { createBreadcrumbList } from '@/lib/structured-data'
 
 interface PropertyDetailsPageProps {
@@ -103,11 +103,13 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPag
     notFound()
   }
 
-  const whatsappUrl = getPropertyWhatsAppUrl({
-    title: property.title,
-    neighborhood: property.neighborhood,
-    slug: property.slug,
-  })
+  const whatsappUrl = property.demonstrative
+    ? WHATSAPP_REAL_PROPERTIES_URL
+    : getPropertyWhatsAppUrl({
+        title: property.title,
+        neighborhood: property.neighborhood,
+        slug: property.slug,
+      })
 
   const breadcrumbStructuredData = createBreadcrumbList([
     {
@@ -192,9 +194,18 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPag
                   {property.title}
                 </h1>
 
-                <p className="mt-5 text-3xl font-semibold text-[#D4AF37]">
-                  {currencyFormatter.format(property.price)}
-                </p>
+                <div className="mt-5">
+                  <p className="text-3xl font-semibold text-[#D4AF37]">
+                    {currencyFormatter.format(property.price)}
+                  </p>
+
+                  {property.demonstrative ? (
+                    <p className="mt-2 text-xs text-zinc-500">
+                      Valor e características apresentados apenas para validação visual da
+                      plataforma.
+                    </p>
+                  ) : null}
+                </div>
 
                 <dl className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
                   <div className="rounded-2xl border border-white/10 bg-zinc-900 p-4">
@@ -261,11 +272,16 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPag
                   Atendimento ADRIZIO
                 </p>
 
-                <h2 className="mt-4 text-2xl font-semibold text-white">Interesse neste imóvel?</h2>
+                <h2 className="mt-4 text-2xl font-semibold text-white">
+                  {property.demonstrative
+                    ? 'Conheça o atendimento imobiliário'
+                    : 'Interesse neste imóvel?'}
+                </h2>
 
                 <p className="mt-4 text-sm leading-7 text-zinc-400">
-                  Solicite informações, confirme disponibilidade ou organize uma visita com
-                  atendimento especializado.
+                  {property.demonstrative
+                    ? 'Este conteúdo valida a experiência do catálogo. Para conversar sobre imóveis reais, informe seu objetivo, região e faixa de investimento.'
+                    : 'Solicite informações, confirme disponibilidade ou organize uma visita com atendimento especializado.'}
                 </p>
 
                 <dl className="mt-7 space-y-4 border-y border-white/10 py-6 text-sm">
@@ -292,13 +308,13 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPag
                   className="mt-7 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#D4AF37] px-6 text-sm font-semibold text-zinc-950 transition-colors hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
                 >
                   <MessageCircle className="size-4" aria-hidden="true" />
-                  Falar sobre este imóvel
+                  {property.demonstrative ? 'Falar sobre imóveis reais' : 'Falar sobre este imóvel'}
                 </a>
 
                 {property.demonstrative ? (
                   <p className="mt-5 text-xs leading-5 text-zinc-500">
-                    Esta página utiliza conteúdo demonstrativo para validar a estrutura do portal e
-                    não representa um anúncio imobiliário publicado.
+                    Esta página não representa imóvel disponível, oferta comercial ou anúncio
+                    imobiliário publicado.
                   </p>
                 ) : null}
               </div>

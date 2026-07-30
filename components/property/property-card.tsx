@@ -50,9 +50,15 @@ export function PropertyCard({ property }: PropertyCardProps) {
 
         <h3 className="mt-3 text-xl font-semibold leading-snug text-white">{property.title}</h3>
 
-        <p className="mt-4 text-2xl font-semibold text-[#D4AF37]">
-          {currencyFormatter.format(property.price)}
-        </p>
+        <div className="mt-4">
+          <p className="text-2xl font-semibold text-[#D4AF37]">
+            {currencyFormatter.format(property.price)}
+          </p>
+
+          {property.demonstrative ? (
+            <p className="mt-1 text-xs text-zinc-500">Valor meramente ilustrativo</p>
+          ) : null}
+        </div>
 
         {/* Características */}
         <dl className="mt-6 grid grid-cols-4 gap-2 border-y border-white/10 py-4">
