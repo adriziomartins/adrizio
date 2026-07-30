@@ -86,6 +86,21 @@ const structuredData = {
         },
       ],
       publisher: {
+        '@id': 'https://www.adrizio.com.br/#organization',
+      },
+    },
+    {
+      '@type': 'RealEstateAgent',
+      '@id': 'https://www.adrizio.com.br/#organization',
+      name: 'ADRIZIO',
+      url: 'https://www.adrizio.com.br/',
+      description:
+        'Atendimento imobiliário com foco na Orla de Fortaleza para compra, locação, investimento e avaliação de imóveis.',
+      areaServed: {
+        '@type': 'City',
+        name: 'Fortaleza',
+      },
+      founder: {
         '@id': 'https://www.adrizio.com.br/#adrizio-martins',
       },
     },
@@ -100,6 +115,9 @@ const structuredData = {
         '@type': 'PropertyValue',
         propertyID: 'CRECI-CE',
         value: '25015F',
+      },
+      worksFor: {
+        '@id': 'https://www.adrizio.com.br/#organization',
       },
       knowsAbout: [
         'Mercado imobiliário',
