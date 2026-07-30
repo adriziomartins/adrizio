@@ -1,4 +1,7 @@
 import type { Metadata } from 'next'
+
+import { ConsentManager } from '@/components/privacy/consent-manager'
+
 import './globals.css'
 
 const siteUrl = new URL('https://www.adrizio.com.br')
@@ -60,7 +63,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" data-scroll-behavior="smooth" className="font-sans">
-      <body>{children}</body>
+      <body>
+        {children}
+        <ConsentManager />
+      </body>
     </html>
   )
 }
