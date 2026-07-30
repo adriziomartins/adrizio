@@ -9,6 +9,7 @@ import { PropertyGrid } from '@/components/property/property-grid'
 import { featuredProperties } from '@/data/featured-properties'
 import { regions } from '@/data/regions'
 import { WHATSAPP_URL } from '@/lib/contact'
+import { createBreadcrumbList } from '@/lib/structured-data'
 
 interface NeighborhoodPageProps {
   params: Promise<{
@@ -75,8 +76,30 @@ export default async function NeighborhoodPage({ params }: NeighborhoodPageProps
     (property) => normalizeText(property.neighborhood) === normalizeText(region.name),
   )
 
+  const breadcrumbStructuredData = createBreadcrumbList([
+    {
+      name: 'Início',
+      path: '/',
+    },
+    {
+      name: 'Bairros e regiões',
+      path: '/bairros',
+    },
+    {
+      name: region.name,
+      path: `/bairros/${region.slug}`,
+    },
+  ])
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbStructuredData).replace(/</g, '\\u003c'),
+        }}
+      />
+
       <a
         href="#conteudo-principal"
         className="fixed -top-20 left-4 z-[100] rounded-md bg-[#D4AF37] px-4 py-3 font-semibold text-zinc-950 focus:top-4 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-zinc-950"

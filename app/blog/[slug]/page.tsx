@@ -6,6 +6,7 @@ import { BookOpen, Clock3, MessageCircle } from 'lucide-react'
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
 import { blogPosts } from '@/data/blog-posts'
+import { createBreadcrumbList } from '@/lib/structured-data'
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -75,6 +76,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   const isPublished = post.status === 'published'
 
+  const breadcrumbStructuredData = createBreadcrumbList([
+    {
+      name: 'Início',
+      path: '/',
+    },
+    {
+      name: 'Blog',
+      path: '/blog',
+    },
+    {
+      name: post.title,
+      path: `/blog/${post.slug}`,
+    },
+  ])
+
   const structuredData = isPublished
     ? {
         '@context': 'https://schema.org',
@@ -99,6 +115,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbStructuredData).replace(/</g, '\\u003c'),
+        }}
+      />
+
       {structuredData && (
         <script
           type="application/ld+json"

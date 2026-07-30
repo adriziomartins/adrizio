@@ -16,6 +16,7 @@ import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
 import { featuredProperties } from '@/data/featured-properties'
 import { getPropertyWhatsAppUrl } from '@/lib/contact'
+import { createBreadcrumbList } from '@/lib/structured-data'
 
 interface PropertyDetailsPageProps {
   params: Promise<{
@@ -108,8 +109,30 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPag
     slug: property.slug,
   })
 
+  const breadcrumbStructuredData = createBreadcrumbList([
+    {
+      name: 'Início',
+      path: '/',
+    },
+    {
+      name: 'Imóveis',
+      path: '/imoveis',
+    },
+    {
+      name: property.title,
+      path: `/imoveis/${property.slug}`,
+    },
+  ])
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbStructuredData).replace(/</g, '\\u003c'),
+        }}
+      />
+
       <a
         href="#conteudo-principal"
         className="fixed -top-20 left-4 z-[100] rounded-md bg-[#D4AF37] px-4 py-3 font-semibold text-zinc-950 focus:top-4 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-zinc-950"
