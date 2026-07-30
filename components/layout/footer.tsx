@@ -21,6 +21,10 @@ const propertyLinks = [
 
 const exploreLinks = [
   {
+    label: 'Sobre a ADRIZIO',
+    href: '/sobre',
+  },
+  {
     label: 'Imóveis em destaque',
     href: '/#imoveis-destaque',
   },

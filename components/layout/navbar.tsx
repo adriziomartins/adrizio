@@ -8,7 +8,7 @@ const navigation = [
   { label: 'Alugar', href: '/alugar' },
   { label: 'Investir', href: '/investir' },
   { label: 'Avaliar Imóvel', href: '/#avaliar' },
-  { label: 'Sobre Nós', href: '/#sobre' },
+  { label: 'Sobre Nós', href: '/sobre' },
   { label: 'Blog', href: '/#blog' },
 ] as const
 

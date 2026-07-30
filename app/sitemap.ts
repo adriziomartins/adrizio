@@ -52,6 +52,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.9,
     },
+    {
+      url: `${siteUrl}/sobre`,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
     ...neighborhoodRoutes,
   ]
 }
