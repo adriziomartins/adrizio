@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import { BedDouble, Building2, MapPin, Search, SlidersHorizontal, Wallet } from 'lucide-react'
 
+import { TrackedPropertyForm } from '@/components/analytics/tracked-property-form'
 import type { PropertySearchValues } from '@/lib/property-search'
 import { PropertySearchEnhancer } from '@/sections/home/property-search-enhancer'
 
@@ -45,7 +46,13 @@ export function PropertySearch({ initialValues, hasAppliedSearch }: PropertySear
             </p>
           </div>
 
-          <form id="property-search-form" action="/imoveis" method="get" className="p-5 sm:p-7">
+          <TrackedPropertyForm
+            id="property-search-form"
+            action="/imoveis"
+            eventName="property_search"
+            sourcePage="home"
+            className="p-5 sm:p-7"
+          >
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-6">
               <label className="space-y-2">
                 <span className="flex items-center gap-2 text-xs font-medium text-zinc-400">
@@ -154,7 +161,7 @@ export function PropertySearch({ initialValues, hasAppliedSearch }: PropertySear
             >
               {hasAppliedSearch ? 'Preferências registradas nesta busca.' : ''}
             </div>
-          </form>
+          </TrackedPropertyForm>
         </div>
       </div>
     </section>

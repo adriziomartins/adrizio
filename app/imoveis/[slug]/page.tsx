@@ -12,6 +12,7 @@ import {
   MessageCircle,
 } from 'lucide-react'
 
+import { TrackedWhatsAppLink } from '@/components/analytics/tracked-whatsapp-link'
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
 import { featuredProperties } from '@/data/featured-properties'
@@ -301,15 +302,25 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPag
                   </div>
                 </dl>
 
-                <a
+                <TrackedWhatsAppLink
                   href={whatsappUrl}
-                  target="_blank"
-                  rel="noreferrer"
+                  sourcePage="property-details"
+                  contactIntent={
+                    property.demonstrative
+                      ? 'real-properties'
+                      : property.purpose === 'venda'
+                        ? 'buy'
+                        : property.purpose === 'aluguel'
+                          ? 'rent'
+                          : 'investment'
+                  }
+                  propertySlug={property.slug}
+                  propertyStatus={property.demonstrative ? 'demonstrative' : 'real'}
                   className="mt-7 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#D4AF37] px-6 text-sm font-semibold text-zinc-950 transition-colors hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
                 >
                   <MessageCircle className="size-4" aria-hidden="true" />
                   {property.demonstrative ? 'Falar sobre imóveis reais' : 'Falar sobre este imóvel'}
-                </a>
+                </TrackedWhatsAppLink>
 
                 {property.demonstrative ? (
                   <p className="mt-5 text-xs leading-5 text-zinc-500">

@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import { BedDouble, Building2, MapPin, Search, SlidersHorizontal, Wallet } from 'lucide-react'
 
+import { TrackedPropertyForm } from '@/components/analytics/tracked-property-form'
 import type { PropertySearchValues } from '@/lib/property-search'
+import type { SourcePage } from '@/types/analytics'
 
 const inputClassName =
   'h-12 w-full appearance-none rounded-xl border border-zinc-700 bg-zinc-900 px-4 text-sm text-zinc-100 outline-none transition focus:border-[#D4AF37]/70 focus:ring-2 focus:ring-[#D4AF37]/15'
@@ -13,6 +15,7 @@ interface PropertyFiltersProps {
   showRentalModality?: boolean
   fixedPurpose?: 'comprar' | 'alugar' | 'investir'
   fixedRentalModality?: 'longa-temporada' | 'curta-temporada'
+  sourcePage?: SourcePage
 }
 
 export function PropertyFilters({
@@ -22,11 +25,13 @@ export function PropertyFilters({
   showRentalModality = false,
   fixedPurpose,
   fixedRentalModality,
+  sourcePage = 'properties',
 }: PropertyFiltersProps) {
   return (
-    <form
+    <TrackedPropertyForm
       action={action}
-      method="get"
+      eventName="property_filter"
+      sourcePage={sourcePage}
       className="rounded-3xl border border-white/10 bg-zinc-900/70 p-5 sm:p-7"
     >
       <div className="mb-6 flex items-center gap-2 text-[#D4AF37]">
@@ -152,6 +157,6 @@ export function PropertyFilters({
           Limpar filtros
         </Link>
       </div>
-    </form>
+    </TrackedPropertyForm>
   )
 }
