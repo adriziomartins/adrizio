@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 
+import { GoogleTagManagerLoader } from '@/components/analytics/google-tag-manager-loader'
 import { ConsentManager } from '@/components/privacy/consent-manager'
+import { analyticsConfig } from '@/config/analytics'
 
 import './globals.css'
 
@@ -66,6 +68,7 @@ export default function RootLayout({
       <body>
         {children}
         <ConsentManager />
+        <GoogleTagManagerLoader containerId={analyticsConfig.googleTagManagerId} />
       </body>
     </html>
   )
