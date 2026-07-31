@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { CalendarDays, MapPin, Users } from 'lucide-react'
 
+import { TrackedWhatsAppLink } from '@/components/analytics/tracked-whatsapp-link'
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
 import { WHATSAPP_URL } from '@/lib/contact'
@@ -101,14 +102,14 @@ export default function ShortStayPage() {
                 escolhida e regras da unidade.
               </p>
 
-              <a
+              <TrackedWhatsAppLink
                 href={WHATSAPP_URL}
-                target="_blank"
-                rel="noreferrer"
+                sourcePage="short-term-rent"
+                contactIntent="rent"
                 className="mt-7 inline-flex rounded-full bg-[#D4AF37] px-6 py-3 text-sm font-semibold text-zinc-950 hover:bg-[#E5C45A]"
               >
                 Consultar pelo WhatsApp
-              </a>
+              </TrackedWhatsAppLink>
             </div>
           </div>
         </section>

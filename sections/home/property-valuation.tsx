@@ -1,5 +1,7 @@
-import { WHATSAPP_VALUATION_URL } from '@/lib/contact'
 import { ArrowRight, BarChart3, CheckCircle2, FileSearch, Handshake, Home } from 'lucide-react'
+
+import { TrackedWhatsAppLink } from '@/components/analytics/tracked-whatsapp-link'
+import { WHATSAPP_VALUATION_URL } from '@/lib/contact'
 
 const benefits = [
   'Análise do perfil e das características do imóvel',
@@ -85,16 +87,16 @@ export function PropertyValuation() {
               ))}
             </ul>
 
-            <a
+            <TrackedWhatsAppLink
               href={WHATSAPP_VALUATION_URL}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Solicitar uma avaliação pelo WhatsApp — abre em nova aba"
+              sourcePage="home"
+              contactIntent="valuation"
+              ariaLabel="Solicitar uma avaliação pelo WhatsApp — abre em nova aba"
               className="mt-10 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#D4AF37] px-6 text-sm font-semibold text-zinc-950 transition-all hover:-translate-y-0.5 hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
             >
               Solicitar uma avaliação
               <ArrowRight className="size-4" aria-hidden="true" />
-            </a>
+            </TrackedWhatsAppLink>
 
             <p className="mt-4 text-xs leading-5 text-zinc-400">
               Atendimento personalizado para proprietários que desejam vender, alugar ou compreender

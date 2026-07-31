@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { MapPinned, MessageCircle, ShieldCheck, Target } from 'lucide-react'
 
+import { TrackedWhatsAppLink } from '@/components/analytics/tracked-whatsapp-link'
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
 import { WHATSAPP_URL } from '@/lib/contact'
@@ -136,15 +137,15 @@ export default function AboutPage() {
                   Explorar imóveis
                 </Link>
 
-                <a
+                <TrackedWhatsAppLink
                   href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noreferrer"
+                  sourcePage="about"
+                  contactIntent="general"
                   className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/15 px-6 text-sm font-semibold text-white transition-colors hover:border-[#D4AF37]/60 hover:text-[#D4AF37] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
                 >
                   <MessageCircle className="size-4" aria-hidden="true" />
                   Falar com Adrizio
-                </a>
+                </TrackedWhatsAppLink>
               </div>
             </div>
 
@@ -252,14 +253,14 @@ export default function AboutPage() {
                   necessidade para iniciar um atendimento direcionado.
                 </p>
 
-                <a
+                <TrackedWhatsAppLink
                   href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noreferrer"
+                  sourcePage="about"
+                  contactIntent="general"
                   className="mt-7 inline-flex h-12 items-center justify-center rounded-full bg-[#D4AF37] px-6 text-sm font-semibold text-zinc-950 transition-colors hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
                 >
                   Falar com o corretor Adrizio
-                </a>
+                </TrackedWhatsAppLink>
               </div>
             </div>
           </div>

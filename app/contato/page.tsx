@@ -11,6 +11,7 @@ import {
   TrendingUp,
 } from 'lucide-react'
 
+import { TrackedWhatsAppLink } from '@/components/analytics/tracked-whatsapp-link'
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
 import {
@@ -43,6 +44,7 @@ const contactOptions = [
       'Informe região, faixa de preço, quantidade de quartos e características prioritárias.',
     cta: 'Procurar imóvel para comprar',
     href: WHATSAPP_BUY_URL,
+    contactIntent: 'buy',
     icon: Home,
   },
   {
@@ -51,6 +53,7 @@ const contactOptions = [
       'Converse sobre locação anual, longa temporada ou necessidades específicas de moradia.',
     cta: 'Procurar imóvel para alugar',
     href: WHATSAPP_RENT_URL,
+    contactIntent: 'rent',
     icon: Search,
   },
   {
@@ -59,6 +62,7 @@ const contactOptions = [
       'Apresente seu objetivo patrimonial, faixa de investimento e interesse em renda ou valorização.',
     cta: 'Analisar oportunidades',
     href: WHATSAPP_INVESTMENT_URL,
+    contactIntent: 'investment',
     icon: TrendingUp,
   },
   {
@@ -67,6 +71,7 @@ const contactOptions = [
       'Solicite uma análise de posicionamento para venda, locação ou compreensão do mercado.',
     cta: 'Solicitar avaliação',
     href: WHATSAPP_VALUATION_URL,
+    contactIntent: 'valuation',
     icon: Building2,
   },
 ] as const
@@ -134,15 +139,15 @@ export default function ContactPage() {
                 compra, locação, investimento ou avaliação de imóveis.
               </p>
 
-              <a
+              <TrackedWhatsAppLink
                 href={WHATSAPP_URL}
-                target="_blank"
-                rel="noreferrer"
+                sourcePage="contact"
+                contactIntent="general"
                 className="mt-8 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#D4AF37] px-6 text-sm font-semibold text-zinc-950 transition-colors hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
               >
                 <MessageCircle className="size-4" aria-hidden="true" />
                 Atendimento geral pelo WhatsApp
-              </a>
+              </TrackedWhatsAppLink>
             </div>
           </div>
         </section>
@@ -183,14 +188,14 @@ export default function ContactPage() {
                       {option.description}
                     </p>
 
-                    <a
+                    <TrackedWhatsAppLink
                       href={option.href}
-                      target="_blank"
-                      rel="noreferrer"
+                      sourcePage="contact"
+                      contactIntent={option.contactIntent}
                       className="mt-7 inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 px-6 text-sm font-semibold text-white transition-colors hover:border-[#D4AF37]/60 hover:text-[#D4AF37] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
                     >
                       {option.cta}
-                    </a>
+                    </TrackedWhatsAppLink>
                   </article>
                 )
               })}

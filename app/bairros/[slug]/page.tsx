@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Building2, Compass, MapPin, Search } from 'lucide-react'
 
+import { TrackedWhatsAppLink } from '@/components/analytics/tracked-whatsapp-link'
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
 import { PropertyGrid } from '@/components/property/property-grid'
@@ -160,14 +161,14 @@ export default async function NeighborhoodPage({ params }: NeighborhoodPageProps
                   Buscar imóveis na região
                 </Link>
 
-                <a
+                <TrackedWhatsAppLink
                   href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noreferrer"
+                  sourcePage="neighborhood"
+                  contactIntent="general"
                   className="inline-flex h-12 items-center justify-center rounded-full border border-white/15 px-6 text-sm font-semibold text-white transition-colors hover:border-[#D4AF37]/60 hover:text-[#D4AF37]"
                 >
                   Falar com o corretor Adrizio
-                </a>
+                </TrackedWhatsAppLink>
               </div>
             </div>
           </div>
