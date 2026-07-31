@@ -1,5 +1,7 @@
 import Link from 'next/link'
 
+import { TrackedInternalLink } from '@/components/analytics/tracked-internal-link'
+
 import { MobileNavigation } from '@/components/layout/mobile-navigation'
 
 const navigation = [
@@ -39,12 +41,14 @@ export function Navbar() {
 
         {/* CTA desktop */}
         <div className="hidden lg:block">
-          <Link
+          <TrackedInternalLink
             href="/contato"
+            eventName="contact_start"
+            contactIntent="general"
             className="inline-flex h-10 items-center justify-center rounded-full bg-[#D4AF37] px-5 text-sm font-medium text-zinc-950 transition-all hover:-translate-y-0.5 hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
           >
             Fale Conosco
-          </Link>
+          </TrackedInternalLink>
         </div>
 
         {/* Navegação mobile */}

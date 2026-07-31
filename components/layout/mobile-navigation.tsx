@@ -3,6 +3,8 @@
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
+import { TrackedInternalLink } from '@/components/analytics/tracked-internal-link'
+
 interface NavigationItem {
   label: string
   href: string
@@ -109,13 +111,15 @@ export function MobileNavigation({ navigation, contactUrl }: MobileNavigationPro
               </Link>
             ))}
 
-            <Link
+            <TrackedInternalLink
               href={contactUrl}
+              eventName="contact_start"
+              contactIntent="general"
               onClick={closeMenu}
               className="mt-5 flex min-h-11 items-center justify-center rounded-full bg-[#D4AF37] px-5 text-sm font-semibold text-zinc-950 transition-colors hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
             >
               Fale Conosco
-            </Link>
+            </TrackedInternalLink>
           </nav>
         </div>
       )}

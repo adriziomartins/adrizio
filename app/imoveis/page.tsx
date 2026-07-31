@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+import { TrackedInternalLink } from '@/components/analytics/tracked-internal-link'
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
 import { PropertyFilters } from '@/components/property/property-filters'
@@ -127,12 +128,14 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
                   oportunidades alinhadas à sua localização, faixa de preço e objetivo.
                 </p>
 
-                <Link
+                <TrackedInternalLink
                   href="/#avaliar"
+                  eventName="valuation_start"
+                  sourcePage="properties"
                   className="mt-7 inline-flex h-12 items-center justify-center rounded-full bg-[#D4AF37] px-6 text-sm font-semibold text-zinc-950 transition-colors hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
                 >
                   Falar com o corretor Adrizio
-                </Link>
+                </TrackedInternalLink>
               </div>
             </div>
           </div>

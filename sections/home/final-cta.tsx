@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { TrackedInternalLink } from '@/components/analytics/tracked-internal-link'
 import { ArrowRight, Building2, MessageCircle } from 'lucide-react'
 
 export function FinalCta() {
@@ -31,22 +31,27 @@ export function FinalCta() {
         </p>
 
         <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-          <Link
+          <TrackedInternalLink
             href="/contato"
+            eventName="contact_start"
+            contactIntent="general"
+            sourcePage="home"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#D4AF37] px-7 text-sm font-semibold text-zinc-950 transition-all hover:-translate-y-0.5 hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
           >
             <MessageCircle className="size-4" aria-hidden="true" />
             Escolher atendimento
             <ArrowRight className="size-4" aria-hidden="true" />
-          </Link>
+          </TrackedInternalLink>
 
-          <Link
+          <TrackedInternalLink
             href="#avaliar"
+            eventName="valuation_start"
+            sourcePage="home"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/15 px-7 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:border-[#D4AF37]/60 hover:text-[#D4AF37] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
           >
             <Building2 className="size-4" aria-hidden="true" />
             Quero avaliar meu imóvel
-          </Link>
+          </TrackedInternalLink>
         </div>
 
         <p className="mt-7 text-xs leading-5 text-zinc-400">

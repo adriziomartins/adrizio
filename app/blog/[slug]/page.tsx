@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { BookOpen, Clock3, MessageCircle } from 'lucide-react'
 
+import { TrackedInternalLink } from '@/components/analytics/tracked-internal-link'
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
 import { blogPosts } from '@/data/blog-posts'
@@ -241,12 +242,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   ou avaliação de imóvel, escolha o atendimento adequado.
                 </p>
 
-                <Link
+                <TrackedInternalLink
                   href="/contato"
+                  eventName="contact_start"
+                  contactIntent="general"
+                  sourcePage="blog-post"
                   className="mt-7 inline-flex h-12 items-center justify-center rounded-full bg-[#D4AF37] px-6 text-sm font-semibold text-zinc-950 transition-colors hover:bg-[#E5C45A]"
                 >
                   Falar com o corretor Adrizio
-                </Link>
+                </TrackedInternalLink>
               </aside>
             </div>
           </div>
