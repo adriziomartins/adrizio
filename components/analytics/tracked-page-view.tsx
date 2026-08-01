@@ -16,6 +16,7 @@ function createEventKey(event: PageViewEvent): string {
   if (event.event === 'view_property') {
     return [
       event.event,
+      event.source_page,
       event.property_slug,
       event.property_status,
       event.property_purpose,
@@ -23,16 +24,16 @@ function createEventKey(event: PageViewEvent): string {
     ].join(':')
   }
 
-  return [event.event, event.neighborhood_slug].join(':')
+  return [event.event, event.source_page, event.neighborhood_slug].join(':')
 }
 
 export function TrackedPageView({ event }: TrackedPageViewProps) {
-  const hasTrackedRef = useRef(false)
+  const lastTrackedEventKeyRef = useRef<string | null>(null)
   const eventKey = createEventKey(event)
 
   useEffect(() => {
     function tryTrackPageView() {
-      if (hasTrackedRef.current) {
+      if (lastTrackedEventKeyRef.current === eventKey) {
         return
       }
 
@@ -43,7 +44,7 @@ export function TrackedPageView({ event }: TrackedPageViewProps) {
       }
 
       trackAnalyticsEvent(event)
-      hasTrackedRef.current = true
+      lastTrackedEventKeyRef.current = eventKey
     }
 
     tryTrackPageView()

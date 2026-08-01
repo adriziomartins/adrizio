@@ -334,3 +334,16 @@ Confirmar que:
 - links internos geram somente `buy_lead`, `rent_lead` ou `investment_lead`;
 - links externos para WhatsApp geram somente `whatsapp_click`;
 - nenhum clique gera simultaneamente evento de lead e `whatsapp_click`.
+
+## Teste de navegação entre páginas dinâmicas
+
+Com consentimento analítico concedido:
+
+1. abrir um detalhe de imóvel;
+2. navegar para outro imóvel sem recarregar manualmente a aplicação;
+3. confirmar um `view_property` para cada `property_slug`;
+4. repetir o processo entre duas páginas de bairro;
+5. confirmar um `view_neighborhood` para cada `neighborhood_slug`;
+6. verificar que nenhuma página gera o mesmo evento duas vezes.
+
+A `dataLayer` também pode conter entradas internas do Google Tag Manager, como `gtm.js`. As validações devem filtrar os eventos pelo campo `event`.
