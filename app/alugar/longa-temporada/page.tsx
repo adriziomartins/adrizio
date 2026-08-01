@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { CheckCircle2 } from 'lucide-react'
+
+import { TrackedInternalLink } from '@/components/analytics/tracked-internal-link'
 
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
@@ -95,12 +96,15 @@ export default function LongTermRentPage() {
                 Informe bairro, faixa de preço, quantidade de quartos e prazo previsto para mudança.
               </p>
 
-              <Link
+              <TrackedInternalLink
                 href="/imoveis?finalidade=alugar&modalidade=longa-temporada"
+                eventName="rent_lead"
+                contactIntent="rent"
+                sourcePage="long-term-rent"
                 className="mt-7 inline-flex rounded-full bg-[#D4AF37] px-6 py-3 text-sm font-semibold text-zinc-950 hover:bg-[#E5C45A]"
               >
                 Informar perfil do imóvel
-              </Link>
+              </TrackedInternalLink>
             </div>
           </div>
         </section>

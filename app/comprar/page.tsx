@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { CheckCircle2, KeyRound, MapPinned, ShieldCheck } from 'lucide-react'
 
+import { TrackedInternalLink } from '@/components/analytics/tracked-internal-link'
 import { TrackedWhatsAppLink } from '@/components/analytics/tracked-whatsapp-link'
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
@@ -85,12 +85,15 @@ export default function BuyPage() {
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link
+                <TrackedInternalLink
                   href="/imoveis?finalidade=comprar"
+                  eventName="buy_lead"
+                  contactIntent="buy"
+                  sourcePage="buy"
                   className="inline-flex h-12 items-center justify-center rounded-full bg-[#D4AF37] px-6 text-sm font-semibold text-zinc-950 transition-colors hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
                 >
                   Ver imóveis à venda
-                </Link>
+                </TrackedInternalLink>
 
                 <TrackedWhatsAppLink
                   href={WHATSAPP_BUY_URL}
@@ -149,12 +152,15 @@ export default function BuyPage() {
                 </p>
               </div>
 
-              <Link
+              <TrackedInternalLink
                 href="/imoveis?finalidade=comprar"
+                eventName="buy_lead"
+                contactIntent="buy"
+                sourcePage="buy"
                 className="text-sm font-semibold text-white transition-colors hover:text-[#D4AF37]"
               >
                 Acessar catálogo completo
-              </Link>
+              </TrackedInternalLink>
             </div>
 
             <PropertyGrid properties={properties} />

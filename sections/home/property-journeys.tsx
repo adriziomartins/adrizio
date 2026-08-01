@@ -1,5 +1,6 @@
-import Link from 'next/link'
 import { ArrowRight, Building, Home, TrendingUp } from 'lucide-react'
+
+import { TrackedInternalLink } from '@/components/analytics/tracked-internal-link'
 
 const journeys = [
   {
@@ -10,6 +11,10 @@ const journeys = [
       'Encontre imóveis selecionados para morar, construir patrimônio ou realizar uma nova etapa da sua vida na Orla de Fortaleza.',
     cta: 'Encontrar imóveis para comprar',
     href: '/comprar',
+    tracking: {
+      eventName: 'buy_lead',
+      contactIntent: 'buy',
+    },
     icon: Home,
   },
   {
@@ -20,6 +25,10 @@ const journeys = [
       'Descubra opções para morar com localização estratégica, qualidade de vida e proximidade com tudo que a Orla oferece.',
     cta: 'Encontrar imóveis para alugar',
     href: '/alugar',
+    tracking: {
+      eventName: 'rent_lead',
+      contactIntent: 'rent',
+    },
     icon: Building,
   },
   {
@@ -30,9 +39,13 @@ const journeys = [
       'Explore imóveis com foco em valorização patrimonial, geração de renda e oportunidades imobiliárias em regiões estratégicas.',
     cta: 'Explorar oportunidades',
     href: '/investir',
+    tracking: {
+      eventName: 'investment_lead',
+      contactIntent: 'investment',
+    },
     icon: TrendingUp,
   },
-]
+] as const
 
 export function PropertyJourneys() {
   return (
@@ -95,17 +108,52 @@ export function PropertyJourneys() {
                     {journey.description}
                   </p>
 
-                  <Link
-                    href={journey.href}
-                    className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-[#D4AF37] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
-                  >
-                    {journey.cta}
+                  {journey.tracking.eventName === 'buy_lead' ? (
+                    <TrackedInternalLink
+                      href={journey.href}
+                      eventName="buy_lead"
+                      contactIntent="buy"
+                      sourcePage="home"
+                      className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-[#D4AF37] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
+                    >
+                      {journey.cta}
 
-                    <ArrowRight
-                      className="size-4 transition-transform group-hover:translate-x-1"
-                      aria-hidden="true"
-                    />
-                  </Link>
+                      <ArrowRight
+                        className="size-4 transition-transform group-hover:translate-x-1"
+                        aria-hidden="true"
+                      />
+                    </TrackedInternalLink>
+                  ) : journey.tracking.eventName === 'rent_lead' ? (
+                    <TrackedInternalLink
+                      href={journey.href}
+                      eventName="rent_lead"
+                      contactIntent="rent"
+                      sourcePage="home"
+                      className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-[#D4AF37] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
+                    >
+                      {journey.cta}
+
+                      <ArrowRight
+                        className="size-4 transition-transform group-hover:translate-x-1"
+                        aria-hidden="true"
+                      />
+                    </TrackedInternalLink>
+                  ) : (
+                    <TrackedInternalLink
+                      href={journey.href}
+                      eventName="investment_lead"
+                      contactIntent="investment"
+                      sourcePage="home"
+                      className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-[#D4AF37] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
+                    >
+                      {journey.cta}
+
+                      <ArrowRight
+                        className="size-4 transition-transform group-hover:translate-x-1"
+                        aria-hidden="true"
+                      />
+                    </TrackedInternalLink>
+                  )}
                 </div>
               </article>
             )

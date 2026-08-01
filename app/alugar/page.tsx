@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { Building2, CalendarDays, ArrowRight } from 'lucide-react'
+
+import { TrackedInternalLink } from '@/components/analytics/tracked-internal-link'
 
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
@@ -20,6 +21,8 @@ const rentalJourneys = [
     description:
       'Imóveis para contratos residenciais, mudanças, moradia contínua e locações convencionais.',
     href: '/alugar/longa-temporada',
+    eventName: 'rent_lead',
+    contactIntent: 'rent',
     cta: 'Ver locações residenciais',
     icon: Building2,
   },
@@ -29,6 +32,8 @@ const rentalJourneys = [
     description:
       'Apartamentos para férias, eventos, viagens corporativas, finais de semana e estadias temporárias.',
     href: '/alugar/curta-temporada',
+    eventName: 'rent_lead',
+    contactIntent: 'rent',
     cta: 'Consultar estadias',
     icon: CalendarDays,
   },
@@ -98,8 +103,11 @@ export default function RentPage() {
                     {journey.description}
                   </p>
 
-                  <Link
+                  <TrackedInternalLink
                     href={journey.href}
+                    eventName={journey.eventName}
+                    contactIntent={journey.contactIntent}
+                    sourcePage="rent"
                     className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-[#D4AF37] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
                   >
                     {journey.cta}
@@ -107,7 +115,7 @@ export default function RentPage() {
                       className="size-4 transition-transform group-hover:translate-x-1"
                       aria-hidden="true"
                     />
-                  </Link>
+                  </TrackedInternalLink>
                 </article>
               )
             })}

@@ -106,15 +106,34 @@ Parâmetros:
 - `source_page`;
 - `neighborhood_slug`.
 
-## Eventos planejados
+### `buy_lead`
 
-Os eventos abaixo existem no contrato TypeScript, mas ainda não possuem disparos confirmados:
+Clique interno que inicia ou avança explicitamente uma jornada de compra.
 
-- `buy_lead`
-- `rent_lead`
-- `investment_lead`
+Parâmetros:
 
-Eles não devem ser tratados como implementados até existirem pontos reais de disparo.
+- `source_page`;
+- `contact_intent: "buy"`.
+
+### `rent_lead`
+
+Clique interno que inicia ou avança explicitamente uma jornada de locação.
+
+Parâmetros:
+
+- `source_page`;
+- `contact_intent: "rent"`.
+
+### `investment_lead`
+
+Clique interno que inicia ou avança explicitamente uma jornada de investimento.
+
+Parâmetros:
+
+- `source_page`;
+- `contact_intent: "investment"`.
+
+Esses eventos representam ações explícitas do visitante. O simples acesso às páginas comerciais não gera evento de lead.
 
 ## Valores de `source_page`
 

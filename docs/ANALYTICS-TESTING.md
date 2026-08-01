@@ -269,3 +269,68 @@ Confirme que não existem:
 - não existem eventos duplicados;
 - não existem erros no console;
 - o site funciona com analytics desativado.
+
+## Testes das jornadas comerciais
+
+### `buy_lead`
+
+Testar:
+
+- card Comprar na Home;
+- "Ver imóveis à venda" em `/comprar`;
+- "Acessar catálogo completo" em `/comprar`.
+
+Esperado:
+
+```js
+{
+  event: 'buy_lead',
+  source_page: 'home' ou 'buy',
+  contact_intent: 'buy'
+}
+```
+
+### `rent_lead`
+
+Testar:
+
+- card Alugar na Home;
+- escolha de longa temporada em `/alugar`;
+- escolha de curta temporada em `/alugar`;
+- CTA de catálogo em `/alugar/longa-temporada`.
+
+Esperado:
+
+```js
+{
+  event: 'rent_lead',
+  source_page: 'home' ou 'rent' ou 'long-term-rent',
+  contact_intent: 'rent'
+}
+```
+
+### `investment_lead`
+
+Testar:
+
+- card Investir na Home;
+- "Ver oportunidades" em `/investir`;
+- "Acessar catálogo completo" em `/investir`.
+
+Esperado:
+
+```js
+{
+  event: 'investment_lead',
+  source_page: 'home' ou 'investment',
+  contact_intent: 'investment'
+}
+```
+
+### Separacao entre lead e WhatsApp
+
+Confirmar que:
+
+- links internos geram somente `buy_lead`, `rent_lead` ou `investment_lead`;
+- links externos para WhatsApp geram somente `whatsapp_click`;
+- nenhum clique gera simultaneamente evento de lead e `whatsapp_click`.
