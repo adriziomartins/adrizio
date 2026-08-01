@@ -1,3 +1,4 @@
+import { readConsentPreferences } from '@/lib/consent'
 import type { AnalyticsEvent } from '@/types/analytics'
 
 const MAX_STRING_LENGTH = 120
@@ -20,6 +21,12 @@ function normalizeEvent(event: AnalyticsEvent): AnalyticsEvent {
 
 export function trackAnalyticsEvent(event: AnalyticsEvent): void {
   if (typeof window === 'undefined') {
+    return
+  }
+
+  const consentPreferences = readConsentPreferences()
+
+  if (consentPreferences?.analytics !== 'granted') {
     return
   }
 
