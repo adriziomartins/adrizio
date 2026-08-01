@@ -12,6 +12,7 @@ import {
   MessageCircle,
 } from 'lucide-react'
 
+import { TrackedPageView } from '@/components/analytics/tracked-page-view'
 import { TrackedWhatsAppLink } from '@/components/analytics/tracked-whatsapp-link'
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
@@ -133,6 +134,17 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPag
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbStructuredData).replace(/</g, '\\u003c'),
+        }}
+      />
+
+      <TrackedPageView
+        event={{
+          event: 'view_property',
+          source_page: 'property-details',
+          property_slug: property.slug,
+          property_status: property.demonstrative ? 'demonstrative' : 'real',
+          property_purpose: property.purpose,
+          neighborhood: property.neighborhood,
         }}
       />
 

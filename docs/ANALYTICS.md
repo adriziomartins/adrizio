@@ -85,12 +85,31 @@ Parâmetros:
 
 - `source_page`
 
+### `view_property`
+
+Visualização de uma página de imóvel.
+
+Parâmetros:
+
+- `source_page`;
+- `property_slug`;
+- `property_status`;
+- `property_purpose`;
+- `neighborhood`.
+
+### `view_neighborhood`
+
+Visualização de uma página de bairro ou região.
+
+Parâmetros:
+
+- `source_page`;
+- `neighborhood_slug`.
+
 ## Eventos planejados
 
 Os eventos abaixo existem no contrato TypeScript, mas ainda não possuem disparos confirmados:
 
-- `view_property`
-- `view_neighborhood`
 - `buy_lead`
 - `rent_lead`
 - `investment_lead`

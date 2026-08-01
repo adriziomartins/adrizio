@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Building2, Compass, MapPin, Search } from 'lucide-react'
 
+import { TrackedPageView } from '@/components/analytics/tracked-page-view'
 import { TrackedWhatsAppLink } from '@/components/analytics/tracked-whatsapp-link'
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
@@ -98,6 +99,14 @@ export default async function NeighborhoodPage({ params }: NeighborhoodPageProps
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbStructuredData).replace(/</g, '\\u003c'),
+        }}
+      />
+
+      <TrackedPageView
+        event={{
+          event: 'view_neighborhood',
+          source_page: 'neighborhood',
+          neighborhood_slug: region.slug,
         }}
       />
 
