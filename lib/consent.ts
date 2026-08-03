@@ -1,3 +1,4 @@
+import { updateGoogleConsentMode } from '@/lib/google-consent'
 import type { ConsentPreferences } from '@/types/consent'
 
 export const CONSENT_STORAGE_KEY = 'adrizio-consent'
@@ -65,6 +66,8 @@ export function saveConsentPreferences(
 
   if (typeof window !== 'undefined') {
     window.localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(consentPreferences))
+
+    updateGoogleConsentMode(consentPreferences)
 
     window.dispatchEvent(
       new CustomEvent<ConsentPreferences>('adrizio:consent-updated', {

@@ -7,3 +7,10 @@ export interface ConsentPreferences {
   updatedAt: string
   version: number
 }
+
+export interface GoogleConsentState {
+  analytics_storage: ConsentStatus
+  ad_storage: ConsentStatus
+  ad_user_data: ConsentStatus
+  ad_personalization: ConsentStatus
+}

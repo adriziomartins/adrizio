@@ -4,14 +4,14 @@ import { GoogleTagManager } from '@next/third-parties/google'
 import { useEffect, useState } from 'react'
 
 import { readConsentPreferences } from '@/lib/consent'
+import { initializeGoogleConsentMode } from '@/lib/google-consent'
+import type { ConsentPreferences } from '@/types/consent'
 
 interface GoogleTagManagerLoaderProps {
   containerId?: string
 }
 
-function hasOptionalConsent(): boolean {
-  const preferences = readConsentPreferences()
-
+function hasOptionalConsent(preferences: ConsentPreferences | null): boolean {
   return Boolean(
     preferences && (preferences.analytics === 'granted' || preferences.marketing === 'granted'),
   )
@@ -21,12 +21,16 @@ export function GoogleTagManagerLoader({ containerId }: GoogleTagManagerLoaderPr
   const [canLoad, setCanLoad] = useState(false)
 
   useEffect(() => {
+    const preferences = readConsentPreferences()
+
+    initializeGoogleConsentMode(preferences)
+
     const initializeTimeoutId = window.setTimeout(() => {
-      setCanLoad(hasOptionalConsent())
+      setCanLoad(hasOptionalConsent(preferences))
     }, 0)
 
     function handleConsentUpdate() {
-      setCanLoad(hasOptionalConsent())
+      setCanLoad(hasOptionalConsent(readConsentPreferences()))
     }
 
     window.addEventListener('adrizio:consent-updated', handleConsentUpdate)
