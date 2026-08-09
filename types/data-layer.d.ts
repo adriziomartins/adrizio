@@ -1,6 +1,13 @@
 import type { AnalyticsEvent } from '@/types/analytics'
 
-type GoogleTagManagerDataLayerEntry = Record<string, unknown> | IArguments
+interface GoogleTagManagerDataModel {
+  reset(): void
+}
+
+type GoogleTagManagerDataLayerCallback = (this: GoogleTagManagerDataModel) => void
+
+type GoogleTagManagerDataLayerEntry =
+  Record<string, unknown> | IArguments | GoogleTagManagerDataLayerCallback
 
 declare global {
   interface Window {

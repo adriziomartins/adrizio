@@ -19,6 +19,18 @@ function normalizeEvent(event: AnalyticsEvent): AnalyticsEvent {
   ) as unknown as AnalyticsEvent
 }
 
+function resetGoogleTagManagerDataModel(): void {
+  if (typeof window === 'undefined') {
+    return
+  }
+
+  window.dataLayer = window.dataLayer ?? []
+
+  window.dataLayer.push(function resetDataModel() {
+    this.reset()
+  })
+}
+
 export function trackAnalyticsEvent(event: AnalyticsEvent): void {
   if (typeof window === 'undefined') {
     return
@@ -31,5 +43,8 @@ export function trackAnalyticsEvent(event: AnalyticsEvent): void {
   }
 
   window.dataLayer = window.dataLayer ?? []
+
+  resetGoogleTagManagerDataModel()
+
   window.dataLayer.push(normalizeEvent(event))
 }
