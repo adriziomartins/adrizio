@@ -6,6 +6,12 @@ As alterações relevantes do projeto ADRIZIO são registradas neste arquivo.
 
 ### Adicionado
 
+- primeiro anúncio real do catálogo: Beach Class Fortaleza para curta temporada;
+- galeria autorizada de uma unidade de referência do empreendimento;
+- suporte a preço sob consulta, capacidade de hóspedes, endereço e condições de hospedagem;
+- mensagem específica de consulta de disponibilidade pelo WhatsApp;
+- anúncios reais de curta temporada na página dedicada à modalidade;
+- rotas de imóveis reais no sitemap;
 - contrato TypeScript para eventos analíticos;
 - gerenciador de consentimento de privacidade;
 - carregamento condicional do Google Tag Manager;
@@ -19,6 +25,9 @@ As alterações relevantes do projeto ADRIZIO são registradas neste arquivo.
 
 ### Alterado
 
+- demonstrativo do Meireles substituído pelo anúncio real do Beach Class Fortaleza;
+- cards e páginas de imóveis passam a exibir fotografias quando disponíveis;
+- avisos do catálogo passam a diferenciar anúncios reais de conteúdos demonstrativos;
 - tipagem de `window.dataLayer` ampliada para eventos ADRIZIO e entradas do GTM;
 - links comerciais internos passaram a emitir eventos de intenção;
 - documentação passou a registrar parâmetros permitidos e dados proibidos.

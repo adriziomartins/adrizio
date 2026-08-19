@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import {
@@ -10,6 +11,7 @@ import {
   MapPin,
   Maximize2,
   MessageCircle,
+  Users,
 } from 'lucide-react'
 
 import { TrackedPageView } from '@/components/analytics/tracked-page-view'
@@ -18,6 +20,7 @@ import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
 import { featuredProperties } from '@/data/featured-properties'
 import { getPropertyWhatsAppUrl, WHATSAPP_REAL_PROPERTIES_URL } from '@/lib/contact'
+import { getPropertyPriceLabel } from '@/lib/property-price'
 import { createBreadcrumbList } from '@/lib/structured-data'
 
 interface PropertyDetailsPageProps {
@@ -26,16 +29,15 @@ interface PropertyDetailsPageProps {
   }>
 }
 
-const currencyFormatter = new Intl.NumberFormat('pt-BR', {
-  style: 'currency',
-  currency: 'BRL',
-  maximumFractionDigits: 0,
-})
-
 const purposeLabels = {
   venda: 'Venda',
   aluguel: 'Aluguel',
   investimento: 'Investimento',
+} as const
+
+const rentalModalityLabels = {
+  'longa-temporada': 'Longa temporada',
+  'curta-temporada': 'Curta temporada',
 } as const
 
 const typeLabels = {
@@ -84,6 +86,14 @@ export async function generateMetadata({ params }: PropertyDetailsPageProps): Pr
       title: `${property.title} | ADRIZIO`,
       description,
       url: `/imoveis/${property.slug}`,
+      images: property.image
+        ? [
+            {
+              url: property.image,
+              alt: property.imageAlt ?? property.title,
+            },
+          ]
+        : undefined,
     },
     robots: property.demonstrative
       ? {
@@ -111,7 +121,10 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPag
         title: property.title,
         neighborhood: property.neighborhood,
         slug: property.slug,
+        message: property.contactMessage,
       })
+
+  const priceLabel = getPropertyPriceLabel(property)
 
   const breadcrumbStructuredData = createBreadcrumbList([
     {
@@ -182,7 +195,18 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPag
                   aria-hidden="true"
                 />
 
-                <Building2 className="relative size-24 text-[#D4AF37]/35" aria-hidden="true" />
+                {property.image ? (
+                  <Image
+                    src={property.image}
+                    alt={property.imageAlt ?? property.title}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 65vw"
+                    loading="eager"
+                    className="object-cover"
+                  />
+                ) : (
+                  <Building2 className="relative size-24 text-[#D4AF37]/35" aria-hidden="true" />
+                )}
 
                 <div className="absolute left-5 top-5 flex flex-wrap gap-2">
                   <span className="rounded-full bg-[#D4AF37] px-3 py-1 text-xs font-semibold uppercase tracking-wide text-zinc-950">
@@ -194,13 +218,42 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPag
                       Conteúdo demonstrativo
                     </span>
                   ) : null}
+
+                  {property.rentalModality === 'curta-temporada' && !property.demonstrative ? (
+                    <span className="rounded-full border border-white/20 bg-black/65 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
+                      Curta temporada
+                    </span>
+                  ) : null}
                 </div>
               </div>
+
+              {property.gallery && property.gallery.length > 1 ? (
+                <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
+                  {property.gallery.slice(1).map((image) => (
+                    <div
+                      key={image.src}
+                      className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-zinc-900"
+                    >
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 22vw"
+                        className="object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+
+              {property.imageDisclaimer ? (
+                <p className="mt-4 text-xs leading-6 text-zinc-500">{property.imageDisclaimer}</p>
+              ) : null}
 
               <div className="mt-10">
                 <p className="flex items-center gap-2 text-sm text-zinc-400">
                   <MapPin className="size-4 text-[#D4AF37]" aria-hidden="true" />
-                  {property.neighborhood} · {property.city}
+                  {property.address ?? `${property.neighborhood} · ${property.city}`}
                 </p>
 
                 <h1 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
@@ -208,9 +261,7 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPag
                 </h1>
 
                 <div className="mt-5">
-                  <p className="text-3xl font-semibold text-[#D4AF37]">
-                    {currencyFormatter.format(property.price)}
-                  </p>
+                  <p className="text-3xl font-semibold text-[#D4AF37]">{priceLabel}</p>
 
                   {property.demonstrative ? (
                     <p className="mt-2 text-xs text-zinc-500">
@@ -220,7 +271,7 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPag
                   ) : null}
                 </div>
 
-                <dl className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
+                <dl className="mt-8 grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-4">
                   <div className="rounded-2xl border border-white/10 bg-zinc-900 p-4">
                     <BedDouble className="size-5 text-[#D4AF37]" aria-hidden="true" />
                     <dt className="mt-3 text-xs text-zinc-500">Quartos</dt>
@@ -244,6 +295,14 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPag
                     <dt className="mt-3 text-xs text-zinc-500">Área</dt>
                     <dd className="mt-1 font-semibold text-white">{property.area} m²</dd>
                   </div>
+
+                  {property.maxGuests ? (
+                    <div className="rounded-2xl border border-white/10 bg-zinc-900 p-4">
+                      <Users className="size-5 text-[#D4AF37]" aria-hidden="true" />
+                      <dt className="mt-3 text-xs text-zinc-500">Hóspedes</dt>
+                      <dd className="mt-1 font-semibold text-white">Até {property.maxGuests}</dd>
+                    </div>
+                  ) : null}
                 </dl>
 
                 <div className="mt-12 border-t border-white/10 pt-10">
@@ -254,6 +313,32 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPag
                       'Informações complementares sobre este imóvel serão adicionadas ao catálogo.'}
                   </p>
                 </div>
+
+                {property.detailsSections?.map((section) => (
+                  <section key={section.title} className="mt-12 border-t border-white/10 pt-10">
+                    <h2 className="text-2xl font-semibold text-white">{section.title}</h2>
+
+                    {section.description ? (
+                      <p className="mt-5 max-w-3xl text-sm leading-8 text-zinc-400 sm:text-base">
+                        {section.description}
+                      </p>
+                    ) : null}
+
+                    {section.items?.length ? (
+                      <ul className="mt-6 grid gap-4 sm:grid-cols-2">
+                        {section.items.map((item) => (
+                          <li key={item} className="flex items-start gap-3 text-sm text-zinc-300">
+                            <CheckCircle2
+                              className="mt-0.5 size-5 shrink-0 text-[#D4AF37]"
+                              aria-hidden="true"
+                            />
+                            <span className="leading-6">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </section>
+                ))}
 
                 <div className="mt-12 border-t border-white/10 pt-10">
                   <h2 className="text-2xl font-semibold text-white">Características</h2>
@@ -288,13 +373,14 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPag
                 <h2 className="mt-4 text-2xl font-semibold text-white">
                   {property.demonstrative
                     ? 'Conheça o atendimento imobiliário'
-                    : 'Interesse neste imóvel?'}
+                    : (property.contactHeading ?? 'Interesse neste imóvel?')}
                 </h2>
 
                 <p className="mt-4 text-sm leading-7 text-zinc-400">
                   {property.demonstrative
                     ? 'Este conteúdo valida a experiência do catálogo. Para conversar sobre imóveis reais, informe seu objetivo, região e faixa de investimento.'
-                    : 'Solicite informações, confirme disponibilidade ou organize uma visita com atendimento especializado.'}
+                    : (property.contactDescription ??
+                      'Solicite informações, confirme disponibilidade ou organize uma visita com atendimento especializado.')}
                 </p>
 
                 <dl className="mt-7 space-y-4 border-y border-white/10 py-6 text-sm">
@@ -302,6 +388,15 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPag
                     <dt className="text-zinc-500">Tipo</dt>
                     <dd className="font-medium text-white">{typeLabels[property.type]}</dd>
                   </div>
+
+                  {property.rentalModality ? (
+                    <div className="flex items-center justify-between gap-4">
+                      <dt className="text-zinc-500">Modalidade</dt>
+                      <dd className="font-medium text-white">
+                        {rentalModalityLabels[property.rentalModality]}
+                      </dd>
+                    </div>
+                  ) : null}
 
                   <div className="flex items-center justify-between gap-4">
                     <dt className="text-zinc-500">Finalidade</dt>
@@ -331,7 +426,9 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPag
                   className="mt-7 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#D4AF37] px-6 text-sm font-semibold text-zinc-950 transition-colors hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
                 >
                   <MessageCircle className="size-4" aria-hidden="true" />
-                  {property.demonstrative ? 'Falar sobre imóveis reais' : 'Falar sobre este imóvel'}
+                  {property.demonstrative
+                    ? 'Falar sobre imóveis reais'
+                    : (property.contactCta ?? 'Falar sobre este imóvel')}
                 </TrackedWhatsAppLink>
 
                 {property.demonstrative ? (

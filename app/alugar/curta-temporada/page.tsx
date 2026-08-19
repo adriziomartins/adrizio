@@ -4,6 +4,8 @@ import { CalendarDays, MapPin, Users } from 'lucide-react'
 import { TrackedWhatsAppLink } from '@/components/analytics/tracked-whatsapp-link'
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
+import { PropertyGrid } from '@/components/property/property-grid'
+import { featuredProperties } from '@/data/featured-properties'
 import { WHATSAPP_URL } from '@/lib/contact'
 
 export const metadata: Metadata = {
@@ -32,6 +34,10 @@ const requestFields = [
     icon: MapPin,
   },
 ]
+
+const shortStayProperties = featuredProperties.filter(
+  (property) => property.purpose === 'aluguel' && property.rentalModality === 'curta-temporada',
+)
 
 export default function ShortStayPage() {
   return (
@@ -69,6 +75,25 @@ export default function ShortStayPage() {
 
         <section className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
           <div className="mx-auto max-w-7xl">
+            <div className="mb-16">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#D4AF37]">
+                Hospedagens disponíveis
+              </p>
+
+              <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl">
+                Opções para curta temporada
+              </h2>
+
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-zinc-400">
+                Consulte disponibilidade, configuração da unidade e valor para o período da sua
+                viagem.
+              </p>
+
+              <div className="mt-8">
+                <PropertyGrid properties={shortStayProperties} />
+              </div>
+            </div>
+
             <div className="grid gap-6 lg:grid-cols-3">
               {requestFields.map((field) => {
                 const Icon = field.icon
