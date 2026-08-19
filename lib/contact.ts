@@ -25,16 +25,23 @@ interface PropertyContactData {
   title: string
   neighborhood: string
   slug: string
+  message?: string
 }
 
-export function getPropertyWhatsAppUrl({ title, neighborhood, slug }: PropertyContactData): string {
+export function getPropertyWhatsAppUrl({
+  title,
+  neighborhood,
+  slug,
+  message,
+}: PropertyContactData): string {
   const propertyUrl = `https://www.adrizio.com.br/imoveis/${slug}`
 
-  const message =
-    `Olá, Adrizio. Vim pelo site ADRIZIO e gostaria de saber mais sobre o imóvel ` +
-    `"${title}", localizado em ${neighborhood}. ${propertyUrl}`
+  const contactMessage = message
+    ? `${message}\n\nAnúncio: ${propertyUrl}`
+    : `Olá, Adrizio. Vim pelo site ADRIZIO e gostaria de saber mais sobre o imóvel ` +
+      `"${title}", localizado em ${neighborhood}. ${propertyUrl}`
 
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(contactMessage)}`
 }
 
 export const WHATSAPP_INVESTMENT_MESSAGE =

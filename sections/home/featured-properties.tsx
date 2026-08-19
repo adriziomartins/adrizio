@@ -29,7 +29,7 @@ export function FeaturedProperties() {
             </p>
           </div>
 
-          <p className="text-sm font-medium text-zinc-400">Catálogo completo em breve</p>
+          <p className="text-sm font-medium text-zinc-400">Catálogo em expansão</p>
         </div>
 
         {/* Cards */}
@@ -41,8 +41,8 @@ export function FeaturedProperties() {
 
         {/* Aviso de desenvolvimento */}
         <p className="mt-8 text-xs leading-5 text-zinc-400">
-          Os imóveis exibidos nesta versão são dados demonstrativos utilizados durante o
-          desenvolvimento do Site Adrizio.
+          O Beach Class Fortaleza já representa uma hospedagem real. Os demais imóveis marcados como
+          “Demonstrativo” permanecem apenas durante a expansão do catálogo.
         </p>
       </div>
     </section>

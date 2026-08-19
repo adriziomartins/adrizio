@@ -75,17 +75,21 @@ function normalizeText(value: string): string {
 }
 
 function matchesPrice(property: Property, priceFilter: string): boolean {
+  if (priceFilter && property.price === undefined) {
+    return false
+  }
+
   switch (priceFilter) {
     case 'ate-500000':
-      return property.price <= 500000
+      return property.price !== undefined && property.price <= 500000
     case 'ate-1000000':
-      return property.price <= 1000000
+      return property.price !== undefined && property.price <= 1000000
     case 'ate-2000000':
-      return property.price <= 2000000
+      return property.price !== undefined && property.price <= 2000000
     case 'ate-5000000':
-      return property.price <= 5000000
+      return property.price !== undefined && property.price <= 5000000
     case 'acima-5000000':
-      return property.price > 5000000
+      return property.price !== undefined && property.price > 5000000
     default:
       return true
   }

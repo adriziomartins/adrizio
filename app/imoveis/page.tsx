@@ -39,6 +39,8 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
   const filters = getPropertySearchValues(resolvedSearchParams)
   const properties = filterProperties(featuredProperties, filters)
   const searchSummary = getPropertySearchSummary(filters)
+  const hasRealProperties = properties.some((property) => !property.demonstrative)
+  const hasDemonstrativeProperties = properties.some((property) => property.demonstrative)
 
   return (
     <>
@@ -98,8 +100,11 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
                 </h2>
 
                 <p className="mt-3 text-sm leading-6 text-zinc-400">
-                  Os imóveis exibidos nesta etapa são dados demonstrativos usados no desenvolvimento
-                  do catálogo.
+                  {hasRealProperties && hasDemonstrativeProperties
+                    ? 'Este resultado combina anúncios reais com conteúdos claramente identificados como demonstrativos durante a expansão do catálogo.'
+                    : hasRealProperties
+                      ? 'Os anúncios abaixo representam imóveis ou hospedagens reais, sujeitos à confirmação de disponibilidade e condições.'
+                      : 'Os conteúdos abaixo são demonstrativos e permanecem identificados dessa forma durante a expansão do catálogo.'}
                 </p>
               </div>
 
