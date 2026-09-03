@@ -1,0 +1,1 @@
+export const LEAD_PRIVACY_NOTICE_VERSION = '2026-08-15'
