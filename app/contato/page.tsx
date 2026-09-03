@@ -12,6 +12,7 @@ import {
 } from 'lucide-react'
 
 import { TrackedWhatsAppLink } from '@/components/analytics/tracked-whatsapp-link'
+import { LeadCaptureForm } from '@/components/lead/lead-capture-form'
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
 import {
@@ -200,6 +201,32 @@ export default function ContactPage() {
                 )
               })}
             </div>
+          </div>
+        </section>
+
+        <section className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+            <div className="lg:sticky lg:top-28">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#D4AF37]">
+                Contato estruturado
+              </p>
+
+              <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl">
+                Prefere deixar sua solicitação registrada?
+              </h2>
+
+              <p className="mt-5 max-w-xl text-sm leading-8 text-zinc-400 sm:text-base">
+                Envie seus dados e o objetivo do atendimento. A solicitação será registrada para
+                análise e retorno conforme disponibilidade.
+              </p>
+
+              <p className="mt-4 max-w-xl text-sm leading-7 text-zinc-500">
+                Se preferir atendimento imediato por mensagem, os canais de WhatsApp acima continuam
+                disponíveis.
+              </p>
+            </div>
+
+            <LeadCaptureForm />
           </div>
         </section>
 

@@ -81,6 +81,13 @@ export interface LeadIntentEvent {
   contact_intent: 'buy' | 'rent' | 'investment'
 }
 
+export interface GenerateLeadEvent {
+  event: 'generate_lead'
+  source_page: SourcePage
+  contact_intent: Exclude<ContactIntent, 'real-properties'>
+  contact_channel: 'form'
+}
+
 export type AnalyticsEvent =
   | PropertySearchEvent
   | PropertyFilterEvent
@@ -90,5 +97,6 @@ export type AnalyticsEvent =
   | WhatsAppClickEvent
   | ValuationStartEvent
   | LeadIntentEvent
+  | GenerateLeadEvent
 
 export type AnalyticsEventName = AnalyticsEvent['event']

@@ -21,7 +21,7 @@ const sections = [
   {
     title: '2. Dados tratados',
     content:
-      'Nesta etapa do projeto, o site não possui cadastro, login ou formulário destinado ao envio direto de dados pessoais. O contato comercial ocorre por canais externos escolhidos pelo próprio usuário, como o WhatsApp.',
+      'O Site Adrizio poderá tratar dados fornecidos pelo próprio usuário em solicitações de atendimento, incluindo nome, telefone, e-mail opcional, objetivo imobiliário e mensagem. Também poderão ser associados ao contato dados contextuais necessários ao atendimento, como a página de origem ou o imóvel relacionado à solicitação.',
   },
   {
     title: '3. Métricas e publicidade',
@@ -36,7 +36,7 @@ const sections = [
   {
     title: '5. Compartilhamento',
     content:
-      'Dados poderão ser processados por fornecedores tecnológicos somente quando os respectivos serviços estiverem habilitados e conforme as finalidades informadas. Nenhum dado pessoal deve ser comercializado pelo Site Adrizio.',
+      'Dados poderão ser processados por fornecedores tecnológicos utilizados para viabilizar atendimento, armazenamento, automação e operação do Site Adrizio, observadas as finalidades informadas e os controles aplicáveis. Nenhum dado pessoal deve ser comercializado pelo Site Adrizio.',
   },
   {
     title: '6. Direitos do titular',
@@ -87,7 +87,7 @@ export default function PrivacyPage() {
             tratamento forem incorporados.
           </p>
 
-          <p className="mt-4 text-sm text-zinc-500">Última atualização: 30 de julho de 2026.</p>
+          <p className="mt-4 text-sm text-zinc-500">Última atualização: 15 de agosto de 2026.</p>
 
           <div className="mt-12 space-y-5">
             {sections.map((section) => (
