@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 
 import { blogPosts } from '@/data/blog-posts'
+import { featuredProperties } from '@/data/featured-properties'
 import { regions } from '@/data/regions'
 
 const siteUrl = 'https://www.adrizio.com.br'
@@ -19,6 +20,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: post.updatedAt ?? post.publishedAt,
       changeFrequency: 'monthly',
       priority: 0.7,
+    }))
+
+  const realPropertyRoutes: MetadataRoute.Sitemap = featuredProperties
+    .filter((property) => !property.demonstrative)
+    .map((property) => ({
+      url: `${siteUrl}/imoveis/${property.slug}`,
+      changeFrequency: 'daily',
+      priority: 0.9,
     }))
 
   return [
@@ -78,6 +87,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     ...neighborhoodRoutes,
+    ...realPropertyRoutes,
     ...publishedBlogRoutes,
   ]
 }
