@@ -6,6 +6,8 @@ import type { FormEvent } from 'react'
 import { Send } from 'lucide-react'
 
 import { trackAnalyticsEvent } from '@/lib/analytics'
+import { readAttributionState } from '@/lib/attribution/storage'
+import type { LeadAttribution } from '@/types/attribution'
 import type { LeadType } from '@/types/lead'
 
 const leadTypeOptions: Array<{ value: LeadType; label: string }> = [
@@ -45,6 +47,14 @@ export function LeadCaptureForm() {
     const form = event.currentTarget
     const formData = new FormData(form)
     const leadType = String(formData.get('leadType') ?? '') as LeadType
+    const attributionState = readAttributionState()
+
+    const attribution: LeadAttribution | undefined = attributionState
+      ? {
+          firstTouch: attributionState.firstTouch,
+          lastTouch: attributionState.lastTouch,
+        }
+      : undefined
 
     const payload = {
       name: String(formData.get('name') ?? ''),
@@ -54,6 +64,7 @@ export function LeadCaptureForm() {
       message: String(formData.get('message') ?? ''),
       privacyNoticeAcknowledged: formData.get('privacyNoticeAcknowledged') === 'on',
       sourcePage: 'contact' as const,
+      attribution,
       website: String(formData.get('website') ?? ''),
     }
 
