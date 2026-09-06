@@ -55,6 +55,10 @@ export const leadCaptureSchema = z.object({
     z.string().trim().max(160, 'O identificador do imóvel é inválido.').optional(),
   ),
 
+  // Metadado auxiliar. A validação específica ocorre separadamente
+  // para que atribuição inválida nunca impeça o envio do lead.
+  attribution: z.unknown().optional(),
+
   // Honeypot antispam. Usuários reais não devem preencher este campo.
   website: z.preprocess(emptyStringToUndefined, z.string().trim().max(200).optional()),
 })

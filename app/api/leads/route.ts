@@ -2,8 +2,10 @@ import { randomUUID } from 'node:crypto'
 
 import { NextResponse } from 'next/server'
 
+import { parseLeadAttribution } from '@/lib/attribution/schema'
 import { LEAD_PRIVACY_NOTICE_VERSION } from '@/lib/lead/privacy'
 import { leadCaptureSchema } from '@/lib/lead/schema'
+import type { LeadAttribution } from '@/types/attribution'
 import type { LeadSourcePage, LeadType } from '@/types/lead'
 
 const MAX_REQUEST_BYTES = 10_000
@@ -18,6 +20,7 @@ type LeadWebhookPayload = {
   message?: string
   sourcePage: LeadSourcePage
   propertySlug?: string
+  attribution?: LeadAttribution
   privacyNoticeVersion: string
   privacyAcknowledgedAt: string
   createdAt: string
@@ -75,6 +78,7 @@ export async function POST(request: Request) {
   }
 
   const input = parsed.data
+  const attribution = parseLeadAttribution(input.attribution)
 
   // Honeypot: bots recebem resposta neutra sem gerar lead.
   if (input.website) {
@@ -105,6 +109,7 @@ export async function POST(request: Request) {
     message: input.message,
     sourcePage: input.sourcePage,
     propertySlug: input.propertySlug,
+    attribution,
     privacyNoticeVersion: LEAD_PRIVACY_NOTICE_VERSION,
     privacyAcknowledgedAt: now,
     createdAt: now,
@@ -117,9 +122,11 @@ export async function POST(request: Request) {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
-        'x-adrizio-webhook-secret': webhookSecret,
       },
-      body: JSON.stringify(webhookPayload),
+      body: JSON.stringify({
+        secret: webhookSecret,
+        payload: webhookPayload,
+      }),
       cache: 'no-store',
       signal: AbortSignal.timeout(WEBHOOK_TIMEOUT_MS),
     })
