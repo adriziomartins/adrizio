@@ -15,10 +15,10 @@ export const featuredProperties: Property[] = [
     bathrooms: 1,
     parkingSpaces: 1,
     area: 56,
-    maxGuests: 5,
+    maxGuests: 6,
     address: 'Rua Barão de Aracati, 145 — Meireles, Fortaleza–CE',
     description:
-      'Apartamentos mobiliados no Beach Class Fortaleza para estadias de curta duração, com diferentes unidades disponíveis para acomodar de 1 a 5 pessoas. As unidades possuem dois quartos, sala, cozinha equipada com itens básicos para o preparo de refeições, banheiro e varanda.',
+      'Apartamentos mobiliados no Beach Class Fortaleza para estadias de curta duração, com diferentes unidades disponíveis para acomodar de 1 a 6 pessoas, mediante confirmação da capacidade da unidade disponível. As unidades possuem dois quartos, sala, cozinha equipada com itens básicos para o preparo de refeições, banheiro e varanda.',
     features: [
       'Wi-Fi em todas as unidades',
       'Ar-condicionado nos quartos',
@@ -112,7 +112,7 @@ export const featuredProperties: Property[] = [
     ],
     contactHeading: 'Consulte as unidades disponíveis',
     contactDescription:
-      'A reserva não é instantânea. O corretor Adrizio confirmará a unidade, a configuração das camas, as condições e o valor final para o período solicitado.',
+      'A reserva não é instantânea. O corretor Adrizio confirmará a unidade, a capacidade para o grupo, a configuração das camas, as condições e o valor final para o período solicitado.',
     contactCta: 'Consultar disponibilidade no WhatsApp',
     contactMessage:
       'Olá, Adrizio! Quero consultar uma hospedagem no Beach Class Fortaleza.\n\nEntrada:\nSaída:\nNúmero de hóspedes:\nCrianças:\nAnimal de estimação: sim/não.',
