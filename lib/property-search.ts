@@ -99,9 +99,13 @@ export function isAllowedPropertySearchValue(field: PropertySearchField, value: 
   return PROPERTY_SEARCH_ALLOWED_VALUES[field].includes(value)
 }
 
-export function getPropertySearchValues(searchParams: PropertySearchParams): PropertySearchValues {
+export function getPropertySearchValues(
+  searchParams: PropertySearchParams,
+  defaults: Partial<PropertySearchValues> = {},
+): PropertySearchValues {
   const values: PropertySearchValues = {
     ...PROPERTY_SEARCH_DEFAULT_VALUES,
+    ...defaults,
   }
 
   PROPERTY_SEARCH_FIELDS.forEach((field) => {

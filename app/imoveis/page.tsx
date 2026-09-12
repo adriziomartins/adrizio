@@ -36,7 +36,7 @@ interface PropertiesPageProps {
 
 export default async function PropertiesPage({ searchParams }: PropertiesPageProps) {
   const resolvedSearchParams = await searchParams
-  const filters = getPropertySearchValues(resolvedSearchParams)
+  const filters = getPropertySearchValues(resolvedSearchParams, { finalidade: '' })
   const properties = filterProperties(featuredProperties, filters)
   const searchSummary = getPropertySearchSummary(filters)
   const hasRealProperties = properties.some((property) => !property.demonstrative)
@@ -85,6 +85,7 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
           <div className="mx-auto max-w-7xl">
             <PropertyFilters
               values={filters}
+              allowAllPurposes
               showRentalModality={filters.finalidade === 'alugar'}
             />
 
