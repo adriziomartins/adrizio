@@ -12,6 +12,7 @@ interface PropertyFiltersProps {
   values: PropertySearchValues
   action?: string
   showPurpose?: boolean
+  allowAllPurposes?: boolean
   showRentalModality?: boolean
   fixedPurpose?: 'comprar' | 'alugar' | 'investir'
   fixedRentalModality?: 'longa-temporada' | 'curta-temporada'
@@ -22,6 +23,7 @@ export function PropertyFilters({
   values,
   action = '/imoveis',
   showPurpose = true,
+  allowAllPurposes = false,
   showRentalModality = false,
   fixedPurpose,
   fixedRentalModality,
@@ -55,6 +57,7 @@ export function PropertyFilters({
             </span>
 
             <select name="finalidade" defaultValue={values.finalidade} className={inputClassName}>
+              {allowAllPurposes ? <option value="">Todas as finalidades</option> : null}
               <option value="comprar">Comprar</option>
               <option value="alugar">Alugar</option>
               <option value="investir">Investir</option>
