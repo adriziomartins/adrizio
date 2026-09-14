@@ -16,9 +16,13 @@
   },
   "dependencies": {
     "@next/third-parties": "16.3.4",
+    "@prisma/adapter-pg": "^7.10.0",
+    "@prisma/client": "^7.10.0",
     "clsx": "^2.1.1",
+    "dotenv": "^17.4.2",
     "lucide-react": "^1.25.0",
     "next": "16.3.4",
+    "pg": "^8.23.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "shadcn": "^4.13.1",
@@ -29,6 +33,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/pg": "^8.23.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
@@ -37,11 +42,17 @@
     "husky": "^9.1.7",
     "lint-staged": "^17.1.0",
     "prettier": "^3.9.5",
+    "prisma": "^7.10.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
   "description": "Site imobiliário Adrizio, especializado em imóveis na Orla de Fortaleza",
   "engines": {
     "node": ">=20.9.0"
+  },
+  "allowScripts": {
+    "prisma@7.10.0": true,
+    "unrs-resolver@1.12.2": true,
+    "@prisma/engines@7.10.0": true
   }
 }
