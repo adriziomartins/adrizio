@@ -1,7 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
+// ADRIZIO / ORIONEX
+// Fase 3 — Banco de Dados
+// Core Domain Model v1
 
 generator client {
   provider = "prisma-client"
@@ -10,4 +9,262 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+enum PropertyPurpose {
+  SALE @map("venda")
+  RENT @map("aluguel")
+}
+
+enum RentalModality {
+  LONG_TERM  @map("longa-temporada")
+  SHORT_STAY @map("curta-temporada")
+}
+
+enum PropertyType {
+  APARTMENT @map("apartamento")
+  PENTHOUSE @map("cobertura")
+  FLAT      @map("flat")
+  HOUSE     @map("casa")
+  LAND      @map("terreno")
+}
+
+enum PropertyStatus {
+  DRAFT     @map("rascunho")
+  PUBLISHED @map("publicado")
+  ARCHIVED  @map("arquivado")
+}
+
+enum PropertyMediaType {
+  IMAGE      @map("imagem")
+  VIDEO      @map("video")
+  FLOOR_PLAN @map("planta")
+}
+
+enum LeadType {
+  GENERAL    @map("general")
+  BUY        @map("buy")
+  RENT       @map("rent")
+  INVESTMENT @map("investment")
+  VALUATION  @map("valuation")
+}
+
+enum LeadSourcePage {
+  CONTACT         @map("contact")
+  PROPERTY_DETAIL @map("property-details")
+  BUY             @map("buy")
+  RENT            @map("rent")
+  LONG_TERM_RENT  @map("long-term-rent")
+  SHORT_TERM_RENT @map("short-term-rent")
+  INVESTMENT      @map("investment")
+}
+
+enum LeadStatus {
+  NEW         @map("novo")
+  CONTACTED   @map("contatado")
+  QUALIFIED   @map("qualificado")
+  NEGOTIATION @map("negociacao")
+  WON         @map("ganho")
+  LOST        @map("perdido")
+}
+
+enum AttributionTouchType {
+  FIRST @map("first")
+  LAST  @map("last")
+}
+
+enum FollowUpStatus {
+  PENDING   @map("pendente")
+  COMPLETED @map("concluido")
+  CANCELED  @map("cancelado")
+}
+
+model Region {
+  id          String   @id @default(cuid())
+  slug        String   @unique @db.VarChar(120)
+  name        String   @db.VarChar(120)
+  city        String   @db.VarChar(120)
+  state       String   @default("CE") @db.VarChar(2)
+  description String?  @db.Text
+  highlight   String?  @db.VarChar(180)
+  seoPath     String?  @unique @db.VarChar(200)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt   DateTime @updatedAt @db.Timestamptz(3)
+
+  properties Property[]
+
+  @@index([city, active])
+}
+
+model Property {
+  id          String  @id @default(cuid())
+  code        String  @unique @db.VarChar(60)
+  slug        String  @unique @db.VarChar(180)
+  title       String  @db.VarChar(240)
+  description String? @db.Text
+
+  purpose        PropertyPurpose
+  rentalModality RentalModality?
+  type           PropertyType
+  status         PropertyStatus  @default(DRAFT)
+
+  investmentOpportunity Boolean @default(false)
+
+  salePrice   Decimal? @db.Decimal(14, 2)
+  monthlyRent Decimal? @db.Decimal(14, 2)
+  dailyRate   Decimal? @db.Decimal(12, 2)
+  cleaningFee Decimal? @db.Decimal(12, 2)
+  priceLabel  String?  @db.VarChar(120)
+
+  bedrooms      Int?
+  bathrooms     Int?
+  parkingSpaces Int?
+  area          Decimal? @db.Decimal(12, 2)
+
+  maxGuests    Int?
+  minimumStay  Int?
+  checkInTime  String? @db.VarChar(10)
+  checkOutTime String? @db.VarChar(10)
+
+  address String? @db.VarChar(300)
+
+  features        String[] @default([])
+  detailsSections Json?
+  imageDisclaimer String?  @db.Text
+
+  contactHeading     String? @db.VarChar(180)
+  contactDescription String? @db.Text
+  contactCta         String? @db.VarChar(180)
+  contactMessage     String? @db.Text
+
+  featured      Boolean @default(false)
+  demonstrative Boolean @default(false)
+
+  publishedAt DateTime? @db.Timestamptz(3)
+  createdAt   DateTime  @default(now()) @db.Timestamptz(3)
+  updatedAt   DateTime  @updatedAt @db.Timestamptz(3)
+
+  regionId String?
+  region   Region? @relation(fields: [regionId], references: [id])
+
+  media PropertyMedia[]
+  leads Lead[]
+
+  @@index([status])
+  @@index([purpose, status])
+  @@index([type, status])
+  @@index([regionId, status])
+  @@index([featured, status])
+}
+
+model PropertyMedia {
+  id         String            @id @default(cuid())
+  propertyId String
+  type       PropertyMediaType @default(IMAGE)
+
+  url      String  @db.VarChar(500)
+  alt      String? @db.VarChar(300)
+  position Int     @default(0)
+  isCover  Boolean @default(false)
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+
+  property Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@unique([propertyId, position])
+  @@index([propertyId, isCover])
+}
+
+model Contact {
+  id String @id @default(cuid())
+
+  name            String  @db.VarChar(120)
+  phone           String  @db.VarChar(30)
+  phoneNormalized String? @unique @db.VarChar(20)
+
+  email           String? @db.VarChar(254)
+  emailNormalized String? @unique @db.VarChar(254)
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+
+  leads Lead[]
+}
+
+model Lead {
+  id           String @id @default(cuid())
+  submissionId String @unique @default(uuid()) @db.Uuid
+
+  type       LeadType
+  sourcePage LeadSourcePage
+  status     LeadStatus     @default(NEW)
+
+  message String? @db.Text
+
+  privacyNoticeAcknowledged Boolean
+  privacyNoticeVersion      String   @db.VarChar(50)
+  privacyAcknowledgedAt     DateTime @db.Timestamptz(3)
+
+  propertySlugSnapshot String? @db.VarChar(180)
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+
+  contactId String
+  contact   Contact @relation(fields: [contactId], references: [id])
+
+  propertyId String?
+  property   Property? @relation(fields: [propertyId], references: [id], onDelete: SetNull)
+
+  attribution LeadAttribution[]
+  followUps   FollowUpTask[]
+
+  @@index([status, createdAt])
+  @@index([type, createdAt])
+  @@index([sourcePage, createdAt])
+  @@index([contactId])
+  @@index([propertyId])
+}
+
+model LeadAttribution {
+  id        String               @id @default(cuid())
+  leadId    String
+  touchType AttributionTouchType
+
+  capturedAt   DateTime @db.Timestamptz(3)
+  landingPath  String   @db.VarChar(500)
+  referrerHost String?  @db.VarChar(255)
+
+  utmSource   String? @db.VarChar(255)
+  utmMedium   String? @db.VarChar(255)
+  utmCampaign String? @db.VarChar(255)
+  utmContent  String? @db.VarChar(255)
+  utmTerm     String? @db.VarChar(255)
+
+  lead Lead @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@unique([leadId, touchType])
+  @@index([utmSource])
+  @@index([utmCampaign])
+}
+
+model FollowUpTask {
+  id     String @id @default(cuid())
+  leadId String
+
+  action String         @db.VarChar(240)
+  notes  String?        @db.Text
+  status FollowUpStatus @default(PENDING)
+
+  dueAt       DateTime? @db.Timestamptz(3)
+  completedAt DateTime? @db.Timestamptz(3)
+
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+
+  lead Lead @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@index([leadId, status])
+  @@index([status, dueAt])
 }
