@@ -44,6 +44,7 @@
     "prettier": "^3.9.5",
     "prisma": "^7.10.0",
     "tailwindcss": "^4",
+    "tsx": "^4.23.13",
     "typescript": "^5"
   },
   "description": "Site imobiliário Adrizio, especializado em imóveis na Orla de Fortaleza",
