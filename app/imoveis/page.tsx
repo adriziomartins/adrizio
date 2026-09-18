@@ -37,7 +37,14 @@ interface PropertiesPageProps {
 export default async function PropertiesPage({ searchParams }: PropertiesPageProps) {
   const resolvedSearchParams = await searchParams
   const filters = getPropertySearchValues(resolvedSearchParams, { finalidade: '' })
-  const properties = filterProperties(featuredProperties, filters)
+  const useDatabase =
+    process.env.NODE_ENV === 'development' && process.env.CATALOG_SOURCE === 'database'
+
+  const sourceProperties = useDatabase
+    ? await (await import('@/lib/property-repository')).listPublishedProperties()
+    : featuredProperties
+
+  const properties = filterProperties(sourceProperties, filters)
   const searchSummary = getPropertySearchSummary(filters)
   const hasRealProperties = properties.some((property) => !property.demonstrative)
   const hasDemonstrativeProperties = properties.some((property) => property.demonstrative)
@@ -105,7 +112,9 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
                     ? 'Este resultado combina anúncios reais com conteúdos claramente identificados como demonstrativos durante a expansão do catálogo.'
                     : hasRealProperties
                       ? 'Os anúncios abaixo representam imóveis ou hospedagens reais, sujeitos à confirmação de disponibilidade e condições.'
-                      : 'Os conteúdos abaixo são demonstrativos e permanecem identificados dessa forma durante a expansão do catálogo.'}
+                      : hasDemonstrativeProperties
+                        ? 'Os conteúdos abaixo são demonstrativos e permanecem identificados dessa forma durante a expansão do catálogo.'
+                        : 'Nenhum imóvel corresponde aos filtros selecionados. Ajuste sua busca ou fale com o corretor.'}
                 </p>
               </div>
 

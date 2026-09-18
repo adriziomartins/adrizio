@@ -48,8 +48,14 @@ const typeLabels = {
   terreno: 'Terreno',
 } as const
 
-function findPropertyBySlug(slug: string) {
-  return featuredProperties.find((property) => property.slug === slug)
+async function findPropertyBySlug(slug: string) {
+  if (process.env.NODE_ENV === 'development' && process.env.CATALOG_SOURCE === 'database') {
+    const { getPublishedPropertyBySlug } = await import('@/lib/property-repository')
+
+    return getPublishedPropertyBySlug(slug)
+  }
+
+  return featuredProperties.find((property) => property.slug === slug) ?? null
 }
 
 export function generateStaticParams() {
@@ -60,7 +66,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PropertyDetailsPageProps): Promise<Metadata> {
   const { slug } = await params
-  const property = findPropertyBySlug(slug)
+  const property = await findPropertyBySlug(slug)
 
   if (!property) {
     return {
@@ -109,7 +115,7 @@ export async function generateMetadata({ params }: PropertyDetailsPageProps): Pr
 
 export default async function PropertyDetailsPage({ params }: PropertyDetailsPageProps) {
   const { slug } = await params
-  const property = findPropertyBySlug(slug)
+  const property = await findPropertyBySlug(slug)
 
   if (!property) {
     notFound()
