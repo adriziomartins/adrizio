@@ -22,6 +22,7 @@ export interface Property {
   neighborhood: string
   city: string
   purpose: PropertyPurpose
+  investmentOpportunity?: boolean
   type: PropertyType
   rentalModality?: RentalModality
   price?: number

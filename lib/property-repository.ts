@@ -49,8 +49,7 @@ function toFrontendProperty(record: CatalogRecord): Property {
     throw new Error(`CATALOG_REQUIRED_FIELDS_MISSING: ${record.code}`)
   }
 
-  const purpose: Property['purpose'] =
-    record.purpose === 'RENT' ? 'aluguel' : record.investmentOpportunity ? 'investimento' : 'venda'
+  const purpose: Property['purpose'] = record.purpose === 'RENT' ? 'aluguel' : 'venda'
 
   const rentalModality: Property['rentalModality'] =
     record.rentalModality === 'SHORT_STAY'
@@ -81,6 +80,7 @@ function toFrontendProperty(record: CatalogRecord): Property {
     neighborhood: record.region.name,
     city: record.region.city,
     purpose,
+    investmentOpportunity: record.investmentOpportunity,
     type: propertyTypes[record.type],
     rentalModality,
     price: databasePrice?.toNumber(),

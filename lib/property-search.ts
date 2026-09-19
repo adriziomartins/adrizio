@@ -136,10 +136,17 @@ export function filterProperties(
   const selectedRentalModality = rentalModalityMap[filters.modalidade]
 
   return properties.filter((property) => {
-    if (selectedPurpose && property.purpose !== selectedPurpose) {
+    if (filters.finalidade === 'investir') {
+      if (!property.investmentOpportunity && property.purpose !== 'investimento') {
+        return false
+      }
+    } else if (
+      selectedPurpose &&
+      property.purpose !== selectedPurpose &&
+      !(filters.finalidade === 'comprar' && property.purpose === 'investimento')
+    ) {
       return false
     }
-
     if (selectedRentalModality && property.rentalModality !== selectedRentalModality) {
       return false
     }
