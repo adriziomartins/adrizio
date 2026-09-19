@@ -276,41 +276,47 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPag
                     </p>
                   ) : null}
                 </div>
-
-                <dl className="mt-8 grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-4">
-                  <div className="rounded-2xl border border-white/10 bg-zinc-900 p-4">
-                    <BedDouble className="size-5 text-[#D4AF37]" aria-hidden="true" />
-                    <dt className="mt-3 text-xs text-zinc-500">Quartos</dt>
-                    <dd className="mt-1 font-semibold text-white">{property.bedrooms}</dd>
-                  </div>
-
-                  <div className="rounded-2xl border border-white/10 bg-zinc-900 p-4">
-                    <Bath className="size-5 text-[#D4AF37]" aria-hidden="true" />
-                    <dt className="mt-3 text-xs text-zinc-500">Banheiros</dt>
-                    <dd className="mt-1 font-semibold text-white">{property.bathrooms}</dd>
-                  </div>
-
-                  <div className="rounded-2xl border border-white/10 bg-zinc-900 p-4">
-                    <Car className="size-5 text-[#D4AF37]" aria-hidden="true" />
-                    <dt className="mt-3 text-xs text-zinc-500">Vagas</dt>
-                    <dd className="mt-1 font-semibold text-white">{property.parkingSpaces}</dd>
-                  </div>
-
-                  <div className="rounded-2xl border border-white/10 bg-zinc-900 p-4">
-                    <Maximize2 className="size-5 text-[#D4AF37]" aria-hidden="true" />
-                    <dt className="mt-3 text-xs text-zinc-500">Área</dt>
-                    <dd className="mt-1 font-semibold text-white">{property.area} m²</dd>
-                  </div>
-
-                  {property.maxGuests ? (
+                {property.type === 'terreno' ? (
+                  property.area !== undefined ? (
+                    <p className="mt-8 rounded-2xl border border-white/10 bg-zinc-900 p-4 text-white">
+                      Área do terreno: {property.area} m²
+                    </p>
+                  ) : null
+                ) : (
+                  <dl className="mt-8 grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-4">
                     <div className="rounded-2xl border border-white/10 bg-zinc-900 p-4">
-                      <Users className="size-5 text-[#D4AF37]" aria-hidden="true" />
-                      <dt className="mt-3 text-xs text-zinc-500">Hóspedes</dt>
-                      <dd className="mt-1 font-semibold text-white">Até {property.maxGuests}</dd>
+                      <BedDouble className="size-5 text-[#D4AF37]" aria-hidden="true" />
+                      <dt className="mt-3 text-xs text-zinc-500">Quartos</dt>
+                      <dd className="mt-1 font-semibold text-white">{property.bedrooms}</dd>
                     </div>
-                  ) : null}
-                </dl>
 
+                    <div className="rounded-2xl border border-white/10 bg-zinc-900 p-4">
+                      <Bath className="size-5 text-[#D4AF37]" aria-hidden="true" />
+                      <dt className="mt-3 text-xs text-zinc-500">Banheiros</dt>
+                      <dd className="mt-1 font-semibold text-white">{property.bathrooms}</dd>
+                    </div>
+
+                    <div className="rounded-2xl border border-white/10 bg-zinc-900 p-4">
+                      <Car className="size-5 text-[#D4AF37]" aria-hidden="true" />
+                      <dt className="mt-3 text-xs text-zinc-500">Vagas</dt>
+                      <dd className="mt-1 font-semibold text-white">{property.parkingSpaces}</dd>
+                    </div>
+
+                    <div className="rounded-2xl border border-white/10 bg-zinc-900 p-4">
+                      <Maximize2 className="size-5 text-[#D4AF37]" aria-hidden="true" />
+                      <dt className="mt-3 text-xs text-zinc-500">Área</dt>
+                      <dd className="mt-1 font-semibold text-white">{property.area} m²</dd>
+                    </div>
+
+                    {property.maxGuests ? (
+                      <div className="rounded-2xl border border-white/10 bg-zinc-900 p-4">
+                        <Users className="size-5 text-[#D4AF37]" aria-hidden="true" />
+                        <dt className="mt-3 text-xs text-zinc-500">Hóspedes</dt>
+                        <dd className="mt-1 font-semibold text-white">Até {property.maxGuests}</dd>
+                      </div>
+                    ) : null}
+                  </dl>
+                )}
                 <div className="mt-12 border-t border-white/10 pt-10">
                   <h2 className="text-2xl font-semibold text-white">Sobre o imóvel</h2>
 

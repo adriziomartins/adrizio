@@ -74,37 +74,44 @@ export function PropertyCard({ property }: PropertyCardProps) {
         </div>
 
         {/* Características */}
-        <dl className="mt-6 grid grid-cols-4 gap-2 border-y border-white/10 py-4">
-          <div className="flex flex-col items-center gap-1">
-            <BedDouble className="size-4 text-zinc-400" aria-hidden="true" />
+        {property.type === 'terreno' ? (
+          <p className="mt-6 border-y border-white/10 py-4 text-sm text-zinc-300">
+            {property.area === undefined
+              ? 'Área do terreno não informada'
+              : `Área do terreno: ${property.area} m²`}
+          </p>
+        ) : (
+          <dl className="mt-6 grid grid-cols-4 gap-2 border-y border-white/10 py-4">
+            <div className="flex flex-col items-center gap-1">
+              <BedDouble className="size-4 text-zinc-400" aria-hidden="true" />
+              <dt className="sr-only">Quartos</dt>
+              <dd className="text-xs text-zinc-300">{property.bedrooms} qtos</dd>
+            </div>
 
-            <dt className="sr-only">Quartos</dt>
-            <dd className="text-xs text-zinc-300">{property.bedrooms} qtos</dd>
-          </div>
+            <div className="flex flex-col items-center gap-1">
+              <Bath className="size-4 text-zinc-400" aria-hidden="true" />
 
-          <div className="flex flex-col items-center gap-1">
-            <Bath className="size-4 text-zinc-400" aria-hidden="true" />
+              <dt className="sr-only">Banheiros</dt>
+              <dd className="text-xs text-zinc-300">{property.bathrooms} banh.</dd>
+            </div>
 
-            <dt className="sr-only">Banheiros</dt>
-            <dd className="text-xs text-zinc-300">{property.bathrooms} banh.</dd>
-          </div>
+            <div className="flex flex-col items-center gap-1">
+              <Car className="size-4 text-zinc-400" aria-hidden="true" />
 
-          <div className="flex flex-col items-center gap-1">
-            <Car className="size-4 text-zinc-400" aria-hidden="true" />
+              <dt className="sr-only">Vagas de garagem</dt>
+              <dd className="text-xs text-zinc-300">
+                {property.parkingSpaces} {property.parkingSpaces === 1 ? 'vaga' : 'vagas'}
+              </dd>
+            </div>
 
-            <dt className="sr-only">Vagas de garagem</dt>
-            <dd className="text-xs text-zinc-300">
-              {property.parkingSpaces} {property.parkingSpaces === 1 ? 'vaga' : 'vagas'}
-            </dd>
-          </div>
+            <div className="flex flex-col items-center gap-1">
+              <Maximize2 className="size-4 text-zinc-400" aria-hidden="true" />
 
-          <div className="flex flex-col items-center gap-1">
-            <Maximize2 className="size-4 text-zinc-400" aria-hidden="true" />
-
-            <dt className="sr-only">Área</dt>
-            <dd className="text-xs text-zinc-300">{property.area} m²</dd>
-          </div>
-        </dl>
+              <dt className="sr-only">Área</dt>
+              <dd className="text-xs text-zinc-300">{property.area} m²</dd>
+            </div>
+          </dl>
+        )}
         {property.demonstrative ? (
           <p className="mt-5 text-xs leading-5 text-zinc-500">
             Prévia demonstrativa do catálogo. Este conteúdo não representa um anúncio publicado.

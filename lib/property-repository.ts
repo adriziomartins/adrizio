@@ -41,10 +41,11 @@ function toFrontendProperty(record: CatalogRecord): Property {
   }
 
   if (
-    record.bedrooms === null ||
-    record.bathrooms === null ||
-    record.parkingSpaces === null ||
-    record.area === null
+    record.type !== 'LAND' &&
+    (record.bedrooms === null ||
+      record.bathrooms === null ||
+      record.parkingSpaces === null ||
+      record.area === null)
   ) {
     throw new Error(`CATALOG_REQUIRED_FIELDS_MISSING: ${record.code}`)
   }
@@ -85,10 +86,10 @@ function toFrontendProperty(record: CatalogRecord): Property {
     rentalModality,
     price: databasePrice?.toNumber(),
     priceLabel: record.priceLabel ?? undefined,
-    bedrooms: record.bedrooms,
-    bathrooms: record.bathrooms,
-    parkingSpaces: record.parkingSpaces,
-    area: record.area.toNumber(),
+    bedrooms: record.bedrooms ?? undefined,
+    bathrooms: record.bathrooms ?? undefined,
+    parkingSpaces: record.parkingSpaces ?? undefined,
+    area: record.area?.toNumber(),
     maxGuests: record.maxGuests ?? undefined,
     address: record.address ?? undefined,
     description: record.description ?? undefined,

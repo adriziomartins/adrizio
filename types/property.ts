@@ -27,10 +27,10 @@ export interface Property {
   rentalModality?: RentalModality
   price?: number
   priceLabel?: string
-  bedrooms: number
-  bathrooms: number
-  parkingSpaces: number
-  area: number
+  bedrooms?: number
+  bathrooms?: number
+  parkingSpaces?: number
+  area?: number
   maxGuests?: number
   address?: string
   description?: string

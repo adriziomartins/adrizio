@@ -166,7 +166,10 @@ export function filterProperties(
       }
     }
 
-    if (filters.quartos && property.bedrooms < Number(filters.quartos)) {
+    if (
+      filters.quartos &&
+      (property.bedrooms === undefined || property.bedrooms < Number(filters.quartos))
+    ) {
       return false
     }
 
