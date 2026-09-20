@@ -7,6 +7,7 @@ import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
 import { PropertyGrid } from '@/components/property/property-grid'
 import { featuredProperties } from '@/data/featured-properties'
+import { filterProperties, getPropertySearchValues } from '@/lib/property-search'
 import { WHATSAPP_BUY_URL } from '@/lib/contact'
 
 export const metadata: Metadata = {
@@ -46,7 +47,10 @@ const benefits = [
 ] as const
 
 export default function BuyPage() {
-  const properties = featuredProperties.filter((property) => property.purpose === 'venda')
+  const properties = filterProperties(
+    featuredProperties,
+    getPropertySearchValues({ finalidade: 'comprar' }),
+  )
 
   return (
     <>

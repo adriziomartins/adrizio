@@ -22,14 +22,15 @@ export interface Property {
   neighborhood: string
   city: string
   purpose: PropertyPurpose
+  investmentOpportunity?: boolean
   type: PropertyType
   rentalModality?: RentalModality
   price?: number
   priceLabel?: string
-  bedrooms: number
-  bathrooms: number
-  parkingSpaces: number
-  area: number
+  bedrooms?: number
+  bathrooms?: number
+  parkingSpaces?: number
+  area?: number
   maxGuests?: number
   address?: string
   description?: string

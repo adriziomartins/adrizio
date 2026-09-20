@@ -41,16 +41,16 @@ function toFrontendProperty(record: CatalogRecord): Property {
   }
 
   if (
-    record.bedrooms === null ||
-    record.bathrooms === null ||
-    record.parkingSpaces === null ||
-    record.area === null
+    record.type !== 'LAND' &&
+    (record.bedrooms === null ||
+      record.bathrooms === null ||
+      record.parkingSpaces === null ||
+      record.area === null)
   ) {
     throw new Error(`CATALOG_REQUIRED_FIELDS_MISSING: ${record.code}`)
   }
 
-  const purpose: Property['purpose'] =
-    record.purpose === 'RENT' ? 'aluguel' : record.investmentOpportunity ? 'investimento' : 'venda'
+  const purpose: Property['purpose'] = record.purpose === 'RENT' ? 'aluguel' : 'venda'
 
   const rentalModality: Property['rentalModality'] =
     record.rentalModality === 'SHORT_STAY'
@@ -81,14 +81,15 @@ function toFrontendProperty(record: CatalogRecord): Property {
     neighborhood: record.region.name,
     city: record.region.city,
     purpose,
+    investmentOpportunity: record.investmentOpportunity,
     type: propertyTypes[record.type],
     rentalModality,
     price: databasePrice?.toNumber(),
     priceLabel: record.priceLabel ?? undefined,
-    bedrooms: record.bedrooms,
-    bathrooms: record.bathrooms,
-    parkingSpaces: record.parkingSpaces,
-    area: record.area.toNumber(),
+    bedrooms: record.bedrooms ?? undefined,
+    bathrooms: record.bathrooms ?? undefined,
+    parkingSpaces: record.parkingSpaces ?? undefined,
+    area: record.area?.toNumber(),
     maxGuests: record.maxGuests ?? undefined,
     address: record.address ?? undefined,
     description: record.description ?? undefined,

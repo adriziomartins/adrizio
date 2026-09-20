@@ -19,6 +19,7 @@ export async function GET() {
         slug: true,
         title: true,
         purpose: true,
+        investmentOpportunity: true,
         rentalModality: true,
         type: true,
         salePrice: true,
