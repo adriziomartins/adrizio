@@ -1,15 +1,13 @@
 import { PropertyCard } from '@/components/property/property-card'
-import { featuredProperties } from '@/data/featured-properties'
+import { getCatalogProperties, isDatabaseCatalogEnabled } from '@/lib/property-catalog'
 
 export async function FeaturedProperties() {
-  const useDatabase =
-    process.env.NODE_ENV === 'development' && process.env.CATALOG_SOURCE === 'database'
+  const useDatabase = isDatabaseCatalogEnabled()
+  const sourceProperties = await getCatalogProperties()
 
   const properties = useDatabase
-    ? (await (await import('@/lib/property-repository')).listPublishedProperties()).filter(
-        (property) => property.featured,
-      )
-    : featuredProperties
+    ? sourceProperties.filter((property) => property.featured)
+    : sourceProperties
 
   const hasDemonstratives = properties.some((property) => property.demonstrative)
 
@@ -58,8 +56,9 @@ export async function FeaturedProperties() {
 
         {hasDemonstratives ? (
           <p className="mt-8 text-xs leading-5 text-zinc-400">
-            O Beach Class Fortaleza já representa uma hospedagem real. Os demais imóveis marcados
-            como “Demonstrativo” permanecem apenas durante a expansão do catálogo.
+            Os conteúdos identificados como “Demonstrativo” ilustram a plataforma e não constituem
+            anúncios disponíveis. A disponibilidade dos anúncios reais deve ser confirmada com o
+            corretor.
           </p>
         ) : null}
       </div>
