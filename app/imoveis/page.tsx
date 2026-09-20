@@ -6,7 +6,7 @@ import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
 import { PropertyFilters } from '@/components/property/property-filters'
 import { PropertyGrid } from '@/components/property/property-grid'
-import { featuredProperties } from '@/data/featured-properties'
+import { getCatalogProperties } from '@/lib/property-catalog'
 import {
   filterProperties,
   getPropertySearchSummary,
@@ -37,13 +37,7 @@ interface PropertiesPageProps {
 export default async function PropertiesPage({ searchParams }: PropertiesPageProps) {
   const resolvedSearchParams = await searchParams
   const filters = getPropertySearchValues(resolvedSearchParams, { finalidade: '' })
-  const useDatabase =
-    process.env.NODE_ENV === 'development' && process.env.CATALOG_SOURCE === 'database'
-
-  const sourceProperties = useDatabase
-    ? await (await import('@/lib/property-repository')).listPublishedProperties()
-    : featuredProperties
-
+  const sourceProperties = await getCatalogProperties()
   const properties = filterProperties(sourceProperties, filters)
   const searchSummary = getPropertySearchSummary(filters)
   const hasRealProperties = properties.some((property) => !property.demonstrative)

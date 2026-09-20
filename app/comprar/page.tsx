@@ -6,7 +6,7 @@ import { TrackedWhatsAppLink } from '@/components/analytics/tracked-whatsapp-lin
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
 import { PropertyGrid } from '@/components/property/property-grid'
-import { featuredProperties } from '@/data/featured-properties'
+import { getCatalogProperties } from '@/lib/property-catalog'
 import { filterProperties, getPropertySearchValues } from '@/lib/property-search'
 import { WHATSAPP_BUY_URL } from '@/lib/contact'
 
@@ -46,9 +46,9 @@ const benefits = [
   },
 ] as const
 
-export default function BuyPage() {
+export default async function BuyPage() {
   const properties = filterProperties(
-    featuredProperties,
+    await getCatalogProperties(),
     getPropertySearchValues({ finalidade: 'comprar' }),
   )
 
@@ -151,8 +151,8 @@ export default function BuyPage() {
                 </h2>
 
                 <p className="mt-3 max-w-2xl text-sm leading-7 text-zinc-400">
-                  Os imóveis apresentados nesta etapa são demonstrativos e validam a estrutura
-                  inicial do portal.
+                  Os anúncios reais estão sujeitos à confirmação de disponibilidade e condições. Os
+                  conteúdos demonstrativos, quando presentes, são identificados como tal.
                 </p>
               </div>
 

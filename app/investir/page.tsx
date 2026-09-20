@@ -13,7 +13,7 @@ import { TrackedWhatsAppLink } from '@/components/analytics/tracked-whatsapp-lin
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
 import { PropertyGrid } from '@/components/property/property-grid'
-import { featuredProperties } from '@/data/featured-properties'
+import { getCatalogProperties } from '@/lib/property-catalog'
 import { filterProperties, getPropertySearchValues } from '@/lib/property-search'
 import { WHATSAPP_INVESTMENT_URL } from '@/lib/contact'
 
@@ -62,9 +62,9 @@ const analysisPoints = [
   'Custos de aquisição e manutenção',
 ] as const
 
-export default function InvestPage() {
+export default async function InvestPage() {
   const properties = filterProperties(
-    featuredProperties,
+    await getCatalogProperties(),
     getPropertySearchValues({ finalidade: 'investir' }),
   )
 
@@ -175,8 +175,8 @@ export default function InvestPage() {
                 </h2>
 
                 <p className="mt-3 max-w-2xl text-sm leading-7 text-zinc-400">
-                  Os imóveis apresentados nesta etapa são demonstrativos e validam a jornada de
-                  investimento do portal.
+                  Os anúncios reais estão sujeitos à confirmação de disponibilidade e condições. Os
+                  conteúdos demonstrativos, quando presentes, são identificados como tal.
                 </p>
               </div>
 
