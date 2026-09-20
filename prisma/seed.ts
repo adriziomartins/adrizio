@@ -94,7 +94,8 @@ async function seedProperties() {
       ? rentalModalityMap[property.rentalModality]
       : null
 
-    const investmentOpportunity = property.purpose === 'investimento'
+    const investmentOpportunity =
+      property.investmentOpportunity === true || property.purpose === 'investimento'
 
     const salePrice =
       property.purpose === 'venda' || property.purpose === 'investimento'

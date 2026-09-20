@@ -14,6 +14,7 @@ import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
 import { PropertyGrid } from '@/components/property/property-grid'
 import { featuredProperties } from '@/data/featured-properties'
+import { filterProperties, getPropertySearchValues } from '@/lib/property-search'
 import { WHATSAPP_INVESTMENT_URL } from '@/lib/contact'
 
 export const metadata: Metadata = {
@@ -62,7 +63,10 @@ const analysisPoints = [
 ] as const
 
 export default function InvestPage() {
-  const properties = featuredProperties.filter((property) => property.purpose === 'investimento')
+  const properties = filterProperties(
+    featuredProperties,
+    getPropertySearchValues({ finalidade: 'investir' }),
+  )
 
   return (
     <>
