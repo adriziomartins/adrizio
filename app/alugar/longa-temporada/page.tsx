@@ -6,7 +6,8 @@ import { TrackedInternalLink } from '@/components/analytics/tracked-internal-lin
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
 import { PropertyGrid } from '@/components/property/property-grid'
-import { featuredProperties } from '@/data/featured-properties'
+import { getCatalogProperties } from '@/lib/property-catalog'
+import { filterProperties, getPropertySearchValues } from '@/lib/property-search'
 
 export const metadata: Metadata = {
   title: 'Aluguel de longa temporada em Fortaleza',
@@ -23,11 +24,14 @@ const benefits = [
   'Apoio durante visita, proposta e negociação',
 ]
 
-export default function LongTermRentPage() {
-  const properties = featuredProperties.filter(
-    (property) => property.purpose === 'aluguel' && property.rentalModality === 'longa-temporada',
+export default async function LongTermRentPage() {
+  const properties = filterProperties(
+    await getCatalogProperties(),
+    getPropertySearchValues({
+      finalidade: 'alugar',
+      modalidade: 'longa-temporada',
+    }),
   )
-
   return (
     <>
       <a
@@ -74,7 +78,8 @@ export default function LongTermRentPage() {
           <div className="mx-auto max-w-7xl">
             <div className="mb-10">
               <p className="text-sm font-medium text-[#D4AF37]">
-                {properties.length} imóveis disponíveis
+                {properties.length}{' '}
+                {properties.length === 1 ? 'imóvel encontrado' : 'imóveis encontrados'}
               </p>
 
               <h2 className="mt-2 text-2xl font-semibold text-white">
