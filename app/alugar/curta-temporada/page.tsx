@@ -5,7 +5,8 @@ import { TrackedWhatsAppLink } from '@/components/analytics/tracked-whatsapp-lin
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
 import { PropertyGrid } from '@/components/property/property-grid'
-import { featuredProperties } from '@/data/featured-properties'
+import { getCatalogProperties } from '@/lib/property-catalog'
+import { filterProperties, getPropertySearchValues } from '@/lib/property-search'
 import { WHATSAPP_URL } from '@/lib/contact'
 
 export const metadata: Metadata = {
@@ -35,11 +36,14 @@ const requestFields = [
   },
 ]
 
-const shortStayProperties = featuredProperties.filter(
-  (property) => property.purpose === 'aluguel' && property.rentalModality === 'curta-temporada',
-)
-
-export default function ShortStayPage() {
+export default async function ShortStayPage() {
+  const shortStayProperties = filterProperties(
+    await getCatalogProperties(),
+    getPropertySearchValues({
+      finalidade: 'alugar',
+      modalidade: 'curta-temporada',
+    }),
+  )
   return (
     <>
       <a

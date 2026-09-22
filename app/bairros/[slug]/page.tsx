@@ -2,13 +2,13 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Building2, Compass, MapPin, Search } from 'lucide-react'
-
 import { TrackedPageView } from '@/components/analytics/tracked-page-view'
 import { TrackedWhatsAppLink } from '@/components/analytics/tracked-whatsapp-link'
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
 import { PropertyGrid } from '@/components/property/property-grid'
-import { featuredProperties } from '@/data/featured-properties'
+import { getCatalogProperties } from '@/lib/property-catalog'
+import { filterProperties, getPropertySearchValues } from '@/lib/property-search'
 import { regions } from '@/data/regions'
 import { WHATSAPP_URL } from '@/lib/contact'
 import { createBreadcrumbList } from '@/lib/structured-data'
@@ -17,13 +17,6 @@ interface NeighborhoodPageProps {
   params: Promise<{
     slug: string
   }>
-}
-
-function normalizeText(value: string): string {
-  return value
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
 }
 
 function findRegionBySlug(slug: string) {
@@ -74,8 +67,9 @@ export default async function NeighborhoodPage({ params }: NeighborhoodPageProps
     notFound()
   }
 
-  const properties = featuredProperties.filter(
-    (property) => normalizeText(property.neighborhood) === normalizeText(region.name),
+  const properties = filterProperties(
+    await getCatalogProperties(),
+    getPropertySearchValues({ bairro: region.slug }, { finalidade: '' }),
   )
 
   const breadcrumbStructuredData = createBreadcrumbList([
