@@ -13,7 +13,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "husky",
-    "prebuild": "node scripts/verify-gtm-build-env.mjs"
+    "prebuild": "node scripts/verify-gtm-build-env.mjs && prisma generate"
   },
   "dependencies": {
     "@next/third-parties": "16.3.4",
