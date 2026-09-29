@@ -13,7 +13,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "husky",
-    "prebuild": "node scripts/verify-gtm-build-env.mjs && prisma generate"
+    "prebuild": "node scripts/verify-gtm-build-env.mjs && prisma generate",
+    "catalog:bootstrap": "tsx scripts/bootstrap-production-catalog.ts"
   },
   "dependencies": {
     "@next/third-parties": "16.3.4",
