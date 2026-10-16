@@ -16,7 +16,7 @@ import { PropertyGrid } from '@/components/property/property-grid'
 import { getCatalogProperties } from '@/lib/property-catalog'
 import { filterProperties, getPropertySearchValues } from '@/lib/property-search'
 import { WHATSAPP_INVESTMENT_URL } from '@/lib/contact'
-
+export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
   title: 'Investimento imobiliário na Orla de Fortaleza',
   description:

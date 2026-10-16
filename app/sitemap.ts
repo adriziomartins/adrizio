@@ -1,12 +1,13 @@
 import type { MetadataRoute } from 'next'
 
 import { blogPosts } from '@/data/blog-posts'
-import { featuredProperties } from '@/data/featured-properties'
+import { getCatalogProperties } from '@/lib/property-catalog'
 import { regions } from '@/data/regions'
-
+export const dynamic = 'force-dynamic'
 const siteUrl = 'https://www.adrizio.com.br'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const properties = await getCatalogProperties()
   const neighborhoodRoutes: MetadataRoute.Sitemap = regions.map((region) => ({
     url: `${siteUrl}/bairros/${region.slug}`,
     changeFrequency: 'weekly',
@@ -22,7 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     }))
 
-  const realPropertyRoutes: MetadataRoute.Sitemap = featuredProperties
+  const realPropertyRoutes: MetadataRoute.Sitemap = properties
     .filter((property) => !property.demonstrative)
     .map((property) => ({
       url: `${siteUrl}/imoveis/${property.slug}`,

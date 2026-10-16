@@ -8,7 +8,7 @@ import { PropertyGrid } from '@/components/property/property-grid'
 import { getCatalogProperties } from '@/lib/property-catalog'
 import { filterProperties, getPropertySearchValues } from '@/lib/property-search'
 import { WHATSAPP_URL } from '@/lib/contact'
-
+export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
   title: 'Aluguel por curta temporada em Fortaleza',
   description:
