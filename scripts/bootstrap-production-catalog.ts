@@ -29,7 +29,24 @@ const rentalModalityMap = {
   'curta-temporada': 'SHORT_STAY',
 } as const
 
-const realProperties = featuredProperties.filter((property) => property.demonstrative !== true)
+const codeIndex = process.argv.indexOf('--code')
+const selectedCode = codeIndex >= 0 ? process.argv[codeIndex + 1] : undefined
+if (codeIndex >= 0 && (!selectedCode || selectedCode.startsWith('--'))) {
+  throw new Error('BOOTSTRAP_BLOCKED: informe o código após --code.')
+}
+const realProperties = featuredProperties.filter(
+  (property) => property.demonstrative !== true && (!selectedCode || property.id === selectedCode),
+)
+if (selectedCode && realProperties.length !== 1) {
+  throw new Error('BOOTSTRAP_BLOCKED: código não encontrado ou não único no catálogo real.')
+}
+const selectedRegions = selectedCode
+  ? regions.filter((region) =>
+      realProperties.some(
+        (property) => property.neighborhood === region.name && property.city === region.city,
+      ),
+    )
+  : regions
 
 function printPlan() {
   const mediaCount = realProperties.reduce((total, property) => {
@@ -41,10 +58,12 @@ function printPlan() {
   }, 0)
 
   console.log('PRODUCTION_CATALOG_BOOTSTRAP_DRY_RUN')
-  console.log(`regions=${regions.length}`)
+  console.log(`regions=${selectedRegions.length}`)
   console.log(`properties=${realProperties.length}`)
   console.log(`media=${mediaCount}`)
-  console.log(`excludedDemonstrative=${featuredProperties.length - realProperties.length}`)
+  console.log(
+    `excludedDemonstrative=${featuredProperties.filter((property) => property.demonstrative).length}`,
+  )
 
   for (const property of realProperties) {
     console.log(`property=${property.id} slug=${property.slug}`)
@@ -101,7 +120,7 @@ async function applyBootstrap() {
       throw new Error('BOOTSTRAP_BLOCKED: o banco de produção contém imóveis demonstrativos.')
     }
     await prisma.$transaction(async (tx) => {
-      for (const region of regions) {
+      for (const region of selectedRegions) {
         await tx.region.upsert({
           where: {
             slug: region.slug,

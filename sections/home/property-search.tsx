@@ -89,6 +89,7 @@ export function PropertySearch({ initialValues, hasAppliedSearch }: PropertySear
                   <option value="praia-de-iracema">Praia de Iracema</option>
                   <option value="praia-do-futuro">Praia do Futuro</option>
                   <option value="cumbuco">Cumbuco</option>
+                  <option value="pirambu">Pirambu</option>
                 </select>
               </label>
 

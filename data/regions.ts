@@ -2,6 +2,15 @@ import type { Region } from '@/types/region'
 
 export const regions: Region[] = [
   {
+    id: 'pirambu',
+    slug: 'pirambu',
+    name: 'Pirambu',
+    city: 'Fortaleza',
+    description: 'Conheça os imóveis disponíveis no Pirambu, em Fortaleza.',
+    highlight: 'Imóveis no Pirambu',
+    seoPath: '/bairros/pirambu',
+  },
+  {
     id: 'meireles',
     slug: 'meireles',
     name: 'Meireles',
