@@ -9,7 +9,7 @@ import { PropertyGrid } from '@/components/property/property-grid'
 import { getCatalogProperties } from '@/lib/property-catalog'
 import { filterProperties, getPropertySearchValues } from '@/lib/property-search'
 import { WHATSAPP_BUY_URL } from '@/lib/contact'
-
+export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
   title: 'Comprar imóvel na Orla de Fortaleza',
   description:

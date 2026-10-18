@@ -18,7 +18,7 @@ import { TrackedPageView } from '@/components/analytics/tracked-page-view'
 import { TrackedWhatsAppLink } from '@/components/analytics/tracked-whatsapp-link'
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
-import { featuredProperties } from '@/data/featured-properties'
+import { getCatalogPropertyBySlug } from '@/lib/property-catalog'
 import { getPropertyWhatsAppUrl, WHATSAPP_REAL_PROPERTIES_URL } from '@/lib/contact'
 import { getPropertyPriceLabel } from '@/lib/property-price'
 import { createBreadcrumbList } from '@/lib/structured-data'
@@ -48,25 +48,11 @@ const typeLabels = {
   terreno: 'Terreno',
 } as const
 
-async function findPropertyBySlug(slug: string) {
-  if (process.env.NODE_ENV === 'development' && process.env.CATALOG_SOURCE === 'database') {
-    const { getPublishedPropertyBySlug } = await import('@/lib/property-repository')
-
-    return getPublishedPropertyBySlug(slug)
-  }
-
-  return featuredProperties.find((property) => property.slug === slug) ?? null
-}
-
-export function generateStaticParams() {
-  return featuredProperties.map((property) => ({
-    slug: property.slug,
-  }))
-}
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({ params }: PropertyDetailsPageProps): Promise<Metadata> {
   const { slug } = await params
-  const property = await findPropertyBySlug(slug)
+  const property = await getCatalogPropertyBySlug(slug)
 
   if (!property) {
     return {
@@ -115,7 +101,7 @@ export async function generateMetadata({ params }: PropertyDetailsPageProps): Pr
 
 export default async function PropertyDetailsPage({ params }: PropertyDetailsPageProps) {
   const { slug } = await params
-  const property = await findPropertyBySlug(slug)
+  const property = await getCatalogPropertyBySlug(slug)
 
   if (!property) {
     notFound()

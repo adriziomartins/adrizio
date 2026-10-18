@@ -8,7 +8,7 @@ import { Navbar } from '@/components/layout/navbar'
 import { PropertyGrid } from '@/components/property/property-grid'
 import { getCatalogProperties } from '@/lib/property-catalog'
 import { filterProperties, getPropertySearchValues } from '@/lib/property-search'
-
+export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
   title: 'Aluguel de longa temporada em Fortaleza',
   description: 'Imóveis para locação residencial de longa temporada na Orla de Fortaleza.',

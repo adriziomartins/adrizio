@@ -12,7 +12,7 @@ import { filterProperties, getPropertySearchValues } from '@/lib/property-search
 import { regions } from '@/data/regions'
 import { WHATSAPP_URL } from '@/lib/contact'
 import { createBreadcrumbList } from '@/lib/structured-data'
-
+export const dynamic = 'force-dynamic'
 interface NeighborhoodPageProps {
   params: Promise<{
     slug: string
