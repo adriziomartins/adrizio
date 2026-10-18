@@ -20,7 +20,15 @@ export type PropertySearchValues = Record<PropertySearchField, string>
 export const PROPERTY_SEARCH_ALLOWED_VALUES: Record<PropertySearchField, readonly string[]> = {
   finalidade: ['comprar', 'alugar', 'investir'],
   modalidade: ['longa-temporada', 'curta-temporada'],
-  bairro: ['beira-mar', 'meireles', 'mucuripe', 'praia-de-iracema', 'praia-do-futuro', 'cumbuco'],
+  bairro: [
+    'beira-mar',
+    'meireles',
+    'mucuripe',
+    'praia-de-iracema',
+    'praia-do-futuro',
+    'cumbuco',
+    'pirambu',
+  ],
   tipo: ['apartamento', 'cobertura', 'flat', 'casa', 'terreno'],
   preco: ['ate-500000', 'ate-1000000', 'ate-2000000', 'ate-5000000', 'acima-5000000'],
   quartos: ['1', '2', '3', '4'],
@@ -61,6 +69,7 @@ const neighborhoodSlugMap: Record<string, string> = {
   'praia-de-iracema': 'praia de iracema',
   'praia-do-futuro': 'praia do futuro',
   cumbuco: 'cumbuco',
+  pirambu: 'pirambu',
 }
 
 function getFirstSearchParamValue(value: SearchParamValue): string | undefined {

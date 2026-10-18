@@ -1,6 +1,8 @@
 import type { Property } from '@/types/property'
+import { casaPirambu } from '@/data/casa-pirambu'
 
 export const featuredProperties: Property[] = [
+  casaPirambu,
   {
     id: 'BCF-TEMP-01',
     slug: 'beach-class-fortaleza-temporada',
