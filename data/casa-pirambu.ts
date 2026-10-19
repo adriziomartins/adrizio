@@ -43,11 +43,6 @@ export const casaPirambu: Property = {
     'Fotos do imóvel fornecidas para divulgação. A inclusão de móveis e eletrodomésticos na negociação depende de confirmação.',
   detailsSections: [
     {
-      title: 'Documentação e condições da negociação',
-      description:
-        'Foi informado registro de uso. A documentação ainda será conferida no cartório para esclarecer a titularidade, a existência de matrícula individual ou vínculo com matrícula-mãe, a natureza do direito e as condições de sua transferência. A divulgação não confirma propriedade plena, regularização concluída ou possibilidade de financiamento. Essas informações devem ser esclarecidas antes de qualquer compromisso ou pagamento.',
-    },
-    {
       title: 'Subsolo',
       items: ['Sala de estar', '2 quartos', 'Cozinha', 'Banheiro', 'Área de serviço'],
     },
