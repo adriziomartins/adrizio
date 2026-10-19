@@ -15,7 +15,7 @@ export const casaPirambu: Property = {
   area: 127,
   address: 'Rua Nossa Senhora das Graças, 448 — Pirambu, Fortaleza–CE',
   description:
-    'Casa com 127 m² de área construída, distribuída em subsolo, térreo e primeiro andar. Possui 3 quartos, 3 banheiros, 2 cozinhas, garagem para até 2 carros e 2 varandas, uma delas com vista para o mar. A sala do primeiro andar tem teto em madeira. Documentação pendente de verificação: foi informado registro de uso, cuja natureza e condições de transferência ainda precisam ser confirmadas. Financiamento não confirmado.',
+    'Casa com 127 m² de área construída, distribuída em subsolo, térreo e primeiro andar. Possui 3 quartos, 3 banheiros, 2 cozinhas, garagem para até 2 carros e 2 varandas, uma delas com vista para o mar. A sala do primeiro andar tem teto em madeira.',
   features: [
     '127 m² de área construída informada',
     '3 pavimentos: subsolo, térreo e primeiro andar',
