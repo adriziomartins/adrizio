@@ -11,6 +11,15 @@ export const regions: Region[] = [
     seoPath: '/bairros/pirambu',
   },
   {
+    id: 'aldeota',
+    slug: 'aldeota',
+    name: 'Aldeota',
+    city: 'Fortaleza',
+    description: 'Acomodações de curta temporada e imóveis na Aldeota, com acesso a serviços, comércio e gastronomia de Fortaleza.',
+    highlight: 'Conforto e conveniência urbana',
+    seoPath: '/bairros/aldeota',
+  },
+  {
     id: 'meireles',
     slug: 'meireles',
     name: 'Meireles',
