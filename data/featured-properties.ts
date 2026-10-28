@@ -131,11 +131,11 @@ export const featuredProperties: Property[] = [
     type: 'apartamento',
     rentalModality: 'curta-temporada',
     priceLabel: 'Diária sob consulta',
-    area: 36,
+    area: 37,
     bathrooms: 1,
     address: 'Rua Carolina Sucupira, 1288 — Aldeota, Fortaleza–CE',
     description:
-      'Apartamento mobiliado para curta temporada no JSmart Carolina Sucupira, na Aldeota, em Fortaleza. Unidade de aproximadamente 36 m², com cama de casal, ambiente de estar com sofá e TV, mesa para refeições, cozinha equipada, banheiro privativo e varanda com vista urbana. A decoração contemporânea, os móveis planejados e a iluminação aconchegante compõem uma hospedagem funcional para lazer ou trabalho. Consulte datas, capacidade autorizada e condições de reserva.',
+      'Apartamento mobiliado para curta temporada no JSmart Carolina Sucupira, na Aldeota, em Fortaleza. Unidade de 37 m², com cama de casal, ambiente de estar com sofá e TV, mesa para refeições, cozinha equipada, banheiro privativo e varanda com vista urbana. A decoração contemporânea, os móveis planejados e a iluminação aconchegante compõem uma hospedagem funcional para lazer ou trabalho. Consulte datas, capacidade autorizada e condições de reserva.',
     features: [
       'Apartamento mobiliado',
       'Cama de casal',
@@ -144,6 +144,7 @@ export const featuredProperties: Property[] = [
       'Geladeira, cooktop e micro-ondas',
       'Mesa para refeições',
       'Ar-condicionado',
+      'Wi-Fi disponível',
       'Banheiro privativo com box de vidro',
       'Varanda com vista urbana',
       'Móveis planejados',
@@ -173,7 +174,8 @@ export const featuredProperties: Property[] = [
           'Locação por curta temporada (Short Stay)',
           'Diária e disponibilidade sob consulta',
           'Capacidade máxima de hóspedes a confirmar',
-          'Wi-Fi, estacionamento e uso do sofá como cama a confirmar',
+          'Wi-Fi disponível na acomodação',
+          'Vaga de garagem e uso do sofá como cama a confirmar',
         ],
       },
       {
@@ -190,7 +192,7 @@ export const featuredProperties: Property[] = [
       'Informe as datas e o número de hóspedes para receber disponibilidade, valor e regras da estadia. A reserva não é instantânea.',
     contactCta: 'Consultar disponibilidade e valores no WhatsApp',
     contactMessage:
-      'Olá, Adrizio! Gostaria de consultar o JSmart Carolina Sucupira para curta temporada.\\n\\nEntrada:\\nSaída:\\nAdultos:\\nCrianças:',
+      'Olá, Adrizio! Gostaria de consultar o JSmart Carolina Sucupira para curta temporada.\n\nEntrada:\nSaída:\nAdultos:\nCrianças:',
     featured: false,
     demonstrative: false,
   },
