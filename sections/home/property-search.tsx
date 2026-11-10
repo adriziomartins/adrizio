@@ -66,7 +66,8 @@ export function PropertySearch({ initialValues, hasAppliedSearch }: PropertySear
                   className={inputClassName}
                 >
                   <option value="comprar">Comprar</option>
-                  <option value="alugar">Alugar</option>
+                  <option value="alugar">Alugar (longa temporada)</option>
+                  <option value="locacoes">Locações (curta temporada)</option>
                   <option value="investir">Investir</option>
                 </select>
               </label>
