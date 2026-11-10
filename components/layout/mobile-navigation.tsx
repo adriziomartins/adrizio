@@ -91,7 +91,7 @@ export function MobileNavigation({ navigation, contactUrl }: MobileNavigationPro
       {isOpen && (
         <div
           id="mobile-navigation-panel"
-          className="absolute inset-x-0 top-full border-b border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/40 lg:hidden"
+          className="absolute inset-x-0 top-full border-b border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/40 xl:hidden"
         >
           <div className="border-b border-zinc-800 px-6 py-5">
             <p className="text-base font-semibold tracking-[0.22em] text-[#D4AF37]">ADRIZIO</p>

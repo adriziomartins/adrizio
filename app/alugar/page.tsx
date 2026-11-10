@@ -1,45 +1,38 @@
 import type { Metadata } from 'next'
-import { Building2, CalendarDays, ArrowRight } from 'lucide-react'
+import { CheckCircle2 } from 'lucide-react'
 
 import { TrackedInternalLink } from '@/components/analytics/tracked-internal-link'
 
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
-
+import { PropertyGrid } from '@/components/property/property-grid'
+import { getCatalogProperties } from '@/lib/property-catalog'
+import { filterProperties, getPropertySearchValues } from '@/lib/property-search'
+export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
-  title: 'Alugar imóvel na Orla de Fortaleza',
-  description: 'Escolha entre locação de longa temporada ou curta temporada na Orla de Fortaleza.',
+  title: 'Alugar imóvel para morar em Fortaleza',
+  description: 'Imóveis para locação residencial de longa temporada na Orla de Fortaleza.',
   alternates: {
     canonical: '/alugar',
   },
 }
 
-const rentalJourneys = [
-  {
-    title: 'Longa temporada',
-    eyebrow: 'Moradia residencial',
-    description:
-      'Imóveis para contratos residenciais, mudanças, moradia contínua e locações convencionais.',
-    href: '/alugar/longa-temporada',
-    eventName: 'rent_lead',
-    contactIntent: 'rent',
-    cta: 'Ver locações residenciais',
-    icon: Building2,
-  },
-  {
-    title: 'Curta temporada',
-    eyebrow: 'Estadia e hospedagem',
-    description:
-      'Apartamentos para férias, eventos, viagens corporativas, finais de semana e estadias temporárias.',
-    href: '/alugar/curta-temporada',
-    eventName: 'rent_lead',
-    contactIntent: 'rent',
-    cta: 'Consultar estadias',
-    icon: CalendarDays,
-  },
-] as const
+const benefits = [
+  'Locação residencial convencional',
+  'Contratos de maior duração',
+  'Atendimento na análise do perfil do imóvel',
+  'Apoio durante visita, proposta e negociação',
+]
 
-export default function RentPage() {
+export default async function RentPage() {
+  const properties = filterProperties(
+    await getCatalogProperties(),
+    getPropertySearchValues({
+      finalidade: 'alugar',
+      modalidade: 'longa-temporada',
+    }),
+  )
+
   return (
     <>
       <a
@@ -58,67 +51,67 @@ export default function RentPage() {
       >
         <section className="border-b border-white/10 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
           <div className="mx-auto max-w-7xl">
-            <div className="max-w-3xl">
-              <div className="flex items-center gap-3">
-                <span className="h-px w-10 bg-[#D4AF37]" aria-hidden="true" />
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#D4AF37]">
+              Locação residencial
+            </p>
 
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#D4AF37]">
-                  Locação ADRIZIO
-                </p>
-              </div>
+            <h1 className="mt-5 max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+              Alugar: moradia residencial de longa temporada
+            </h1>
 
-              <h1 className="mt-5 text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
-                Como você pretende alugar?
-              </h1>
+            <p className="mt-6 max-w-2xl text-base leading-8 text-zinc-400">
+              Encontre imóveis para morar com estabilidade, localização estratégica e atendimento
+              especializado na Orla de Fortaleza.
+            </p>
 
-              <p className="mt-6 max-w-2xl text-base leading-8 text-zinc-400 sm:text-lg">
-                Escolha a modalidade adequada ao seu objetivo. Locação residencial e hospedagem
-                possuem processos, critérios e necessidades diferentes.
-              </p>
-            </div>
+            <ul className="mt-10 grid gap-4 sm:grid-cols-2">
+              {benefits.map((benefit) => (
+                <li key={benefit} className="flex items-center gap-3 text-sm text-zinc-300">
+                  <CheckCircle2 className="size-5 text-[#D4AF37]" aria-hidden="true" />
+                  {benefit}
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
 
-        <section className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-          <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-2">
-            {rentalJourneys.map((journey) => {
-              const Icon = journey.icon
+        <section className="px-4 py-16 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-10">
+              <p className="text-sm font-medium text-[#D4AF37]">
+                {properties.length}{' '}
+                {properties.length === 1 ? 'imóvel encontrado' : 'imóveis encontrados'}
+              </p>
 
-              return (
-                <article
-                  key={journey.href}
-                  className="group rounded-3xl border border-white/10 bg-zinc-900 p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#D4AF37]/40 hover:shadow-2xl hover:shadow-black/30 sm:p-9"
-                >
-                  <div className="flex size-14 items-center justify-center rounded-2xl border border-[#D4AF37]/25 bg-[#D4AF37]/10 text-[#D4AF37]">
-                    <Icon className="size-6" aria-hidden="true" />
-                  </div>
+              <h2 className="mt-2 text-2xl font-semibold text-white">
+                Oportunidades de locação residencial
+              </h2>
 
-                  <p className="mt-8 text-xs font-semibold uppercase tracking-[0.18em] text-[#D4AF37]">
-                    {journey.eyebrow}
-                  </p>
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-zinc-400">
+                Os imóveis desta página são destinados à locação residencial de longa duração. A
+                disponibilidade e as condições de cada contrato devem ser confirmadas.
+              </p>
+            </div>
 
-                  <h2 className="mt-3 text-3xl font-semibold text-white">{journey.title}</h2>
+            <PropertyGrid properties={properties} />
 
-                  <p className="mt-5 max-w-xl text-sm leading-7 text-zinc-400">
-                    {journey.description}
-                  </p>
+            <div className="mt-16 rounded-3xl border border-[#D4AF37]/25 bg-[#D4AF37]/5 p-8 sm:p-10">
+              <h2 className="text-2xl font-semibold text-white">Procura um imóvel específico?</h2>
 
-                  <TrackedInternalLink
-                    href={journey.href}
-                    eventName={journey.eventName}
-                    contactIntent={journey.contactIntent}
-                    sourcePage="rent"
-                    className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors hover:text-[#D4AF37] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
-                  >
-                    {journey.cta}
-                    <ArrowRight
-                      className="size-4 transition-transform group-hover:translate-x-1"
-                      aria-hidden="true"
-                    />
-                  </TrackedInternalLink>
-                </article>
-              )
-            })}
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-zinc-400">
+                Informe bairro, faixa de preço, quantidade de quartos e prazo previsto para mudança.
+              </p>
+
+              <TrackedInternalLink
+                href="/imoveis?finalidade=alugar"
+                eventName="rent_lead"
+                contactIntent="rent"
+                sourcePage="long-term-rent"
+                className="mt-7 inline-flex rounded-full bg-[#D4AF37] px-6 py-3 text-sm font-semibold text-zinc-950 hover:bg-[#E5C45A]"
+              >
+                Informar perfil do imóvel
+              </TrackedInternalLink>
+            </div>
           </div>
         </section>
       </main>

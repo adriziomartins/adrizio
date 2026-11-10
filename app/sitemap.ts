@@ -58,12 +58,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     {
-      url: `${siteUrl}/alugar/longa-temporada`,
+      url: `${siteUrl}/locacoes`,
       changeFrequency: 'daily',
-      priority: 0.8,
+      priority: 0.9,
     },
     {
-      url: `${siteUrl}/alugar/curta-temporada`,
+      url: `${siteUrl}/avaliar-imovel`,
       changeFrequency: 'daily',
       priority: 0.8,
     },

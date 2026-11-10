@@ -1,4 +1,4 @@
-import { ArrowRight, Building, Home, TrendingUp } from 'lucide-react'
+import { ArrowRight, Building, CalendarDays, Home, TrendingUp } from 'lucide-react'
 
 import { TrackedInternalLink } from '@/components/analytics/tracked-internal-link'
 
@@ -30,6 +30,20 @@ const journeys = [
       contactIntent: 'rent',
     },
     icon: Building,
+  },
+  {
+    id: 'locacoes',
+    title: 'Locações',
+    eyebrow: 'Estadias de curta temporada',
+    description:
+      'Solicite hospedagem por dias ou semanas, informando datas, hóspedes e região desejada para receber uma cotação.',
+    cta: 'Consultar estadias',
+    href: '/locacoes',
+    tracking: {
+      eventName: 'rent_lead',
+      contactIntent: 'rent',
+    },
+    icon: CalendarDays,
   },
   {
     id: 'investir',
@@ -76,7 +90,7 @@ export function PropertyJourneys() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {journeys.map((journey, index) => {
             const Icon = journey.icon
 

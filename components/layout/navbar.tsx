@@ -7,8 +7,9 @@ import { MobileNavigation } from '@/components/layout/mobile-navigation'
 const navigation = [
   { label: 'Comprar', href: '/comprar' },
   { label: 'Alugar', href: '/alugar' },
+  { label: 'Locações', href: '/locacoes' },
   { label: 'Investir', href: '/investir' },
-  { label: 'Avaliar Imóvel', href: '/#avaliar' },
+  { label: 'Avaliar Imóvel', href: '/avaliar-imovel' },
   { label: 'Sobre Nós', href: '/sobre' },
   { label: 'Blog', href: '/blog' },
 ] as const
@@ -27,7 +28,7 @@ export function Navbar() {
         </Link>
 
         {/* Navegação desktop */}
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Navegação principal">
+        <nav className="hidden items-center gap-5 xl:flex" aria-label="Navegação principal">
           {navigation.map((item) => (
             <Link
               key={item.href}
@@ -40,7 +41,7 @@ export function Navbar() {
         </nav>
 
         {/* CTA desktop */}
-        <div className="hidden lg:block">
+        <div className="hidden xl:block">
           <TrackedInternalLink
             href="/contato"
             eventName="contact_start"
@@ -52,7 +53,7 @@ export function Navbar() {
         </div>
 
         {/* Navegação mobile */}
-        <div className="lg:hidden">
+        <div className="xl:hidden">
           <MobileNavigation navigation={navigation} contactUrl="/contato" />
         </div>
       </div>

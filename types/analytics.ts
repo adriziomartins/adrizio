@@ -9,6 +9,7 @@ export type SourcePage =
   | 'rent'
   | 'long-term-rent'
   | 'short-term-rent'
+  | 'valuation'
   | 'investment'
   | 'neighborhood'
   | 'contact'

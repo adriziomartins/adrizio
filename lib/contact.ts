@@ -7,6 +7,13 @@ export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURICo
   WHATSAPP_MESSAGE,
 )}`
 
+export const WHATSAPP_SHORT_STAY_MESSAGE =
+  'Olá, Adrizio. Vim pela página Locações do site ADRIZIO e gostaria de uma cotação de curta temporada. Quais datas, unidades e condições estão disponíveis?'
+
+export const WHATSAPP_SHORT_STAY_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+  WHATSAPP_SHORT_STAY_MESSAGE,
+)}`
+
 export const WHATSAPP_VALUATION_MESSAGE =
   'Olá, Adrizio. Vim pelo site ADRIZIO e gostaria de conversar sobre a avaliação e o posicionamento do meu imóvel.'
 

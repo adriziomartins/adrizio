@@ -45,6 +45,13 @@ const properties: Property[] = [
     ...base,
     id: 'rent',
     purpose: 'aluguel',
+    rentalModality: 'longa-temporada',
+  },
+  {
+    ...base,
+    id: 'short',
+    purpose: 'aluguel',
+    rentalModality: 'curta-temporada',
   },
 ]
 
@@ -66,6 +73,14 @@ test('investimento reconhece indicador e classificação legada', () => {
 
 test('locação não inclui imóveis à venda', () => {
   assert.deepEqual(search({ finalidade: 'alugar' }), ['rent'])
+})
+
+test('locações de curta temporada não misturam imóveis residenciais', () => {
+  assert.deepEqual(search({ finalidade: 'locacoes' }), ['short'])
+})
+
+test('filtro legado de curta temporada continua acessível', () => {
+  assert.deepEqual(search({ finalidade: 'alugar', modalidade: 'curta-temporada' }), ['short'])
 })
 
 test('filtro de terrenos identifica a categoria', () => {

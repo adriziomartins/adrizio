@@ -10,12 +10,16 @@ const propertyLinks = [
     href: '/alugar',
   },
   {
+    label: 'Locações',
+    href: '/locacoes',
+  },
+  {
     label: 'Investir',
     href: '/investir',
   },
   {
     label: 'Avaliar imóvel',
-    href: '/#avaliar',
+    href: '/avaliar-imovel',
   },
 ]
 
