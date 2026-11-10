@@ -2,6 +2,7 @@ import { ArrowRight, BarChart3, CheckCircle2, FileSearch, Handshake, Home } from
 
 import { TrackedWhatsAppLink } from '@/components/analytics/tracked-whatsapp-link'
 import { WHATSAPP_VALUATION_URL } from '@/lib/contact'
+import type { SourcePage } from '@/types/analytics'
 
 const benefits = [
   'Análise do perfil e das características do imóvel',
@@ -34,7 +35,7 @@ const steps = [
   },
 ]
 
-export function PropertyValuation() {
+export function PropertyValuation({ sourcePage = 'home' }: { sourcePage?: SourcePage }) {
   return (
     <section
       id="avaliar"
@@ -89,7 +90,7 @@ export function PropertyValuation() {
 
             <TrackedWhatsAppLink
               href={WHATSAPP_VALUATION_URL}
-              sourcePage="home"
+              sourcePage={sourcePage}
               contactIntent="valuation"
               ariaLabel="Solicitar uma avaliação pelo WhatsApp — abre em nova aba"
               className="mt-10 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#D4AF37] px-6 text-sm font-semibold text-zinc-950 transition-all hover:-translate-y-0.5 hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
