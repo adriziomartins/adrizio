@@ -18,7 +18,7 @@ export type PropertySearchParams = Record<string, SearchParamValue>
 export type PropertySearchValues = Record<PropertySearchField, string>
 
 export const PROPERTY_SEARCH_ALLOWED_VALUES: Record<PropertySearchField, readonly string[]> = {
-  finalidade: ['comprar', 'alugar', 'investir'],
+  finalidade: ['comprar', 'alugar', 'locacoes', 'investir'],
   modalidade: ['longa-temporada', 'curta-temporada'],
   bairro: [
     'beira-mar',
@@ -46,6 +46,7 @@ export const PROPERTY_SEARCH_DEFAULT_VALUES: PropertySearchValues = {
 const purposeMap: Record<string, PropertyPurpose | undefined> = {
   comprar: 'venda',
   alugar: 'aluguel',
+  locacoes: 'aluguel',
   investir: 'investimento',
 }
 
@@ -142,7 +143,12 @@ export function filterProperties(
 ): Property[] {
   const selectedPurpose = purposeMap[filters.finalidade]
   const selectedType = propertyTypeMap[filters.tipo]
-  const selectedRentalModality = rentalModalityMap[filters.modalidade]
+  const selectedRentalModality =
+    filters.finalidade === 'locacoes'
+      ? 'curta-temporada'
+      : filters.finalidade === 'alugar' && filters.modalidade !== 'curta-temporada'
+        ? 'longa-temporada'
+        : rentalModalityMap[filters.modalidade]
 
   return properties.filter((property) => {
     if (filters.finalidade === 'investir') {
@@ -198,7 +204,11 @@ export function getPropertySearchSummary(filters: PropertySearchValues): string 
   }
 
   if (filters.finalidade === 'alugar') {
-    parts.push('para locação')
+    parts.push('para locação residencial')
+  }
+
+  if (filters.finalidade === 'locacoes') {
+    parts.push('para estadias de curta temporada')
   }
 
   if (filters.finalidade === 'investir') {
