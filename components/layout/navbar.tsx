@@ -7,8 +7,9 @@ import { MobileNavigation } from '@/components/layout/mobile-navigation'
 const navigation = [
   { label: 'Comprar', href: '/comprar' },
   { label: 'Alugar', href: '/alugar' },
+  { label: 'Locações', href: '/locacoes' },
   { label: 'Investir', href: '/investir' },
-  { label: 'Avaliar Imóvel', href: '/#avaliar' },
+  { label: 'Avaliar Imóvel', href: '/avaliar-imovel' },
   { label: 'Sobre Nós', href: '/sobre' },
   { label: 'Blog', href: '/blog' },
 ] as const
@@ -27,7 +28,7 @@ export function Navbar() {
         </Link>
 
         {/* Navegação desktop */}
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Navegação principal">
+        <nav className="hidden items-center gap-5 lg:flex" aria-label="Navegação principal">
           {navigation.map((item) => (
             <Link
               key={item.href}
