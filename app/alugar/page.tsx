@@ -32,6 +32,7 @@ export default async function RentPage() {
       modalidade: 'longa-temporada',
     }),
   )
+
   return (
     <>
       <a
@@ -87,8 +88,8 @@ export default async function RentPage() {
               </h2>
 
               <p className="mt-3 max-w-2xl text-sm leading-6 text-zinc-400">
-                Os imóveis desta página são destinados à locação residencial de longa duração.
-                A disponibilidade e as condições de cada contrato devem ser confirmadas.
+                Os imóveis desta página são destinados à locação residencial de longa duração. A
+                disponibilidade e as condições de cada contrato devem ser confirmadas.
               </p>
             </div>
 
