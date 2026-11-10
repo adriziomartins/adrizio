@@ -4,11 +4,11 @@ import { CalendarDays, MapPin, Users } from 'lucide-react'
 import { TrackedWhatsAppLink } from '@/components/analytics/tracked-whatsapp-link'
 import { Footer } from '@/components/layout/footer'
 import { Navbar } from '@/components/layout/navbar'
+import { ShortStayRequestForm } from '@/components/locacoes/short-stay-request-form'
 import { PropertyGrid } from '@/components/property/property-grid'
+import { WHATSAPP_SHORT_STAY_URL } from '@/lib/contact'
 import { getCatalogProperties } from '@/lib/property-catalog'
 import { filterProperties, getPropertySearchValues } from '@/lib/property-search'
-import { WHATSAPP_SHORT_STAY_URL } from '@/lib/contact'
-import { ShortStayRequestForm } from '@/components/locacoes/short-stay-request-form'
 export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
   title: 'Locações por curta temporada em Fortaleza',
@@ -41,10 +41,10 @@ export default async function ShortStayRentalsPage() {
   const shortStayProperties = filterProperties(
     await getCatalogProperties(),
     getPropertySearchValues({
-      finalidade: 'alugar',
-      modalidade: 'curta-temporada',
+      finalidade: 'locacoes',
     }),
   )
+
   return (
     <>
       <a
@@ -96,7 +96,8 @@ export default async function ShortStayRentalsPage() {
               </h2>
 
               <p className="mt-4 max-w-2xl text-sm leading-7 text-zinc-400">
-                As opções abaixo estão sujeitas à confirmação de datas, capacidade, preço e disponibilidade; não representam estoque em tempo real.
+                As opções abaixo estão sujeitas à confirmação de datas, capacidade, preço e
+                disponibilidade; não representam estoque em tempo real.
               </p>
 
               <div className="mt-8">
