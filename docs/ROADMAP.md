@@ -117,3 +117,20 @@ A fundação está pronta no código, mas a ativação em produção depende de:
 3. preparar a integração com `main`;
 4. executar nova validação após a integração;
 5. criar e configurar o container GTM em uma etapa separada de implantação.
+
+
+---
+
+## Atualização de arquitetura comercial — 10 de novembro de 2026
+
+Decisão registrada em `docs/adr/ADR-2026-11-10-separacao-alugar-locacoes.md`.
+
+- **Alugar:** somente longa temporada (`LONG_TERM`), rota `/alugar`.
+- **Locações:** somente curta temporada (`SHORT_STAY`), rota `/locacoes`.
+- **Avaliar Imóvel:** rota dedicada `/avaliar-imovel`.
+- **Comprar**, **Investir**, **Sobre Nós** e **Blog** mantidos.
+- Rotas antigas de modalidades passam a redirecionar para os destinos comerciais novos.
+- Turismo, passeios e serviços de parceiros ficam no backlog estratégico, sem publicação no menu.
+- Implantação atual: branch de trabalho, testes e aprovação pendentes; **não publicada em produção**.
+
+O estado histórico das fases e a implantação do GTM acima não devem ser interpretados como validação desta mudança de novembro.
