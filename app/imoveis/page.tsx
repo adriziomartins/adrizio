@@ -87,7 +87,7 @@ export default async function PropertiesPage({ searchParams }: PropertiesPagePro
             <PropertyFilters
               values={filters}
               allowAllPurposes
-              showRentalModality={filters.finalidade === 'alugar'}
+              showRentalModality={false}
             />
 
             <div className="mb-10 mt-12 flex flex-col gap-5 border-b border-white/10 pb-8 sm:flex-row sm:items-end sm:justify-between">
