@@ -71,30 +71,60 @@ export function ShortStayRequestForm() {
         Consulte valores para as suas datas
       </h2>
       <p className="mt-3 max-w-3xl text-sm leading-7 text-zinc-400">
-        Preencha os dados básicos. A solicitação será aberta no WhatsApp para cotação manual.
-        Este formulário não confirma reserva, disponibilidade nem preço.
+        Preencha os dados básicos. A solicitação será aberta no WhatsApp para cotação manual. Este formulário não confirma
+        reserva, disponibilidade nem preço.
       </p>
 
       <form onSubmit={handleSubmit} className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
         <label className="block text-sm text-zinc-300">
           Entrada
-          <input name="checkIn" type="date" required className="mt-2 h-12 w-full rounded-xl border border-zinc-700 bg-zinc-900 px-3 text-zinc-100 focus:border-[#D4AF37]" />
+          <input
+            name="checkIn"
+            type="date"
+            required
+            className="mt-2 h-12 w-full rounded-xl border border-zinc-700 bg-zinc-900 px-3 text-zinc-100 focus:border-[#D4AF37]"
+          />
         </label>
         <label className="block text-sm text-zinc-300">
           Saída
-          <input name="checkOut" type="date" required className="mt-2 h-12 w-full rounded-xl border border-zinc-700 bg-zinc-900 px-3 text-zinc-100 focus:border-[#D4AF37]" />
+          <input
+            name="checkOut"
+            type="date"
+            required
+            className="mt-2 h-12 w-full rounded-xl border border-zinc-700 bg-zinc-900 px-3 text-zinc-100 focus:border-[#D4AF37]"
+          />
         </label>
         <label className="block text-sm text-zinc-300">
           Adultos
-          <input name="adults" type="number" min="1" max="30" defaultValue="2" required className="mt-2 h-12 w-full rounded-xl border border-zinc-700 bg-zinc-900 px-3 text-zinc-100 focus:border-[#D4AF37]" />
+          <input
+            name="adults"
+            type="number"
+            min="1"
+            max="30"
+            defaultValue="2"
+            required
+            className="mt-2 h-12 w-full rounded-xl border border-zinc-700 bg-zinc-900 px-3 text-zinc-100 focus:border-[#D4AF37]"
+          />
         </label>
         <label className="block text-sm text-zinc-300">
           Crianças
-          <input name="children" type="number" min="0" max="30" defaultValue="0" required className="mt-2 h-12 w-full rounded-xl border border-zinc-700 bg-zinc-900 px-3 text-zinc-100 focus:border-[#D4AF37]" />
+          <input
+            name="children"
+            type="number"
+            min="0"
+            max="30"
+            defaultValue="0"
+            required
+            className="mt-2 h-12 w-full rounded-xl border border-zinc-700 bg-zinc-900 px-3 text-zinc-100 focus:border-[#D4AF37]"
+          />
         </label>
         <label className="block text-sm text-zinc-300">
           Região
-          <select name="region" defaultValue="" className="mt-2 h-12 w-full rounded-xl border border-zinc-700 bg-zinc-900 px-3 text-zinc-100 focus:border-[#D4AF37]">
+          <select
+            name="region"
+            defaultValue=""
+            className="mt-2 h-12 w-full rounded-xl border border-zinc-700 bg-zinc-900 px-3 text-zinc-100 focus:border-[#D4AF37]"
+          >
             <option value="">A definir</option>
             <option value="Beira-Mar">Beira-Mar</option>
             <option value="Meireles">Meireles</option>
@@ -104,13 +134,21 @@ export function ShortStayRequestForm() {
             <option value="Outra região">Outra região</option>
           </select>
         </label>
-        {error ? <p role="alert" className="text-sm text-red-300 md:col-span-2 lg:col-span-5">{error}</p> : null}
-        <div className="flex flex-col gap-3 md:col-span-2 lg:col-span-5 sm:flex-row sm:items-center">
-          <button type="submit" className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#D4AF37] px-6 text-sm font-semibold text-zinc-950 hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]">
+        {error ? (
+          <p role="alert" className="text-sm text-red-300 md:col-span-2 lg:col-span-5">
+            {error}
+          </p>
+        ) : null}
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center md:col-span-2 lg:col-span-5">
+          <button
+            type="submit"
+            className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#D4AF37] px-6 text-sm font-semibold text-zinc-950 hover:bg-[#E5C45A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
+          >
             Solicitar cotação no WhatsApp
           </button>
           <p className="max-w-xl text-xs leading-5 text-zinc-400">
-            A capacidade, a estadia mínima, a diária e as condições variam conforme o imóvel e o período.
+            A capacidade, a estadia mínima, a diária e as condições variam conforme o imóvel e o
+            período.
           </p>
         </div>
       </form>
